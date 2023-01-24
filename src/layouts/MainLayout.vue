@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
   <!-- <q-card class="cls-mat-card bg-primary text-white"> -->
-  <q-card class="cls-mat-card">
+    <q-card class="cls-mat-card">
       <q-card-section class="bg-primary text-white">
         <div class="text-h6">Login</div>
       </q-card-section>
@@ -12,7 +12,15 @@
       <div class="q-gutter-md">
         <q-input outlined v-model="txtLogin" label="Login" class="text-white"/>
 
-        <q-input outlined v-model="txtPassword" label="Senha" class="text-white"/>
+        <q-input outlined v-model="txtPassword" label="Senha" class="text-white" :type="isPwd ? 'password' : 'text'" >
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
+          </template>
+        </q-input>
         </div>
       </q-card-section>
 
@@ -20,53 +28,15 @@
 
       <q-separator dark />
 
-      <q-card-actions>
-        <q-btn push icon="fa-regular fa-user" class="bg-primary text-white" label="Crir nova conta">
+      <q-card-actions align="center">
+        <q-btn push icon="person" class="bg-primary text-white" label="Crir nova conta">
           <q-tooltip>Clique para registrar-se</q-tooltip>
         </q-btn>
-        <q-btn push icon="mail" class="bg-primary text-white" label="Login">
+        <q-btn push icon="login" class="bg-primary text-white" label="Login">
           <q-tooltip>Clique para efetuar o login</q-tooltip>
         </q-btn>
       </q-card-actions>
     </q-card>
-    <!-- <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quote manager
-        </q-toolbar-title>
-
-        <div>Product V1.0.0</div>
-      </q-toolbar>
-    </q-header> -->
-
-    <!-- <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer> -->
 
     <q-page-container>
       <router-view />
@@ -111,6 +81,7 @@ export default defineComponent({
       keepUserConnected: ref(false),
       txtLogin: ref(''),
       txtPassword: ref(''),
+      isPwd: ref(true),
 
       essentialLinks: null,
       leftDrawerOpen,
