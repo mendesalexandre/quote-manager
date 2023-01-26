@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 new Vue({
   el: '#app',
   data () {
