@@ -12,7 +12,33 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/home',
-    component: () => import('pages/home-screen/HomeScreen.vue')
+    component: () => import('pages/home-screen/HomeScreen.vue'),
+    children: [
+      {
+        path: '/welcome',
+        component: () => import('pages/home-screen/Welcome.vue')
+      },
+      {
+        path: '/finances',
+        component: () => import('src/pages/finances/Finances.vue')
+      },
+      {
+        path: '/defaulters',
+        component: () => import('src/pages/finances/Defaulters.vue')
+      },
+      {
+        path: '/reports',
+        component: () => import('src/pages/finances/Reports.vue')
+      },
+      {
+        path: '/tags',
+        component: () => import('src/pages/finances/Tags.vue')
+      },
+      {
+        path: '/indicators',
+        component: () => import('src/pages/finances/Indicators.vue')
+      }
+    ]
   }
 ]
 
