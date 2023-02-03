@@ -4,12 +4,29 @@
     <q-list bordered class="rounded-borders">
       <q-input outlined v-model="textSearch" placeholder="Pesquisar..." class="text-black" />
 
-      <q-expansion-item expand-separator label="Página inicial" default-opened class="text-primary" icon="home" to="/welcome"/>
+      <q-expansion-item expand-separator label="Página inicial" class="text-primary" icon="home" to="/welcome">
+        <q-item :inset-level="0.5" clickable v-ripple to="/todo">
+          <q-item-section avatar>
+            <q-icon name="mdi-format-list-bulleted"/>
+            </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-secondary">Tarefas à fazer</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item :inset-level="0.5" clickable v-ripple to="/done">
+          <q-item-section avatar>
+            <q-icon name="mdi-check-all"/>
+            </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-secondary">Tarefas concluídas</q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-expansion-item>
 
       <q-expansion-item expand-separator icon="account_balance" label="Minhas finanças" default-opened class="text-primary">
         <q-item :inset-level="0.5" clickable v-ripple to="/finances">
           <q-item-section avatar>
-            <q-icon name="request_quote"/>
+            <q-icon name="fa-solid fa-hand-holding-dollar"/>
             </q-item-section>
           <q-item-section>
             <q-item-label class="text-secondary">Finanças</q-item-label>
@@ -25,7 +42,7 @@
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/reports">
           <q-item-section avatar>
-            <q-icon name="leaderboard"/>
+            <q-icon name="mdi-chart-line"/>
             </q-item-section>
           <q-item-section>
             <q-item-label class="text-secondary">Relatórios</q-item-label>
@@ -33,7 +50,7 @@
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/tags">
           <q-item-section avatar>
-            <q-icon name="local_offer"/>
+            <q-icon name="mdi-tag-multiple"/>
             </q-item-section>
           <q-item-section>
             <q-item-label class="text-secondary">Tags</q-item-label>
@@ -41,7 +58,7 @@
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/indicators">
           <q-item-section avatar>
-            <q-icon name="assignment_ind"/>
+            <q-icon name="mdi-finance"/>
             </q-item-section>
           <q-item-section>
             <q-item-label class="text-secondary">Indicadores</q-item-label>
