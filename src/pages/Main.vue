@@ -27,7 +27,7 @@
         <q-btn push icon="person" class="bg-primary text-white" label="Crir nova conta">
           <q-tooltip>Clique para registrar-se</q-tooltip>
         </q-btn>
-        <q-btn push icon="login" class="bg-primary text-white" label="Login" to="/home">
+        <q-btn push icon="login" class="bg-primary text-white" label="Login" to="/welcome">
           <q-tooltip>Clique para efetuar o login</q-tooltip>
         </q-btn>
       </q-card-actions>

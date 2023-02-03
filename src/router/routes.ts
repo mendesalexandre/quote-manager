@@ -15,6 +15,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import('pages/home-screen/HomeScreen.vue'),
     children: [
       {
+        path: '/todo',
+        component: () => import('pages/tasks/TasksTodo.vue')
+      },
+      {
+        path: '/done',
+        component: () => import('pages/tasks/TasksDone.vue')
+      },
+      {
         path: '/welcome',
         component: () => import('pages/home-screen/Welcome.vue')
       },
