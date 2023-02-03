@@ -54,8 +54,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash' // available values: 'hash', 'history'
-
+      vueRouterMode: 'hash', // available values: 'hash', 'history'
       // transpile: false,
       // publicPath: '/',
 
@@ -75,7 +74,9 @@ module.exports = configure(function (ctx) {
 
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      // chainWebpack (/* chain */) {}
+      // chainWebpack (/* chain */) {},
+
+      devtool: 'source-map'
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
