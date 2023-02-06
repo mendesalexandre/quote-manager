@@ -53,10 +53,15 @@
       <div class="row no-wrap q-pa-md">
         <div class="column">
           <div class="text-h6 q-mb-md">Atalhos</div>
-          <q-btn outline rounded color="primary" label="Config." icon="settings"/>
-          <q-separator />
-          <q-btn outline rounded color="primary" label="Ajuda" icon="help_outline"/>
-          <q-separator />
+          <div>
+            <q-btn outline rounded color="primary" label="Config." icon="settings"/>
+          </div>
+          <div>
+            <q-btn outline rounded color="primary" label="Ajuda" icon="help_outline"/>
+          </div>
+          <div>
+            <q-toggle v-model="enableDarkMode" checked-icon="brightness_5" unchecked-icon="bedtime" label="Trocar tema"/>
+          </div>
         </div>
 
         <q-separator vertical inset class="q-mx-lg" />
@@ -76,29 +81,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'UserSubmenuOptions',
   setup () {
+    const $q = useQuasar()
+    // eslint-disable-next-line prefer-const
+    let enableDarkMode = ref(false)
+
+    watch(enableDarkMode, () => {
+      $q.dark.set(enableDarkMode.value)
+    })
+
     return {
       mobileData: ref(false),
-      bluetooth: ref(false)
+      bluetooth: ref(false),
+      enableDarkMode
     }
   }
-  // props: {
-  //   title: {
-  //     type: String,
-  //     required: true
-  //   },
-
-  //   icon: {
-  //     type: String,
-  //     default: ''
-  //   }
-  // }
-  // setup (props) {
-  //   return { ...useClickCount(), ...useDisplayTodo(toRef(props, 'todos')) }
-  // }
 })
 </script>
