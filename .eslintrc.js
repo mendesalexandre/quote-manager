@@ -10,6 +10,7 @@ module.exports = {
   // `parser: 'vue-eslint-parser'` is already included with any 'plugin:vue/**' config and should be omitted
   parserOptions: {
     parser: require.resolve('@typescript-eslint/parser'),
+    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     extraFileExtensions: [ '.vue' ]
   },
 
