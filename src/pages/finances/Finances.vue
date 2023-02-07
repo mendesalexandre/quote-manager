@@ -20,52 +20,73 @@
     </q-item>
   </q-expansion-item> -->
 
-  <q-expansion-item>
-    <template v-slot:header>
-
-      <q-item-section>
-        <q-icon icon="mdi-filter-outline" color="text-primary" text-color="white" />
-      </q-item-section>
-      <q-item-section>
-        Filtro
-      </q-item-section>
-
-      <q-item-section side></q-item-section>
-    </template>
-
+  <q-expansion-item
+    expand-separator
+    icon="mdi-filter-outline"
+    label="Filtro"
+    caption="Preencha os campos para o filtro"
+    header-class="text-primary"
+  >
     <q-card>
       <q-card-section>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-        commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-        eveniet doloribus ullam aliquid.
+
+        <div class="q-pa-md row items-start q-gutter-md">
+          <!--Bill name-->
+          <q-input filled v-model="billName" label="Nome da conta">
+            <template v-slot:prepend>
+              <q-icon name="mdi-text-box-outline" />
+            </template>
+          </q-input>
+          <!--Tag name-->
+          <q-input filled v-model="tagName" label="Nome da tag">
+            <template v-slot:prepend>
+              <q-icon name="mdi-tag" />
+            </template>
+          </q-input>
+          <!--Date picker-->
+          <q-btn icon="event" round color="primary">
+            <q-popup-proxy @before-show="updateProxy" cover transition-show="scale" transition-hide="scale">
+              <q-date v-model="proxyDate">
+                <div class="row items-center justify-end q-gutter-sm">
+                  <q-btn label="Cancel" color="primary" flat v-close-popup />
+                  <q-btn label="OK" color="primary" flat @click="save" v-close-popup />
+                </div>
+              </q-date>
+            </q-popup-proxy>
+          </q-btn>
+          <!--Buttons-->
+          <q-btn outline rounded color="primary" label="Novo" icon="add"/>
+          <q-btn outline rounded color="primary" label="Pesquisar" icon="search"/>
+        </div>
       </q-card-section>
     </q-card>
   </q-expansion-item>
 
-      <q-separator />
+  <q-separator/>
 
-  <!-- <div class="q-pa-md row items-start q-gutter-md">
-    <div v-for="todo in filteredTasks" :key="todo.id" class="todo-item">
-      <q-card class="">
-        <q-card-section>
-          <div class="text-h6">{{ todo.title }}</div>
-          <div class="text-subtitle2">Description here</div>
-        </q-card-section>
-
-        <q-card-actions>
-          <q-btn flat icon="mdi-check" @click="completeTask(todo)" class="bg-primary text-white">Completar tarefa</q-btn>
-          <q-btn flat icon="mdi-delete-forever" @click="removeTask(todo)" class="bg-primary text-white">Remover tarefa</q-btn>
-        </q-card-actions>
-      </q-card>
-    </div>
-  </div> -->
 </template>
 
 <script lang="ts">
 
+import { ref } from 'vue'
+
 export default {
   setup () {
-    return { }
+    const date = ref('2019/03/01')
+    const proxyDate = ref('2019/03/01')
+    return {
+      billName: ref(''),
+      tagName: ref(''),
+      date,
+      proxyDate,
+      updateProxy () {
+        proxyDate.value = date.value
+      },
+
+      save () {
+        date.value = proxyDate.value
+      }
+    }
   }
 }
 </script>
