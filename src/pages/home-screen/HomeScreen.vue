@@ -8,9 +8,9 @@
         <!--Application title-->
         <q-toolbar-title>Gestor de finanças</q-toolbar-title>
 
-        <q-button>
+        <q-btn>
           <UserSubmenuOptions/>
-        </q-button>
+        </q-btn>
 
       </q-toolbar>
     </q-header>
