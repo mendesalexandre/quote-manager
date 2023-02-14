@@ -1,24 +1,6 @@
+<!-- eslint-disable @typescript-eslint/no-non-null-assertion -->
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-
-  <!-- <q-expansion-item expand-separator label="Filtro" class="text-primary" icon="mdi-filter-outline">
-    <q-item :inset-level="0.5" clickable v-ripple to="/todo">
-      <q-item-section avatar>
-        <q-icon name="mdi-format-list-bulleted"/>
-        </q-item-section>
-      <q-item-section>
-        <q-item-label class="text-secondary">Tarefas à fazer</q-item-label>
-      </q-item-section>
-    </q-item>
-    <q-item :inset-level="0.5" clickable v-ripple to="/done">
-      <q-item-section avatar>
-        <q-icon name="mdi-check-all"/>
-        </q-item-section>
-      <q-item-section>
-        <q-item-label class="text-secondary">Tarefas concluídas</q-item-label>
-      </q-item-section>
-    </q-item>
-  </q-expansion-item> -->
 
   <q-expansion-item
     expand-separator
@@ -44,16 +26,29 @@
             </template>
           </q-input>
           <!--Date picker-->
-          <q-btn icon="event" round color="primary">
-            <q-popup-proxy @before-show="updateProxy" cover transition-show="scale" transition-hide="scale">
-              <q-date v-model="proxyDate">
-                <div class="row items-center justify-end q-gutter-sm">
-                  <q-btn label="Cancel" color="primary" flat v-close-popup />
-                  <q-btn label="OK" color="primary" flat @click="save" v-close-popup />
-                </div>
-              </q-date>
-            </q-popup-proxy>
-          </q-btn>
+          <q-input readonly
+            input-class="cursor-pointer"
+            label="Inicio"
+            v-model="date"
+            @click="showDatePicker"
+            mask="##/####"
+            fill-mask="##/####"
+          >
+            <template v-slot:append>
+              <q-icon name="event" class="cursor-pointer">
+                <q-popup-proxy ref="monthPicker" transition-show="scale" transition-hide="scale">
+                  <q-date
+                    minimal
+                    mask="MM/YYYY"
+                    emit-immediately
+                    default-view="Years"
+                    v-model="date"
+                    @input="hideDatePicker"
+                  />
+                </q-popup-proxy>
+              </q-icon>
+            </template>
+          </q-input>
           <!--Buttons-->
           <q-btn outline rounded color="primary" label="Novo" icon="add"/>
           <q-btn outline rounded color="primary" label="Pesquisar" icon="search"/>
@@ -69,22 +64,34 @@
 <script lang="ts">
 
 import { ref } from 'vue'
+import Vue from 'vue'
+import moment from 'moment'
 
+@Component
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: 'Finances',
+
+  // $refs!: {
+  //   input: HTMLInputElement
+  // },
+
   setup () {
-    const date = ref('2019/03/01')
-    const proxyDate = ref('2019/03/01')
     return {
       billName: ref(''),
       tagName: ref(''),
-      date,
-      proxyDate,
-      updateProxy () {
-        proxyDate.value = date.value
-      },
+      date: ref(moment().format('MM/YYYY').toString())
+    }
+  },
 
-      save () {
-        date.value = proxyDate.value
+  methods: {
+    showDatePicker (val: any, reason: any, details: any) {
+      $refs['monthPicker'].show()
+    },
+    hideDatePicker (val: any, reason: any, details: any) {
+      if (reason === 'month') {
+        // eslint-disable-next-line dot-notation
+        (this.$refs['monthPicker'] as any).hide()
       }
     }
   }
