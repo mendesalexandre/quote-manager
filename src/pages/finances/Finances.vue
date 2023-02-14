@@ -64,10 +64,8 @@
 <script lang="ts">
 
 import { ref } from 'vue'
-import Vue from 'vue'
 import moment from 'moment'
 
-@Component
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Finances',
@@ -86,7 +84,7 @@ export default {
 
   methods: {
     showDatePicker (val: any, reason: any, details: any) {
-      $refs['monthPicker'].show()
+      (this.$refs.monthPicker as any).show()
     },
     hideDatePicker (val: any, reason: any, details: any) {
       if (reason === 'month') {
