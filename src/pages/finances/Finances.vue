@@ -26,25 +26,24 @@
             </template>
           </q-input>
           <!--Date picker-->
-          <q-input readonly
-            input-class="cursor-pointer"
-            label="Inicio"
-            v-model="date"
-            @click="showDatePicker"
+          <q-input filled
+            label="Mês/Ano"
+            v-model="currentDate"
             mask="##/####"
             fill-mask="##/####"
           >
-            <template v-slot:append>
+            <template v-slot:prepend>
               <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy ref="monthPicker" transition-show="scale" transition-hide="scale">
+                <q-popup-proxy ref="qDateProxy" cover transition-show="scale" transition-hide="scale" :breakpoint="0">
                   <q-date
-                    minimal
-                    mask="MM/YYYY"
+                    v-model="currentDate"
+                    years-in-month-view
+                    default-view="Months"
                     emit-immediately
-                    default-view="Years"
-                    v-model="date"
-                    @input="hideDatePicker"
-                  />
+                    @update:model-value="onUpdateMv"
+                    :key="dpKey"
+                    minimal mask="MM/YYYY"
+                  ></q-date>
                 </q-popup-proxy>
               </q-icon>
             </template>
@@ -62,35 +61,29 @@
 </template>
 
 <script lang="ts">
-
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import moment from 'moment'
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Finances',
-
-  // $refs!: {
-  //   input: HTMLInputElement
-  // },
-
   setup () {
+    const currentDate = ref(moment().format('MM/YYYY').toString())
+    const qDateProxy = ref()
+    const dpKey = ref(Date.now())
+    const displayDate = computed(() => currentDate.value ?? 'Escolha o mês')
+    function onUpdateMv (v: any, r: any) {
+      dpKey.value = Date.now()
+      r === 'month' && qDateProxy.value.hide()
+    }
     return {
       billName: ref(''),
       tagName: ref(''),
-      date: ref(moment().format('MM/YYYY').toString())
-    }
-  },
-
-  methods: {
-    showDatePicker (val: any, reason: any, details: any) {
-      (this.$refs.monthPicker as any).show()
-    },
-    hideDatePicker (val: any, reason: any, details: any) {
-      if (reason === 'month') {
-        // eslint-disable-next-line dot-notation
-        (this.$refs['monthPicker'] as any).hide()
-      }
+      currentDate,
+      displayDate,
+      qDateProxy,
+      dpKey,
+      onUpdateMv
     }
   }
 }
