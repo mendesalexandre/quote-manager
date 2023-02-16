@@ -11,6 +11,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const { configure } = require('quasar/wrappers')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = configure(function (ctx) {
   return {
@@ -23,22 +24,9 @@ module.exports = configure(function (ctx) {
         }
       }
     },
-
-    // https://v2.quasar.dev/quasar-cli-webpack/prefetch-feature
-    // preFetch: true,
-
-    // app boot file (/src/boot)
-    // --> boot files are part of "main.js"
-    // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: [
-
-    ],
-
+    boot: [],
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
-    css: [
-      'app.scss'
-    ],
-
+    css: ['app.scss'],
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
       'ionicons-v4',
@@ -211,16 +199,16 @@ module.exports = configure(function (ctx) {
         appId: 'quote-manager'
       },
 
-      // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackMain (/* chain */) {
-        // do something with the Electron main process Webpack cfg
-        // extendWebpackMain also available besides this chainWebpackMain
+      chainWebpackMain (chain) {
+        chain
+          .plugin('eslint-webpack-plugin')
+          .use(ESLintPlugin, [{ extensions: ['js'] }])
       },
 
-      // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackPreload (/* chain */) {
-        // do something with the Electron main process Webpack cfg
-        // extendWebpackPreload also available besides this chainWebpackPreload
+      chainWebpackPreload (chain) {
+        chain
+          .plugin('eslint-webpack-plugin')
+          .use(ESLintPlugin, [{ extensions: ['js'] }])
       }
     }
   }
