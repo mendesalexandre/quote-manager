@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-empty-function -->
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-card class="cls-mat-card">
@@ -24,7 +25,7 @@
       <q-separator dark />
 
       <q-card-actions align="center">
-        <q-btn push icon="person" class="bg-primary text-white" label="Crir nova conta">
+        <q-btn push icon="person" class="bg-primary text-white" label="Crir nova conta" @click="openUserDialog = true">
           <q-tooltip>Clique para registrar-se</q-tooltip>
         </q-btn>
         <q-btn push icon="login" class="bg-primary text-white" label="Login" to="/welcome">
@@ -32,6 +33,8 @@
         </q-btn>
       </q-card-actions>
     </q-card>
+
+    <user-registration v-model="openUserDialog"></user-registration>
 
     <q-page-container>
       <router-view />
@@ -51,29 +54,32 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import UserRegistration from './UserRegistration.vue'
 
 export default defineComponent({
-  name: 'MainLayout',
-
+  name: 'UserLogin',
   components: {
-    // EssentialLink
+    UserRegistration
   },
-
-  setup () {
+  data () {
     const leftDrawerOpen = ref(false)
+    const openUserDialog = ref(false)
 
     return {
       keepUserConnected: ref(false),
       txtLogin: ref(''),
       txtPassword: ref(''),
       isPwd: ref(true),
-
       essentialLinks: null,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      }
+      },
+      openUserDialog
     }
-  }
+  },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  mounted () { },
+  methods: { }
 })
 </script>
