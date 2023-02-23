@@ -3,10 +3,21 @@ import axios from 'axios'
 import { environment, user, ui } from '../environments/environment'
 
 const baseUrl = `${environment.api.url}/${environment.api.version}`
+
 /**
- * Contains API object to run HTTP requests
+ * Contains API to user login exclusively
  */
-const api = axios.create({ baseURL: baseUrl })
+const apiLogin = axios.create({ baseURL: baseUrl })
+
+/**
+ * Contains API object to run HTTP requests with user authentication (bearer)
+ */
+const apiAuth = axios.create({ baseUrl })
+
+/**
+ * Contains API exclusively to user registration (request a different headers)
+ */
+const apiNewUser = axios.create({ baseURL: baseUrl })
 
 export default boot(({ app }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
@@ -18,9 +29,11 @@ export default boot(({ app }) => {
   /**
    * Contains the API object
    */
-  app.config.globalProperties.$api = api
+  app.config.globalProperties.$apiLogin = apiLogin
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
+  app.config.globalProperties.$apiNewUser = apiNewUser
+  app.config.globalProperties.$apiAuth = apiAuth
 
   /**
    * Contains the baseUrl API
@@ -29,13 +42,36 @@ export default boot(({ app }) => {
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
 
-  api.interceptors.request.use(
+  apiLogin.interceptors.request.use(
+    (config) => {
+      config.headers['Content-Type'] = 'application/json'
+      config.headers.Accept = '*/*'
+    },
+    (error) => {
+      return Promise.reject(error)
+    }
+  )
+
+  apiNewUser.interceptors.request.use(
     (config) => {
       const bearer = ''
       config.headers.Authorization = bearer
       config.headers['Content-Type'] = 'application/json'
       config.headers.Accept = '*/*'
-      config.headers['api-secret'] = ''
+      config.headers.x_client_secret = environment.api.apiSecret
+      config.headers.x_client_id = environment.api.apiClientId
+    },
+    (error) => {
+      return Promise.reject(error)
+    }
+  )
+
+  apiAuth.interceptors.request.use(
+    (config) => {
+      const bearer = ''
+      config.headers.Authorization = bearer
+      config.headers['Content-Type'] = 'application/json'
+      config.headers.Accept = '*/*'
     },
     (error) => {
       return Promise.reject(error)
@@ -43,4 +79,4 @@ export default boot(({ app }) => {
   )
 })
 
-export { axios, api }
+export { axios, apiLogin, apiNewUser, apiAuth }
