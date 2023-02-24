@@ -7,7 +7,8 @@ export default ({ app }) => {
   const i18n = createI18n({
     locale: 'pt-BR',
     globalInjection: true,
-    messages
+    messages,
+    legacy: false
   })
 
   // Tell app to use the I18n instance
