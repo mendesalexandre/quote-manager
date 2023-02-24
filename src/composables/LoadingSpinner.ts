@@ -5,13 +5,13 @@ import { LoadingStatus } from 'src/models/status'
  * Bb
  * @returns Bb
  */
-export default function loading () {
+export default function LoadingSpinner () {
   const $q = useQuasar()
   /**
    * Show a loading spinner
    * @param status Loading status (can be ON or OFF)
    */
-  const show = (status: LoadingStatus) => {
+  const showLoading = (status: LoadingStatus) => {
     if (status === LoadingStatus.ON) {
       $q.loading.show({
         message: 'Aguarde uns instantes...'
@@ -20,6 +20,6 @@ export default function loading () {
   }
 
   return {
-    show
+    showLoading
   }
 }
