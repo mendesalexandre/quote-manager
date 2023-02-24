@@ -1,52 +1,71 @@
 <template>
-  <q-dialog v-model="confirm" ref="dialog" persistent>
+  <q-dialog v-model="confirm" ref="dialog">
     <q-stepper v-model="step" vertical color="primary" animated>
-      <q-step :name="1" title="Dados gerais" icon="settings" :done="step > 1">
+      <q-step :name="1" :title="$t('pages.user.new.firstTitle')" icon="settings" :done="step > 1">
 
         <div class="q-gutter-md">
-          <q-input filled v-model="fullName" :label="$t('pages.user.new.fullname')" />
-          <q-input filled v-model="fullName" :label="$t('pages.user.new.username')"/>
-          <q-input filled v-model="fullName" :label="$t('pages.user.new.mail')" />
+          <q-input filled v-model="fullName" :label="$t('pages.user.new.fullName')" />
+          <q-input filled v-model="userName" :label="$t('pages.user.new.userName')"/>
+          <q-input filled v-model="userMail" :label="$t('pages.user.new.mail')" />
         </div>
 
         <q-stepper-navigation>
-          <q-btn @click="step = 2" color="primary" label="Continuar" />
-          <div class="q-gutter-md">
-            <q-input filled v-model="fullName" :label="$t('pages.user.new.username')" />
-          </div>
+          <q-btn @click="step = 2" color="primary" :label="$t('pages.user.new.continue')" />
         </q-stepper-navigation>
       </q-step>
 
-      <q-step :name="2" title="Create an ad group" caption="Optional" icon="create_new_folder" :done="step > 2">
-        An ad group contains one or more ads which target a shared set of keywords.
+      <!--caption="Optional"-->
+      <q-step :name="2" :title="$t('pages.user.new.secondTitle')" icon="create_new_folder" :done="step > 2">
+
+        <div class="q-gutter-md">
+            <q-input filled v-model="password" :label="$t('pages.user.new.password')" />
+            <q-input filled v-model="repeatPass" :label="$t('pages.user.new.repeatPass')" />
+        </div>
 
         <q-stepper-navigation>
-          <q-btn @click="step = 4" color="primary" label="Continue" />
-          <q-btn flat @click="step = 1" color="primary" label="Back" class="q-ml-sm" />
+          <q-btn @click="step = 4" color="primary" :label="$t('pages.user.new.continue')" />
+          <q-btn flat @click="step = 1" color="primary" :label="$t('pages.user.new.back')" class="q-ml-sm" />
         </q-stepper-navigation>
       </q-step>
 
-      <q-step :name="3" title="Ad template" icon="assignment" disable>
+      <!--Disable stepper-->
+      <!-- <q-step :name="3" title="Ad template" icon="assignment" disable>
         This step won't show up because it is disabled.
-      </q-step>
+      </q-step> -->
 
-      <q-step :name="4" title="Create an ad" icon="add_comment">
-        Try out different ad text to see what brings in the most customers, and learn how to
-        enhance your ads using features like ad extensions. If you run into any problems with
-        your ads, find out how to tell if they're running and how to resolve approval issues.
+      <q-step :name="4" :title="$t('pages.user.new.thirdTitle')" icon="add_comment">
+
+        <div class="q-gutter-md">
+            <div>
+              <q-checkbox v-model="moduleOne" :label="$t('pages.user.new.moduleOne')" keep-color/>
+            </div>
+            <div>
+              <q-checkbox v-model="moduleTwo" :label="$t('pages.user.new.moduleTwo')" keep-color/>
+            </div>
+            <div>
+              <q-checkbox v-model="moduleThree" :label="$t('pages.user.new.moduleThree')" keep-color/>
+            </div>
+            <div>
+              <q-checkbox v-model="moduleFourth" :label="$t('pages.user.new.moduleFourth')" keep-color/>
+            </div>
+            <div>
+              <q-checkbox v-model="moduleFifth" :label="$t('pages.user.new.moduleFifth')" keep-color/>
+            </div>
+            <div>
+              <q-checkbox right-label v-model="acceptedTerms" :label="$t('pages.user.new.termAccepted')" checked-icon="task_alt" unchecked-icon="highlight_off"/>
+            </div>
+        </div>
 
         <q-stepper-navigation>
-          <q-btn color="primary" label="Finish" />
-          <q-btn flat @click="step = 2" color="primary" label="Back" class="q-ml-sm" />
+          <q-btn color="primary" @click="newUser()" :label="$t('pages.user.new.finish')" />
+          <q-btn flat @click="step = 2" color="primary" :label="$t('pages.user.new.back')" class="q-ml-sm" />
         </q-stepper-navigation>
       </q-step>
     </q-stepper>
   </q-dialog>
 </template>
 
-<style lang="sass" scoped>
-
-</style>
+<style lang="sass" scoped></style>
 
 <script>
 import { ref } from 'vue'
@@ -61,7 +80,13 @@ export default {
       userName: ref(''),
       userMail: ref(''),
       password: ref(''),
-      repeatPass: ref('')
+      repeatPass: ref(''),
+      acceptedTerms: ref(false),
+      moduleOne: ref(false),
+      moduleTwo: ref(false),
+      moduleThree: ref(false),
+      moduleFourth: ref(false),
+      moduleFifth: ref(false)
     }
   },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -69,6 +94,10 @@ export default {
 
   },
   methods: {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    newUser () {
+      this.$refs.dialog.close()
+    },
     show () {
       this.$refs.dialog.show()
     },

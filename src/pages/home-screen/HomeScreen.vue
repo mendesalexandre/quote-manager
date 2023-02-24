@@ -6,11 +6,9 @@
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer"/>
 
         <!--Application title-->
-        <q-toolbar-title>Gestor de finanças</q-toolbar-title>
-
-        <q-btn>
-          <UserSubmenuOptions/>
-        </q-btn>
+        <q-toolbar-title>{{$t('pages.home.menu.subTitle')}}</q-toolbar-title>
+        <LanguageSwitch/>
+        <UserSubmenuOptions/>
 
       </q-toolbar>
     </q-header>
@@ -32,16 +30,15 @@
 import { defineComponent, ref } from 'vue'
 import SideMenuOptions from 'src/components/SideMenuOptions.vue'
 import UserSubmenuOptions from 'src/components/UserSubmenuOptions.vue'
-// import WelcomeBack from './WelcomeBack.vue'
+import LanguageSwitch from '../generic/LanguageSwitch.vue'
 
 export default defineComponent({
   name: 'HomeScreen',
 
   components: {
-    // EssentialLink,
     UserSubmenuOptions,
-    SideMenuOptions//,
-    // WelcomeBack
+    SideMenuOptions,
+    LanguageSwitch
   },
 
   setup () {

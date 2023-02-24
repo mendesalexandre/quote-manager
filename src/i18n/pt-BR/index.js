@@ -4,7 +4,21 @@ export default {
 
     },
     finance: {},
-    home: {},
+    home: {
+      title: 'Página inicial',
+      subTitle: 'Gestor de finanças',
+      search: 'Pesquisar...',
+      menu: {
+        taskTodo: 'Tarefas à fazer',
+        taskDone: 'Tarefas completas',
+        myFinances: 'Minhas finanças',
+        finances: 'Finanças',
+        defaulters: 'Inadimplentes',
+        reports: 'Relatórios',
+        tags: 'Tags',
+        indicators: 'Indicadores'
+      }
+    },
     task: {},
     user: {
       login: {
@@ -15,21 +29,32 @@ export default {
         login: 'Clique para efetuar o login'
       },
       new: {
-        title: 'Dados gerais',
+        firstTitle: 'Dados gerais',
+        secondTitle: 'Senha',
+        thirdTitle: 'Módulos e termos',
         continue: 'Continuar',
         back: 'Voltar',
+        finish: 'Finalizar',
         fullName: 'Nome completo',
-        username: 'Usuário para login',
+        userName: 'Usuário para login',
         mail: 'E-mail',
         password: 'Senha',
         repeatPass: 'Repita sua senha',
-        save: 'Salvar'
+        save: 'Salvar',
+        moduleOne: 'Finanças',
+        moduleTwo: 'Indicadores (Beta)',
+        moduleThree: 'Relatórios',
+        moduleFourth: 'Tags',
+        moduleFifth: 'Tasks',
+        termAccepted: 'Aceito os termos'
       }
     }
   },
   messages: {},
   logs: {},
   generic: {
-    test: ''
+    language: 'Idioma',
+    success: '',
+    error: ''
   }
 }
