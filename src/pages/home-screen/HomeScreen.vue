@@ -6,7 +6,7 @@
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer"/>
 
         <!--Application title-->
-        <q-toolbar-title>{{$t('pages.home.menu.subTitle')}}</q-toolbar-title>
+        <q-toolbar-title>{{$t('pages.home.subTitle')}}</q-toolbar-title>
         <LanguageSwitch/>
         <UserSubmenuOptions/>
 

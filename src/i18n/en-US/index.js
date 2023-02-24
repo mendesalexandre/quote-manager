@@ -19,6 +19,16 @@ export default {
         indicators: 'Indicators'
       }
     },
+    login: {
+      title: 'Welcome to financial manager',
+      labelLogin: 'Login',
+      labelPassword: 'Password',
+      keepConnect: 'Keep me connect',
+      newAccount: 'Create account',
+      tipNewAccount: 'Click to register',
+      doLogin: 'Login',
+      tipLogin: 'Click to login'
+    },
     task: {},
     user: {
       login: {
@@ -50,7 +60,10 @@ export default {
       }
     }
   },
-  messages: {},
+  messages: {
+    success: '',
+    error: ''
+  },
   logs: {},
   generic: {
     language: 'Language',

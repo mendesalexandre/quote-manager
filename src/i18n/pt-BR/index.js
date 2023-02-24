@@ -19,6 +19,16 @@ export default {
         indicators: 'Indicadores'
       }
     },
+    login: {
+      title: 'Bem-vindo ao gestor de finanças',
+      labelLogin: 'Login',
+      labelPassword: 'Senha',
+      keepConnect: 'Mantenha-me conectado',
+      newAccount: 'Criar nova conta',
+      tipNewAccount: 'Clique para registrar-se',
+      doLogin: 'Entrar',
+      tipLogin: 'Clique para efetuar o login'
+    },
     task: {},
     user: {
       login: {
@@ -50,7 +60,10 @@ export default {
       }
     }
   },
-  messages: {},
+  messages: {
+    success: '',
+    error: ''
+  },
   logs: {},
   generic: {
     language: 'Idioma',
