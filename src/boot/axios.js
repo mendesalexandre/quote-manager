@@ -58,8 +58,8 @@ export default boot(({ app }) => {
       config.headers.Authorization = bearer
       config.headers['Content-Type'] = 'application/json'
       config.headers.Accept = '*/*'
-      config.headers.x_client_secret = environment.api.apiSecret
-      config.headers.x_client_id = environment.api.apiClientId
+      config.headers.x_client_secret = environment.api.secret
+      config.headers.x_client_id = environment.api.clientId
     },
     (error) => {
       return Promise.reject(error)
