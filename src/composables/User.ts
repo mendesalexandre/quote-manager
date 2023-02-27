@@ -11,14 +11,13 @@ export async function getUser (payload: UserLogin) {
     .post('user/login', payload)
     .then(async (response: any) => {
       showLoading(LoadingStatus.OFF)
-      notifySuccess('')
+      notifySuccess('Sucesso ao logar')
       return response.data
     })
     .catch((error: any) => {
       showLoading(LoadingStatus.OFF)
-      if (error) {
-        notifyError(error.response.data.message)
-      } else console.log('error on user.getUser(): ', error)
+      notifyError(error?.message)
+      return error
     })
 }
 

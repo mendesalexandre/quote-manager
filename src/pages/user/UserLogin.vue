@@ -54,8 +54,8 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import UserRegistration from './UserRegistration.vue'
-import { getUser } from 'src/composables/User'
 import { UserLogin } from 'src/models/user'
+import { doLogin } from 'src/store/modules/User'
 
 export default defineComponent({
   name: 'UserLogin',
@@ -79,14 +79,9 @@ export default defineComponent({
       openUserDialog
     }
   },
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  mounted () { },
   methods: {
-    async login () {
-      await getUser(new UserLogin(this.userLogin, this.userPassword))
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      this.$router.push('/welcome').catch(() => { })
-      // console.log('userLogged: ', userLogged)
+    login () {
+      doLogin(new UserLogin(this.userLogin, this.userPassword))
     }
   }
 })
