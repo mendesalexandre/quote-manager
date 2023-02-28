@@ -1,23 +1,14 @@
 import { apiAuth, apiLogin, apiNewUser } from 'src/boot/axios'
 import { User, UserLogin } from 'src/models/user'
-import { showLoading } from '../util/Loading'
-import { notifySuccess, notifyError } from '../util/Notification'
-import { LoadingStatus } from 'src/models/status'
 
 export async function getUser (payload: UserLogin) {
-  showLoading(LoadingStatus.ON)
-
   return await apiLogin
     .post('user/login', payload)
     .then(async (response: any) => {
-      showLoading(LoadingStatus.OFF)
-      notifySuccess('Sucesso ao logar')
       return response.data
     })
     .catch((error: any) => {
-      showLoading(LoadingStatus.OFF)
-      notifyError(error?.message)
-      return error
+      throw error?.data?.message || error?.message
     })
 }
 
@@ -28,9 +19,7 @@ export async function updateUser (payload: User) {
       return response.data
     })
     .catch((error: any) => {
-      if (error) {
-        notifyError(error.response.data.message)
-      } else console.log('error on user.updateUser(): ', error)
+      throw error?.data?.message || error?.message
     })
 }
 
@@ -41,9 +30,7 @@ export async function newUser (payload: any) {
       return response.data
     })
     .catch((error: any) => {
-      if (error) {
-        notifyError(error.response.data.message)
-      } else console.log('error on user.newUser(): ', error)
+      throw error?.data?.message || error?.message
     })
 }
 
@@ -54,9 +41,7 @@ export async function deleteUser (payload: any) {
       return response.data
     })
     .catch((error: any) => {
-      if (error) {
-        notifyError(error.response.data.message)
-      } else console.log('error on user.deleteUser(): ', error)
+      throw error?.data?.message || error?.message
     })
 }
 

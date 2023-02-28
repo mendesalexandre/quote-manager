@@ -1,13 +1,17 @@
 export class User {
-  user: string
+  id: string
+  user: string | undefined
   userName: string
   password: string
   email: string
   loggedIn: boolean
   active: boolean
+  createdOn: string | undefined
+  lastLoginOn: string | undefined
+  permissions: string[] | undefined
   enablePayedFunctions: boolean
 
-  constructor (User: string, UserName: string, Pass: string, Email: string, Logged: boolean, Active: boolean, EnablePaidFunc: boolean) {
+  public constructor (User: string | undefined, UserName: string, Pass: string, Email: string, Logged: boolean, Active: boolean, EnablePaidFunc: boolean, Id?: string) {
     this.user = User
     this.userName = UserName
     this.password = Pass
@@ -15,6 +19,7 @@ export class User {
     this.loggedIn = Logged
     this.active = Active
     this.enablePayedFunctions = EnablePaidFunc
+    this.id = Id || ''
   }
 }
 
