@@ -8,7 +8,7 @@ export async function getUser (payload: UserLogin) {
       return response.data
     })
     .catch((error: any) => {
-      throw error?.data?.message || error?.message
+      throw error?.response?.data?.message || error?.message
     })
 }
 
@@ -19,7 +19,7 @@ export async function updateUser (payload: User) {
       return response.data
     })
     .catch((error: any) => {
-      throw error?.data?.message || error?.message
+      throw error?.response?.data?.message || error?.message
     })
 }
 
@@ -30,7 +30,7 @@ export async function newUser (payload: any) {
       return response.data
     })
     .catch((error: any) => {
-      throw error?.data?.message || error?.message
+      throw error?.response?.data?.message || error?.message
     })
 }
 
@@ -41,7 +41,7 @@ export async function deleteUser (payload: any) {
       return response.data
     })
     .catch((error: any) => {
-      throw error?.data?.message || error?.message
+      throw error?.response?.data?.message || error?.message
     })
 }
 
