@@ -3,54 +3,24 @@ import { User, UserLogin } from 'src/models/user'
 import { showLoading } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
 import { LoadingStatus } from 'src/models/status'
-
-// const state = {
-
-// }
-
-// const mutations = {
-
-// }
-
-// const actions = {
-//   async login ({ commit }, payload: any) {
-//     try {
-
-//       commit('teste', true)
-//       // await userObject.getUser(payload)
-//     } catch (error) {
-
-//     }
-//   }
-// }
-
-// const getters = {
-
-// }
-
-// export default {
-//   namespace: true,
-//   state,
-//   mutations,
-//   actions,
-//   getters
-// }
+import i18n from 'src/util/i18n'
+import { mapError } from 'src/util/MapError'
 
 /**
- *
+ * Do user login with credentials informed.
  * @param payload User login object
- * @returns User object or
+ * @returns User object or error
  */
 export async function doLogin (payload: UserLogin) /* : Promise<User> */ {
   try {
     showLoading(LoadingStatus.ON)
     const user: any = await getUser(payload)
-    console.log('user in user.ts: ', user)
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    // this.$router.push('/welcome').catch(() => { })
 
     showLoading(LoadingStatus.OFF)
-    notifySuccess('Sucesso ao logar')
+    notifySuccess(i18n.global.t('messages.login.success'))
+
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // this.$router.push('/welcome').catch(() => { })
 
     return new User(
       user.data.name,
@@ -64,7 +34,7 @@ export async function doLogin (payload: UserLogin) /* : Promise<User> */ {
     )
   } catch (error: any) {
     showLoading(LoadingStatus.OFF)
-    notifyError(error)
+    notifyError(mapError(error))
   }
 }
 
