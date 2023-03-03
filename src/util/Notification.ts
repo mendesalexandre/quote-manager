@@ -1,11 +1,11 @@
 import { Notify } from 'quasar'
-// TODO: Need to implement i18n here
-import { useI18n } from 'vue-i18n'
+import i18n from './i18n'
 
 export function notifySuccess (message: string) {
   Notify.create({
     type: 'positive',
-    message: message || 'Sucesso ao executar a ação', // this.$t('generic.success'),
+    position: 'top',
+    message: message || i18n.global.t('messages.success'),
     actions: [
       {
         label: 'Ok',
@@ -22,7 +22,7 @@ export function notifyError (message: string) {
     type: 'negative',
     position: 'top',
     icon: 'report_problem',
-    message: message || 'Ocorreu um erro inesperado',
+    message: message || i18n.global.t('messages.error'),
     actions: [
       {
         label: 'Ok',
