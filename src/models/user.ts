@@ -32,3 +32,17 @@ export class UserLogin {
     this.password = Password
   }
 }
+
+export class UserNew {
+  fullName: string
+  userLogin: string
+  email: string
+  password: string
+
+  constructor (Fullname: string, UserLogin: string, Email: string, Password: string) {
+    this.fullName = Fullname
+    this.userLogin = UserLogin
+    this.email = Email
+    this.password = Password
+  }
+}

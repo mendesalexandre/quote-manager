@@ -1,5 +1,5 @@
 import { getUser } from 'src/composables/User'
-import { User, UserLogin } from 'src/models/user'
+import { User, UserLogin, UserNew } from 'src/models/user'
 import { showLoading } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
 import { LoadingStatus } from 'src/models/status'
@@ -11,7 +11,7 @@ import { mapError } from 'src/util/MapError'
  * @param payload User login object
  * @returns User object or error
  */
-export async function doLogin (payload: UserLogin) /* : Promise<User> */ {
+export async function doLogin (payload: UserLogin) {
   try {
     showLoading(LoadingStatus.ON)
     const user: any = await getUser(payload)
@@ -32,6 +32,26 @@ export async function doLogin (payload: UserLogin) /* : Promise<User> */ {
       false,
       user.data.id
     )
+  } catch (error: any) {
+    showLoading(LoadingStatus.OFF)
+    notifyError(mapError(error))
+  }
+}
+
+/**
+ * Register a new user into application
+ * @param payload User registration object
+ * @returns User object or error
+ */
+export async function newUser (payload: UserNew) {
+  try {
+    showLoading(LoadingStatus.ON)
+    const user = await newUser(payload)
+
+    showLoading(LoadingStatus.OFF)
+    notifySuccess(i18n.global.t('messages.login.success'))
+
+    return user
   } catch (error: any) {
     showLoading(LoadingStatus.OFF)
     notifyError(mapError(error))

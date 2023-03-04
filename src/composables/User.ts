@@ -14,7 +14,7 @@ export async function getUser (payload: UserLogin) {
 
 export async function updateUser (payload: User) {
   return await apiAuth
-    .post('', payload)
+    .post('user/update', payload)
     .then(async (response: any) => {
       return response.data
     })
@@ -36,7 +36,7 @@ export async function newUser (payload: any) {
 
 export async function deleteUser (payload: any) {
   return await apiAuth
-    .delete('')
+    .delete('') // TODO: Need implement this endpoint
     .then(async (response: any) => {
       return response.data
     })
