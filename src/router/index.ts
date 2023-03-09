@@ -6,6 +6,7 @@ import {
   createWebHistory
 } from 'vue-router'
 import routes from './routes'
+import { userHasAccess } from 'src/util/UserCanAccess'
 
 /*
  * If not building with SSR mode, you can
@@ -32,6 +33,9 @@ export default route(function (/* { store, ssrContext } */) {
       process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE
     )
   })
+
+  // Router guard
+  Router.beforeEach((to, from, next) => userHasAccess(to, from, next))
 
   return Router
 })
