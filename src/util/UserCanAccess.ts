@@ -1,5 +1,5 @@
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-import { get } from './Cookies'
+import { get, hasCookies } from './Cookies'
 import { decrypt } from './Encrypt'
 
 /**
@@ -10,22 +10,25 @@ import { decrypt } from './Encrypt'
  * @returns True in case of user have access, false otherwise.
  */
 export function userHasAccess (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
-  const cookie = get('permissions')
-  const decryptCookie = decrypt(cookie)
-  const permissions = JSON.parse(decryptCookie)
-  const destination = to.name?.toString() || ''
-  // console.log('permissions: ', permissions)
-  // console.log('permissions type: ', typeof (permissions))
-  // console.log('destination: ', destination.toUpperCase())
-
   if (to.name === undefined) next() // First access
-  else if (permissions.length > 0 && destination !== '') {
-    const hasPermission = permissions
-      .filter(p => p.name.toUpperCase().trim() === destination.toUpperCase().trim())
-      .map((p) => p.hasAccess)
-    if (hasPermission) next()
-    else return false
-  } else return false
+  else {
+    if (hasCookies()) {
+      const cookie = get('permissions')
+      const decryptCookie = decrypt(cookie)
+      const permissions = JSON.parse(decryptCookie)
+      const destination = to.name?.toString() || ''
+      // console.log('permissions: ', permissions)
+      // console.log('permissions type: ', typeof (permissions))
+      // console.log('destination: ', destination.toUpperCase())
+      if (permissions.length > 0 && destination !== '') {
+        const hasPermission = permissions
+          .filter(p => p.name.toUpperCase().trim() === destination.toUpperCase().trim())
+          .map((p) => p.hasAccess)
+        if (hasPermission) next()
+        else return false
+      } else return false
+    }
+  }
 }
 
 export default { userHasAccess }

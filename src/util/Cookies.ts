@@ -25,15 +25,28 @@ export function add (key: string, value: string) {
 }
 
 /**
+ * Validate if has cookies.
+ * @returns True if have at least, one cookie
+ */
+export function hasCookies () {
+  return Cookies.getAll() !== undefined
+}
+
+/**
  * Clear all cookies stored
  * @returns True in case of success.
  */
 export function clear () {
   const allCookies = Cookies.getAll()
-  if (allCookies.length > 0) {
-    allCookies.map(c => Cookies.remove(c))
+  if (allCookies) {
+    for (const c in allCookies) {
+      if (Object.prototype.hasOwnProperty.call(allCookies, c)) {
+        // do stuff
+        Cookies.remove(c)
+      }
+    }
     return true
   } else return false
 }
 
-export default { get, add, clear }
+export default { get, add, clear, hasCookies }
