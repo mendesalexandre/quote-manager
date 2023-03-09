@@ -75,7 +75,7 @@ import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'SideMenuOptions',
-  setup () {
+  data () {
     return {
       textSearch: ref('')
     }

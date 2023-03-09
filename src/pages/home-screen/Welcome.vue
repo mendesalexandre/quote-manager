@@ -41,11 +41,10 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+
 export default defineComponent({
-
   name: 'WelcomeBack',
-
-  setup () {
+  data () {
     const leftDrawerOpen = ref(false)
 
     return {

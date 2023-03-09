@@ -54,8 +54,9 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import UserRegistration from './UserRegistration.vue'
-import { UserLogin } from 'src/models/user'
 import { doLogin } from 'src/store/modules/User'
+import { add, clear, get } from 'src/util/Cookies'
+import { encrypt, decrypt } from 'src/util/Encrypt'
 
 export default defineComponent({
   name: 'UserLogin',
@@ -80,9 +81,40 @@ export default defineComponent({
     }
   },
   methods: {
-    login () {
-      doLogin(new UserLogin(this.userLogin, this.userPassword))
+    login (isAutomaticLogin = false) {
+      doLogin({ userLogin: this.userLogin, password: this.userPassword, automaticLogin: isAutomaticLogin }).then((user: any) => {
+        clear() // Clear previous cookies saved
+        try {
+          if (user) {
+            add('auth_token', encrypt(user.data.bearerKey)) // Auth token
+            add('twi_id', encrypt(user.data.user)) // Login user
+            add('twi_nm', encrypt(user.data.userName)) // User name
+            add('twi_pd', encrypt(user.data.password)) // User pass
+            add('twi_pl', encrypt(user.data.userPlan)) // User plan
+            add('twi_lg', encrypt(user.data.loggedIn)) // User logged in
+            add('twi_kc', encrypt(this.keepUserConnected)) // Keep user connected
+            add('permissions', encrypt(JSON.stringify(user.data.permissions))) // User permissions list
+            add('isDarkModeEnable', encrypt(false))
+
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            this.$router.push('/welcome').catch(() => { })
+          }
+        } catch (error: any) {
+          console.log('error when saving cookies: ', error)
+        }
+      })
+    },
+    isUserAutomaticLogin () {
+      const keepUserConnected = decrypt(get('twi_kc'))
+      if (keepUserConnected) {
+        this.userLogin = decrypt(get('twi_id'))
+        this.userPassword = decrypt(get('twi_pd'))
+        this.login(true)
+      }
     }
+  },
+  beforeMount () {
+    this.isUserAutomaticLogin()
   }
 })
 </script>

@@ -1,5 +1,5 @@
 import { apiAuth, apiLogin, apiNewUser } from 'src/boot/axios'
-import { User, UserLogin } from 'src/models/user'
+import { UserLogin, UserUpdate } from 'src/models/user'
 
 export async function getUser (payload: UserLogin) {
   return await apiLogin
@@ -12,7 +12,7 @@ export async function getUser (payload: UserLogin) {
     })
 }
 
-export async function updateUser (payload: User) {
+export async function updateUser (payload: UserUpdate) {
   return await apiAuth
     .post('user/update', payload)
     .then(async (response: any) => {

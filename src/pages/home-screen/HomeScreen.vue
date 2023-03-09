@@ -41,7 +41,7 @@ export default defineComponent({
     LanguageSwitch
   },
 
-  setup () {
+  data () {
     const leftDrawerOpen = ref(false)
 
     return {

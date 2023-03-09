@@ -1,5 +1,5 @@
-import { getUser } from 'src/composables/User'
-import { User, UserLogin, UserNew } from 'src/models/user'
+import { getUser, updateUser } from 'src/composables/User'
+import { UserLogin, UserNew, UserUpdate } from 'src/models/user'
 import { showLoading } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
 import { LoadingStatus } from 'src/models/status'
@@ -19,19 +19,7 @@ export async function doLogin (payload: UserLogin) {
     showLoading(LoadingStatus.OFF)
     notifySuccess(i18n.global.t('messages.login.success'))
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    // this.$router.push('/welcome').catch(() => { })
-
-    return new User(
-      user.data.name,
-      user.data.userName,
-      user.data.password,
-      user.data.email,
-      user.data.loggedIn,
-      user.data.active,
-      false,
-      user.data.id
-    )
+    return user
   } catch (error: any) {
     showLoading(LoadingStatus.OFF)
     notifyError(mapError(error))
@@ -58,4 +46,19 @@ export async function newUser (payload: UserNew) {
   }
 }
 
-export default { doLogin }
+export async function updateUserInfo (payload: UserUpdate) {
+  try {
+    showLoading(LoadingStatus.ON)
+    const user = await updateUser(payload)
+
+    showLoading(LoadingStatus.OFF)
+    notifySuccess(i18n.global.t('messages.login.success'))
+
+    return user
+  } catch (error: any) {
+    showLoading(LoadingStatus.OFF)
+    notifyError(mapError(error))
+  }
+}
+
+export default { doLogin, newUser, updateUserInfo }
