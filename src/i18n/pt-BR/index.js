@@ -1,44 +1,48 @@
 export default {
-  pages: {
-    defaulters: {
-
+  view: {
+    defaulter: {
+      lbl: {
+        aa: 'bb'
+      },
+      msg: {
+        success: '',
+        error: ''
+      },
+      tip: {
+        cc: 'aa'
+      }
     },
     finance: {},
     home: {
-      title: 'Página inicial',
-      subTitle: 'Gestor de finanças',
-      search: 'Pesquisar...',
-      menu: {
-        taskTodo: 'Tarefas à fazer',
-        taskDone: 'Tarefas completas',
-        myFinances: 'Minhas finanças',
-        finances: 'Finanças',
-        defaulters: 'Inadimplentes',
-        reports: 'Relatórios',
-        tags: 'Tags',
-        indicators: 'Indicadores'
+      lbl: {
+        title: 'Página inicial',
+        subTitle: 'Gestor de finanças',
+        menuTaskTodo: 'Tarefas à fazer',
+        menuTaskDone: 'Tarefas completas',
+        menuMyFinances: 'Minhas finanças',
+        menuFinances: 'Finanças',
+        menuDefaulters: 'Inadimplentes',
+        menuReports: 'Relatórios',
+        menuTags: 'Tags',
+        menuIndicators: 'Indicadores'
       }
     },
     login: {
-      title: 'Bem-vindo ao gestor de finanças',
-      labelLogin: 'Login',
-      labelPassword: 'Senha',
-      keepConnect: 'Mantenha-me conectado',
-      newAccount: 'Criar nova conta',
-      tipNewAccount: 'Clique para registrar-se',
-      doLogin: 'Entrar',
-      tipLogin: 'Clique para efetuar o login'
-    },
-    task: {},
-    user: {
-      login: {
-        title: 'Login',
+      lbl: {
+        title: 'Bem-vindo ao gestor de finanças',
+        login: 'Login',
         password: 'Senha',
         keepConnect: 'Mantenha-me conectado',
-        new: 'Clique para registrar-se',
-        login: 'Clique para efetuar o login'
+        newAccount: 'Criar nova conta',
+        enter: 'Entrar'
       },
-      new: {
+      tip: {
+        newAccount: 'Clique para registrar-se',
+        login: 'Clique para efetuar o login'
+      }
+    },
+    newUser: {
+      lbl: {
         firstTitle: 'Dados gerais',
         secondTitle: 'Senha',
         thirdTitle: 'Módulos e termos',
@@ -51,6 +55,9 @@ export default {
         password: 'Senha',
         repeatPass: 'Repita sua senha',
         save: 'Salvar',
+        planBas: 'Básico',
+        planPro: 'Profissional',
+        planEnt: 'Enterprise',
         moduleOne: 'Finanças',
         moduleTwo: 'Indicadores (Beta)',
         moduleThree: 'Relatórios',
@@ -58,16 +65,38 @@ export default {
         moduleFifth: 'Tasks',
         termAccepted: 'Aceito os termos'
       }
+    },
+    task: {},
+    plan: {
+      planOne: 'Gratuito', // Free
+      planTwo: 'Plus', // Plus
+      planThree: 'Empresarial', // Business
+      planFour: 'Enterprise'
     }
   },
-  messages: {
-    success: '',
-    error: ''
+  msg: {
+    login: {
+      success: 'Sucesso ao efetuar login',
+      error: '',
+      networkError: 'Erro no servidor',
+      wrongPass: ''
+    },
+    notMapped: 'Error not mapped'
   },
   logs: {},
+  components: {
+    buttonOk: 'Ok',
+    buttonSearch: 'Pesquisar',
+    buttonNew: 'Novo',
+    monthPicker: 'Escolha um mês',
+    inputRequire: 'Campo obrigatório',
+    checkBoxRequire: 'Você precisa '
+  },
   generic: {
     language: 'Idioma',
-    success: '',
-    error: ''
+    msg: {
+      success: 'Sucesso ao executar a ação',
+      error: 'Ocorreu um erro inesperado'
+    }
   }
 }

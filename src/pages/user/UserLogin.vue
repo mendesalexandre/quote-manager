@@ -3,16 +3,16 @@
   <q-layout view="lHh Lpr lFf">
     <q-card class="cls-mat-card">
       <q-card-section class="bg-primary text-white">
-        <div class="text-h6">{{ $t('pages.login.title') }}</div>
+        <div class="text-h6">{{ $t('view.login.lbl.title') }}</div>
       </q-card-section>
 
       <q-separator dark />
 
       <q-card-section>
         <div class="q-gutter-md">
-          <q-input outlined v-model="userLogin" :label="$t('pages.login.labelLogin')" class="text-white"/>
+          <q-input outlined v-model="userLogin" :label="$t('view.login.lbl.login')" class="text-white"/>
 
-          <q-input outlined v-model="userPassword" :label="$t('pages.login.labelPassword')" class="text-white" :type="isPwd ? 'password' : 'text'" >
+          <q-input outlined v-model="userPassword" :label="$t('view.login.lbl.password')" class="text-white" :type="isPwd ? 'password' : 'text'" >
             <template v-slot:append>
               <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
             </template>
@@ -20,15 +20,15 @@
         </div>
       </q-card-section>
 
-      <q-toggle v-model="keepUserConnected" :label="$t('pages.login.keepConnect')"/>
+      <q-toggle v-model="keepUserConnected" :label="$t('view.login.lbl.keepConnect')"/>
       <q-separator dark />
 
       <q-card-actions align="center">
-        <q-btn push icon="person" class="bg-primary text-white" :label="$t('pages.login.newAccount')" @click="openUserDialog = true">
-          <q-tooltip>{{ $t('pages.login.tipNewAccount') }}</q-tooltip>
+        <q-btn push icon="person" class="bg-primary text-white" :label="$t('view.login.lbl.newAccount')" @click="openUserDialog = true">
+          <q-tooltip>{{ $t('view.login.tip.newAccount') }}</q-tooltip>
         </q-btn>
-        <q-btn push icon="login" class="bg-primary text-white" :label="$t('pages.login.doLogin')" @click="login()">
-          <q-tooltip>{{ $t('pages.login.tipLogin') }}</q-tooltip>
+        <q-btn push icon="login" class="bg-primary text-white" :label="$t('view.login.lbl.enter')" @click="login()">
+          <q-tooltip>{{ $t('view.login.tip.login') }}</q-tooltip>
         </q-btn>
       </q-card-actions>
     </q-card>
