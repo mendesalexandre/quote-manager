@@ -11,21 +11,20 @@
   >
     <q-card>
       <q-card-section>
+        <filter-data v-show="true">
 
-        <div class="q-pa-md row items-start q-gutter-md">
-          <!--Bill name-->
+        </filter-data>
+        <!-- <div class="q-pa-md row items-start q-gutter-md">
           <q-input filled v-model="billName" label="Nome da conta">
             <template v-slot:prepend>
               <q-icon name="mdi-text-box-outline" />
             </template>
           </q-input>
-          <!--Tag name-->
           <q-input filled v-model="tagName" label="Nome da tag">
             <template v-slot:prepend>
               <q-icon name="mdi-tag" />
             </template>
           </q-input>
-          <!--Date picker-->
           <q-input filled
             label="Mês/Ano"
             v-model="currentDate"
@@ -48,10 +47,9 @@
               </q-icon>
             </template>
           </q-input>
-          <!--Buttons-->
           <q-btn outline rounded color="primary" label="Novo" icon="add"/>
           <q-btn outline rounded color="primary" label="Pesquisar" icon="search"/>
-        </div>
+        </div> -->
       </q-card-section>
     </q-card>
   </q-expansion-item>
@@ -61,12 +59,16 @@
 </template>
 
 <script lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, defineComponent } from 'vue'
 import moment from 'moment'
+import FilterData from 'src/components/FilterData.vue'
 
-export default {
+export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Finances',
+  components: {
+    FilterData
+  },
   setup () {
     const currentDate = ref(moment().format('MM/YYYY').toString())
     const qDateProxy = ref()
@@ -86,8 +88,5 @@ export default {
       onUpdateMv
     }
   }
-}
+})
 </script>
-
-<style lang="sass">
-</style>
