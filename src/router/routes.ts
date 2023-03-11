@@ -37,7 +37,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/defaulters',
         name: 'Defaulters',
-        component: () => import('src/pages/finances/Defaulters.vue')
+        component: () => import('src/pages/defaulters/Defaulters.vue')
       },
       {
         path: '/reports',
