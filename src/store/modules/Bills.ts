@@ -1,4 +1,4 @@
-import { getUser, newUser, updateUser } from 'src/composables/User'
+import { getBills, getBillsCloseToOverdue, getBillsNotPayed } from 'src/composables/Bills'
 
 // Utils
 import { showLoading } from 'src/util/Loading'
@@ -8,30 +8,26 @@ import i18n from 'src/util/i18n'
 import { mapError } from 'src/util/MapError'
 
 /**
- * Contains the user properties/state.
+ * Contains the bills properties/state.
  */
 const state = {
-  user: undefined,
-  auth: '',
-  permissions: [],
-  darkMode: false
+  bills: '',
+  billsCloseToOverdue: [],
+  billsOverdue: []
 }
 
 /**
  * Setters for properties
  */
 const mutations = {
-  setUser (state, value) {
-    state.user = value
+  setBills (state, value) {
+    state.bills = value
   },
-  setAuth (state, value) {
-    state.auth = value
+  setBillsCloseToOverdue (state, value) {
+    state.billsCloseToOverdue = value
   },
-  setPermissions (state, value) {
-    state.permissions = value
-  },
-  setDarkMode (state, value) {
-    state.darkMode = value
+  setBillsOverdue (state, value) {
+    state.billsNotPayed = value
   }
 }
 
@@ -39,55 +35,39 @@ const mutations = {
  * Getters for properties
  */
 const getters = {
-  getUser (state) {
-    return state.user
+  getBills (state) {
+    return state.bills
   },
-  getAuth (state) {
-    return state.auth
+  getBillsCloseToOverdue (state) {
+    return state.billsCloseToOverdue
   },
-  getPermissions (state) {
-    return state.permissions
-  },
-  getDarkMode (state) {
-    return state.darkMode
+  getBillsNotPayed (state) {
+    return state.billsNotPayed
   }
 }
 
 const actions = {
-  /**
-   * Do user login with credentials informed.
-   * @param payload User login object
-   * @returns User object or error
-   */
-  async doLogin ({ commit }, payload) {
+  async getBills ({ commit }, payload) {
     const $router = (this as any).$router
     showLoading(LoadingStatus.ON)
     try {
-      const user = await getUser(payload)
-      if (user) {
-        commit('setUser', user)
-        commit('setAuth', user.bearerKey)
-        commit('setPermissions', user.data.permissions)
-        commit('setDarkMode', false)
+      const bills = await getBills(payload)
+      if (bills) {
+        console.log('commit: ', commit)
+        commit('setBills', bills)
         showLoading(LoadingStatus.OFF)
         notifySuccess(i18n.global.t('msg.login.success'))
         $router.push('/welcome')
       }
     } catch (error: any) {
-      console.log('error on doLogin:\n\n', error)
       showLoading(LoadingStatus.OFF)
       notifyError(error)
     }
   },
-  /**
-   * Register a new user into application
-   * @param payload User registration object
-   * @returns User object or error
-   */
-  async newUser ({ commit }, payload) {
+  async getBillsCloseToOverdue ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
-      const user = await newUser(payload)
+      const user = await getBillsCloseToOverdue()
 
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.login.success'))
@@ -98,10 +78,10 @@ const actions = {
       notifyError(mapError(error))
     }
   },
-  async updateUserInfo (payload) {
+  async getBillsNotPayed (payload) {
     try {
       showLoading(LoadingStatus.ON)
-      const user = await updateUser(payload)
+      const user = await getBillsNotPayed(payload)
 
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.login.success'))

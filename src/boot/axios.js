@@ -1,6 +1,8 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
 import { environment, user, ui } from '../environments/environment'
+import { get } from 'src/util/Cookies'
+import { decrypt } from 'src/util/Encrypt'
 
 const baseUrl = `${environment.api.url}/${environment.api.version}`
 
@@ -12,14 +14,14 @@ const apiLogin = axios.create({ baseURL: baseUrl })
 /**
  * Contains API object to run HTTP requests with user authentication (bearer)
  */
-const apiAuth = axios.create({ baseUrl })
+const apiAuth = axios.create({ baseURL: baseUrl })
 
 /**
  * Contains API exclusively to user registration (request a different headers)
  */
 const apiNewUser = axios.create({ baseURL: baseUrl })
 
-export default boot(({ app }) => {
+export default boot(({ app, router, store }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   app.config.globalProperties.$axios = axios
@@ -46,6 +48,7 @@ export default boot(({ app }) => {
     (config) => {
       config.headers['Content-Type'] = 'application/json'
       config.headers.Accept = '*/*'
+      return config
     },
     (error) => {
       return Promise.reject(error)
@@ -54,12 +57,11 @@ export default boot(({ app }) => {
 
   apiNewUser.interceptors.request.use(
     (config) => {
-      const bearer = ''
-      config.headers.Authorization = bearer
       config.headers['Content-Type'] = 'application/json'
       config.headers.Accept = '*/*'
       config.headers.x_client_secret = environment.api.secret
       config.headers.x_client_id = environment.api.clientId
+      return config
     },
     (error) => {
       return Promise.reject(error)
@@ -68,10 +70,11 @@ export default boot(({ app }) => {
 
   apiAuth.interceptors.request.use(
     (config) => {
-      const bearer = ''
+      const bearer = store.getters['user/auth']
       config.headers.Authorization = bearer
       config.headers['Content-Type'] = 'application/json'
       config.headers.Accept = '*/*'
+      return config
     },
     (error) => {
       return Promise.reject(error)
