@@ -13,7 +13,7 @@ import { mapError } from 'src/util/MapError'
 export async function getPlansAvailable () {
   try {
     showLoading(LoadingStatus.ON)
-    const plans: any = await getPlans()
+    const plans = await getPlans()
 
     showLoading(LoadingStatus.OFF)
     notifySuccess(i18n.global.t('messages.login.success'))

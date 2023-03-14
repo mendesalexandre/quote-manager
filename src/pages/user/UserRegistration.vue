@@ -1,40 +1,90 @@
 <template>
   <q-dialog v-model="confirm" ref="dialog">
     <q-stepper v-model="step" vertical color="primary" animated>
-      <q-step :name="1" :title="$t('view.newUser.lbl.firstTitle')" icon="settings" :done="step > 1">
-
+      <q-step
+        :name="1"
+        :title="$t('view.newUser.lbl.firstTitle')"
+        icon="settings"
+        :done="step > 1"
+      >
         <div class="q-gutter-md">
-          <input-required v-model="fullName" :label="$t('view.newUser.lbl.fullName')"/>
-          <input-required v-model="userName" :label="$t('view.newUser.lbl.userName')"/>
+          <input-required v-model="fullName" :label="$t('view.newUser.lbl.fullName')" />
+          <input-required v-model="userName" :label="$t('view.newUser.lbl.userName')" />
           <input-required v-model="userMail" :label="$t('view.newUser.lbl.mail')" />
         </div>
 
         <q-stepper-navigation>
-          <q-btn @click="step = 2" color="primary" :label="$t('view.newUser.lbl.continue')" />
+          <q-btn
+            @click="step = 2"
+            color="primary"
+            :label="$t('view.newUser.lbl.continue')"
+          />
         </q-stepper-navigation>
       </q-step>
 
       <!--caption="Optional"-->
-      <q-step :name="2" :title="$t('view.newUser.lbl.secondTitle')" icon="create_new_folder" :done="step > 2">
-
+      <q-step
+        :name="2"
+        :title="$t('view.newUser.lbl.secondTitle')"
+        icon="create_new_folder"
+        :done="step > 2"
+      >
         <div class="q-gutter-md">
-            <input-required v-model="password" :label="$t('view.newUser.lbl.password')" />
-            <input-required v-model="repeatPass" :label="$t('view.newUser.lbl.repeatPass')" />
+          <input-required v-model="password" :label="$t('view.newUser.lbl.password')" />
+          <input-required
+            v-model="repeatPass"
+            :label="$t('view.newUser.lbl.repeatPass')"
+          />
         </div>
 
         <q-stepper-navigation>
-          <q-btn @click="step = 3" color="primary" :label="$t('view.newUser.lbl.continue')" />
-          <q-btn flat @click="step = 1" color="primary" :label="$t('view.newUser.lbl.back')" class="q-ml-sm" />
+          <q-btn
+            @click="step = 3"
+            color="primary"
+            :label="$t('view.newUser.lbl.continue')"
+          />
+          <q-btn
+            flat
+            @click="step = 1"
+            color="primary"
+            :label="$t('view.newUser.lbl.back')"
+            class="q-ml-sm"
+          />
         </q-stepper-navigation>
       </q-step>
 
       <q-step :name="3" :title="$t('view.newUser.lbl.thirdTitle')" icon="add_comment">
-
         <div class="q-gutter-md">
-           <q-radio checked-icon="task_alt" unchecked-icon="panorama_fish_eye" val="FREE" label="Free" v-model="module" />
-           <q-radio checked-icon="task_alt" unchecked-icon="panorama_fish_eye" val="PLUS" label="Plus" v-model="module"/>
-           <q-radio checked-icon="task_alt" unchecked-icon="panorama_fish_eye" val="BUSINESS" label="Business" v-model="module" disable />
-           <q-radio checked-icon="task_alt" unchecked-icon="panorama_fish_eye" val="ENTERPRISE" label="Enterprise" v-model="module" disable/>
+          <q-radio
+            checked-icon="task_alt"
+            unchecked-icon="panorama_fish_eye"
+            val="FREE"
+            label="Free"
+            v-model="module"
+          />
+          <q-radio
+            checked-icon="task_alt"
+            unchecked-icon="panorama_fish_eye"
+            val="PLUS"
+            label="Plus"
+            v-model="module"
+          />
+          <q-radio
+            checked-icon="task_alt"
+            unchecked-icon="panorama_fish_eye"
+            val="BUSINESS"
+            label="Business"
+            v-model="module"
+            disable
+          />
+          <q-radio
+            checked-icon="task_alt"
+            unchecked-icon="panorama_fish_eye"
+            val="ENTERPRISE"
+            label="Enterprise"
+            v-model="module"
+            disable
+          />
         </div>
 
         <div>
@@ -44,13 +94,23 @@
             :label="$t('view.newUser.lbl.termAccepted')"
             checked-icon="task_alt"
             unchecked-icon="highlight_off"
-            :rules="[(val) => (val) || $t('components.checkBoxRequire')]"
+            :rules="[(val) => val || $t('components.checkBoxRequire')]"
           />
         </div>
 
         <q-stepper-navigation>
-          <q-btn color="primary" @click="newUser()" :label="$t('view.newUser.lbl.finish')" />
-          <q-btn flat @click="step = 2" color="primary" :label="$t('view.newUser.lbl.back')" class="q-ml-sm" />
+          <q-btn
+            color="primary"
+            @click="onOkClick()"
+            :label="$t('view.newUser.lbl.finish')"
+          />
+          <q-btn
+            flat
+            @click="step = 2"
+            color="primary"
+            :label="$t('view.newUser.lbl.back')"
+            class="q-ml-sm"
+          />
         </q-stepper-navigation>
       </q-step>
     </q-stepper>
@@ -59,11 +119,14 @@
 
 <style lang="sass" scoped></style>
 
-<script>
-import { ref } from 'vue'
-import InputRequired from 'src/components/InputRequired.vue'
+<script lang="js">
 
-export default {
+import { defineComponent, ref } from 'vue'
+import InputRequired from 'src/components/InputRequired.vue'
+import { useDialogPluginComponent } from 'quasar'
+import { UserNew, UserPlan } from 'src/models/user'
+
+export default defineComponent({
   name: 'UserRegistration',
   components: {
     InputRequired
@@ -72,8 +135,8 @@ export default {
     return {
       confirm: false,
       step: ref(1),
+      userName: ref(''), // Login
       fullName: ref(''),
-      userName: ref(''),
       userMail: ref(''),
       password: ref(''),
       repeatPass: ref(''),
@@ -81,30 +144,34 @@ export default {
       module: ref('')
     }
   },
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  created: function () {
-
+  emits: {
+    // REQUIRED; need to specify some events that your
+    // component will emit through useDialogPluginComponent()
+    ...useDialogPluginComponent.emits
   },
   methods: {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    newUser () {
-      this.$refs.dialog.close()
+    onOkClick: function () {
+      const newUser = new UserNew(
+        this.userName,
+        this.fullName,
+        this.password,
+        this.userMail,
+        false,
+        true,
+        this.module
+      )
+      console.log('newUser from dialog: ', newUser)
+      this.$emit('ok', newUser)
+      this.$emit('hide')
+      // this.$refs.dialog.ok(newUser)
+      // onDialogOK(newUser)
+    },
+    onCancelClick () {
+      this.$refs.dialog.cancel()
     },
     show () {
       this.$refs.dialog.show()
-    },
-    hide () {
-      this.$refs.dialog.hide()
-    },
-    onDialogHide () {
-      this.$emit('hide')
-    },
-    onOKClick () {
-      // code that you want to emit or functionality you want
-    },
-    onCancelClick () {
-      this.hide()
     }
   }
-}
+})
 </script>

@@ -17,6 +17,7 @@ export default {
       lbl: {
         title: 'Página inicial',
         subTitle: 'Gestor de finanças',
+        search: 'Pesquisar',
         menuTaskTodo: 'Tarefas à fazer',
         menuTaskDone: 'Tarefas completas',
         menuMyFinances: 'Minhas finanças',
@@ -25,6 +26,17 @@ export default {
         menuReports: 'Relatórios',
         menuTags: 'Tags',
         menuIndicators: 'Indicadores'
+      }
+    },
+    userSubMenu: {
+      lbl: {
+        changeTheme: 'Trocar tema',
+        update: 'Atualizar dados',
+        releaseNotes: 'Notas de atualização',
+        history: 'Histórico',
+        settings: 'Configurações',
+        help: 'Ajuda &amp; Feedback',
+        logout: 'Sair...'
       }
     },
     login: {
@@ -90,13 +102,18 @@ export default {
     buttonNew: 'Novo',
     monthPicker: 'Escolha um mês',
     inputRequire: 'Campo obrigatório',
-    checkBoxRequire: 'Você precisa '
+    checkBoxRequire: 'Você precisa marcar a caixa acima' // TODO: End this translation properly
   },
   generic: {
     language: 'Idioma',
     msg: {
       success: 'Sucesso ao executar a ação',
       error: 'Ocorreu um erro inesperado'
+    },
+    status: {
+      400: '',
+      401: '',
+      404: ''
     }
   }
 }
