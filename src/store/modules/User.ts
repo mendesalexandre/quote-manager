@@ -71,10 +71,9 @@ const actions = {
         commit('setDarkMode', false)
         showLoading(LoadingStatus.OFF)
         notifySuccess(i18n.global.t('msg.login.success'))
-        $router.push('/welcome')
+        $router.push('/home')
       }
     } catch (error: any) {
-      console.log('error on doLogin:\n\n', error)
       showLoading(LoadingStatus.OFF)
       notifyError(error)
     }

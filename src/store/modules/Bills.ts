@@ -52,13 +52,10 @@ const actions = {
     showLoading(LoadingStatus.ON)
     try {
       const bills = await getBills(payload)
-      if (bills) {
-        console.log('commit: ', commit)
-        commit('setBills', bills)
-        showLoading(LoadingStatus.OFF)
-        notifySuccess(i18n.global.t('msg.login.success'))
-        $router.push('/welcome')
-      }
+      commit('setBills', bills)
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(i18n.global.t('msg.login.success'))
+      $router.push('/home')
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)
@@ -67,26 +64,22 @@ const actions = {
   async getBillsCloseToOverdue ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
-      const user = await getBillsCloseToOverdue()
-
+      const bills = await getBillsCloseToOverdue()
+      commit('setBillsCloseToOverdue', bills)
       showLoading(LoadingStatus.OFF)
-      notifySuccess(i18n.global.t('msg.login.success'))
-
-      return user
+      return bills
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(mapError(error))
     }
   },
-  async getBillsNotPayed (payload) {
+  async getBillsNotPayed ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
-      const user = await getBillsNotPayed(payload)
-
+      const bills = await getBillsNotPayed(payload)
+      commit('setBillsOverdue', bills)
       showLoading(LoadingStatus.OFF)
-      notifySuccess(i18n.global.t('msg.login.success'))
-
-      return user
+      return bills
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(mapError(error))

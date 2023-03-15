@@ -16,18 +16,13 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/todo',
-        name: 'Tasks',
+        name: 'TasksTodo',
         component: () => import('pages/tasks/TasksTodo.vue')
       },
       {
         path: '/done',
-        name: 'Tasks',
+        name: 'TasksDone',
         component: () => import('pages/tasks/TasksDone.vue')
-      },
-      {
-        path: '/welcome',
-        name: 'Home',
-        component: () => import('pages/home-screen/Welcome.vue')
       },
       {
         path: '/finances',

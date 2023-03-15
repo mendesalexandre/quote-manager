@@ -11,10 +11,9 @@ export default store(function (/* { ssrContext } */) {
       user,
       bills
     }
-
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
-    // strict: true
+    // strict: process.env.DEBUGGING || undefined
   })
 
   return Store

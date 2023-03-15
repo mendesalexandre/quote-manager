@@ -8,7 +8,7 @@
         :label="$t('view.home.lbl.title')"
         class="text-secondary"
         icon="home"
-        to="/welcome"
+        to="/home"
       >
         <q-item :inset-level="0.5" clickable v-ripple to="/todo">
           <q-item-section avatar>
