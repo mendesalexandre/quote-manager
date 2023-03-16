@@ -1,8 +1,6 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
-import { environment, user, ui } from '../environments/environment'
-import { get } from 'src/util/Cookies'
-import { decrypt } from 'src/util/Encrypt'
+import { environment } from '../environments/environment'
 
 const baseUrl = `${environment.api.url}/${environment.api.version}`
 
@@ -70,7 +68,7 @@ export default boot(({ app, router, store }) => {
 
   apiAuth.interceptors.request.use(
     (config) => {
-      const bearer = store.getters['user/auth']
+      const bearer = store.getters['user/getAuth']
       config.headers.Authorization = bearer
       config.headers['Content-Type'] = 'application/json'
       config.headers.Accept = '*/*'
@@ -82,4 +80,4 @@ export default boot(({ app, router, store }) => {
   )
 })
 
-export { axios, apiLogin, apiNewUser, apiAuth }
+export { apiLogin, apiNewUser, apiAuth }
