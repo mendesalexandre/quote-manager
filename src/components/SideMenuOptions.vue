@@ -8,7 +8,7 @@
         :label="$t('view.home.lbl.title')"
         class="text-secondary"
         icon="home"
-        to="/home"
+        to="/welcome"
       >
         <q-item :inset-level="0.5" clickable v-ripple to="/todo">
           <q-item-section avatar>
@@ -42,6 +42,26 @@
           <q-item-section>
             <q-item-label color="secondary">{{
               $t("view.home.lbl.menuFinances")
+            }}</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item :inset-level="0.5" clickable v-ripple to="/close-to-overdue">
+          <q-item-section avatar>
+            <q-icon color="secondary" name="fa-solid fa-file-invoice-dollar" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label color="secondary">{{
+              $t("view.home.lbl.menuMyCloseToOverdue")
+            }}</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item :inset-level="0.5" clickable v-ripple to="/not-paid">
+          <q-item-section avatar>
+            <q-icon color="secondary" name="fa-solid fa-calendar-circle-exclamation" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label color="secondary">{{
+              $t("view.home.lbl.menuMyOverdueBills")
             }}</q-item-label>
           </q-item-section>
         </q-item>

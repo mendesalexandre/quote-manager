@@ -71,7 +71,7 @@ const actions = {
         commit('setDarkMode', false)
         showLoading(LoadingStatus.OFF)
         notifySuccess(i18n.global.t('msg.login.success'))
-        $router.push('/home')
+        $router.push('/welcome')
       }
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
@@ -83,7 +83,7 @@ const actions = {
    * @param payload User registration object
    * @returns User object or error
    */
-  async newUser ({ commit }, payload) {
+  async registerUser ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
       const user = await newUser(payload)
@@ -97,7 +97,7 @@ const actions = {
       notifyError(mapError(error))
     }
   },
-  async updateUserInfo (payload) {
+  async updateUser (payload) {
     try {
       showLoading(LoadingStatus.ON)
       const user = await updateUser(payload)

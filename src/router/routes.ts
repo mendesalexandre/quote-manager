@@ -15,6 +15,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('pages/home-screen/HomeScreen.vue'),
     children: [
       {
+        path: '/welcome',
+        name: 'Home',
+        component: () => import('pages/home-screen/Welcome.vue')
+      },
+      {
         path: '/todo',
         name: 'TasksTodo',
         component: () => import('pages/tasks/TasksTodo.vue')
@@ -28,6 +33,16 @@ const routes: RouteRecordRaw[] = [
         path: '/finances',
         name: 'Finances',
         component: () => import('src/pages/finances/Finances.vue')
+      },
+      {
+        path: '/close-to-overdue',
+        name: 'CloseToOverdue',
+        component: () => import('src/pages/finances/CloseToOverdue.vue')
+      },
+      {
+        path: '/not-paid',
+        name: 'NotPayed',
+        component: () => import('src/pages/finances/NotPayed.vue')
       },
       {
         path: '/defaulters',

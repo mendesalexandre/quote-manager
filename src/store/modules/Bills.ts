@@ -26,8 +26,14 @@ const mutations = {
   setBillsCloseToOverdue (state, value) {
     state.billsCloseToOverdue = value
   },
+  setBillsCloseToOverdueLength (state, value) {
+    state.billsCloseToOverdueLength = value
+  },
   setBillsOverdue (state, value) {
     state.billsNotPayed = value
+  },
+  setBillsNotPayedLength (state, value) {
+    state.billsNotPayedLength = value
   }
 }
 
@@ -41,13 +47,19 @@ const getters = {
   getBillsCloseToOverdue (state) {
     return state.billsCloseToOverdue
   },
+  getBillsCloseToOverdueLength (state) {
+    return state.billsCloseToOverdueLength
+  },
   getBillsNotPayed (state) {
     return state.billsNotPayed
+  },
+  getBillsNotPayedLength (state) {
+    return state.billsNotPayedLength
   }
 }
 
 const actions = {
-  async getBills ({ commit }, payload) {
+  async getBillsList ({ commit }, payload) {
     const $router = (this as any).$router
     showLoading(LoadingStatus.ON)
     try {
@@ -61,11 +73,12 @@ const actions = {
       notifyError(error)
     }
   },
-  async getBillsCloseToOverdue ({ commit }, payload) {
+  async getBillsCloseToOverdueList ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
       const bills = await getBillsCloseToOverdue()
       commit('setBillsCloseToOverdue', bills)
+      commit('setBillsCloseToOverdueLength', bills?.length || 0)
       showLoading(LoadingStatus.OFF)
       return bills
     } catch (error: any) {
@@ -73,11 +86,12 @@ const actions = {
       notifyError(mapError(error))
     }
   },
-  async getBillsNotPayed ({ commit }, payload) {
+  async getBillsNotPayedList ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
       const bills = await getBillsNotPayed(payload)
       commit('setBillsOverdue', bills)
+      commit('setBillsNotPayedLength', bills?.length || 0)
       showLoading(LoadingStatus.OFF)
       return bills
     } catch (error: any) {

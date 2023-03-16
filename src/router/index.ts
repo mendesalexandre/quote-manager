@@ -43,7 +43,8 @@ export default route(function ({ store /*, ssrContext */ }) {
       // console.log('permissions.length > 0: ', permissions.length > 0)
       // console.log('destination !== \'\': ', destination !== '')
       // console.log('destination: ', destination)
-      if (permissions !== undefined && permissions.length > 0 && destination !== '') {
+      if (destination === 'Welcome') next()
+      else if (permissions !== undefined && permissions.length > 0 && destination !== '') {
         const hasPermission = permissions
           .filter(p => p.name.toUpperCase().trim() === destination.toUpperCase().trim())
           .map((p) => p.hasAccess)

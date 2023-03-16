@@ -14,7 +14,7 @@ export async function getBills (payload: any) {
       }
     })
     .then(async (response: any) => {
-      return response.data
+      return response.data.data
     })
     .catch((error: any) => {
       throw error?.response?.data?.message || error?.message
@@ -27,8 +27,8 @@ export async function getBills (payload: any) {
 export async function getBillsCloseToOverdue () {
   return await apiAuth
     .get('bill/close-to-overdue')
-    .then(async (response: any) => {
-      return response.data
+    .then((response: any) => {
+      return response.data.data
     })
     .catch((error: any) => {
       throw error?.response?.data?.message || error?.message
@@ -41,8 +41,8 @@ export async function getBillsCloseToOverdue () {
 export async function getBillsNotPayed (payload) {
   return await apiAuth
     .get('bill/payed/false')
-    .then(async (response: any) => {
-      return response.data
+    .then((response: any) => {
+      return response.data.data
     })
     .catch((error: any) => {
       throw error?.response?.data?.message || error?.message

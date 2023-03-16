@@ -20,12 +20,18 @@ export default {
         search: 'Pesquisar',
         menuTaskTodo: 'Tarefas à fazer',
         menuTaskDone: 'Tarefas completas',
-        menuMyFinances: 'Minhas finanças',
+        menuMyFinances: 'Minhas contas',
+        menuMyCloseToOverdue: 'Contas à vencer',
+        menuMyOverdueBills: 'Contas atrasadas',
         menuFinances: 'Finanças',
         menuDefaulters: 'Inadimplentes',
         menuReports: 'Relatórios',
         menuTags: 'Tags',
-        menuIndicators: 'Indicadores'
+        menuIndicators: 'Indicadores',
+        access: 'Acessar'
+      },
+      tip: {
+        access: 'Clique para acessar os dados'
       }
     },
     userSubMenu: {
