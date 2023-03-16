@@ -7,13 +7,29 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "quote-manager",
+      "name": "[Debug] quote-manager",
       "url": "http://localhost:8001",
       "webRoot": "${workspaceFolder}/src",
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
       }
+    },
+    {
+			"type": "pwa-msedge",
+			"request": "launch",
+			"name": "[Attach MS Edge] quote-manager",
+			"url": "http://localhost:8001/#",
+			"webRoot": "${workspaceFolder}"
+		},
+    {
+    "type": "chrome",
+    "request": "launch",
+    "name": "[Attach Opera] quote-manager",
+    //"runtimeExecutable": "C:\\Users\\Dionei\\AppData\\Local\\Programs\\Opera\\launcher.exe",
+    //"userDataDir": true,
+    "url": "http://localhost:8001/#",
+    "webRoot": "${workspaceFolder}"
     }
   ]
 }
