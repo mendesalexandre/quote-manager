@@ -28,6 +28,8 @@ export default {
         menuReports: 'Relatórios',
         menuTags: 'Tags',
         menuIndicators: 'Indicadores',
+        billToOverdue: 'Contas próximas do vencimento',
+        billAlreadyOverdue: 'Contas vencidas ou atrasadas',
         access: 'Acessar'
       },
       tip: {

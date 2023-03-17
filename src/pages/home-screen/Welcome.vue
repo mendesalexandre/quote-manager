@@ -16,7 +16,7 @@
     <q-carousel-slide :name="1" class="column no-wrap flex-center">
       <q-icon name="style" size="56px" />
       <div class="q-mt-md text-center">
-        Contas próximas do vencimento
+        {{ $t('view.home.lbl.billToOverdue') }}
         {{ billsCloseToOverdue }}
 
         <div class="q-mt-md">
@@ -25,7 +25,7 @@
             icon="mdi-arrow-top-right-bold-outline"
             class="bg-white text-primary"
             :label="$t('view.home.lbl.access')"
-            to="/finances"
+            to="/close-to-overdue"
           >
             <q-tooltip>{{ $t("view.home.tip.access") }}</q-tooltip>
           </q-btn>
@@ -35,8 +35,20 @@
     <q-carousel-slide :name="2" class="column no-wrap flex-center">
       <q-icon name="style" size="56px" />
       <div class="q-mt-md text-center">
-        Contas vencidas ou atrasadas
+        {{ $t('view.home.lbl.billAlreadyOverdue') }}
         {{ billsNotPayed }}
+
+        <div class="q-mt-md">
+          <q-btn
+            push
+            icon="mdi-arrow-top-right-bold-outline"
+            class="bg-white text-primary"
+            :label="$t('view.home.lbl.access')"
+            to="/not-paid"
+          >
+            <q-tooltip>{{ $t("view.home.tip.access") }}</q-tooltip>
+          </q-btn>
+        </div>
       </div>
     </q-carousel-slide>
   </q-carousel>

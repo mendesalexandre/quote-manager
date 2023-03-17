@@ -40,9 +40,9 @@
             <q-icon color="secondary" name="fa-solid fa-hand-holding-dollar" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">{{
-              $t("view.home.lbl.menuFinances")
-            }}</q-item-label>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuFinances") }}
+            </q-item-label>
           </q-item-section>
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/close-to-overdue">
@@ -50,19 +50,19 @@
             <q-icon color="secondary" name="fa-solid fa-file-invoice-dollar" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">{{
-              $t("view.home.lbl.menuMyCloseToOverdue")
-            }}</q-item-label>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuMyCloseToOverdue") }}
+            </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item :inset-level="0.5" clickable v-ripple to="/not-paid">
+        <q-item :inset-level="0" clickable v-ripple to="/not-paid">
           <q-item-section avatar>
-            <q-icon color="secondary" name="fa-solid fa-calendar-circle-exclamation" />
+            <q-icon color="secondary" name="mdi mdi-clock-alert"/>
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">{{
-              $t("view.home.lbl.menuMyOverdueBills")
-            }}</q-item-label>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuMyOverdueBills") }}
+            </q-item-label>
           </q-item-section>
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/defaulters">
@@ -70,9 +70,9 @@
             <q-icon color="secondary" name="assignment_ind" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">{{
-              $t("view.home.lbl.menuDefaulters")
-            }}</q-item-label>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuDefaulters") }}
+            </q-item-label>
           </q-item-section>
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/reports">
@@ -80,9 +80,9 @@
             <q-icon color="secondary" name="mdi-chart-line" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">{{
-              $t("view.home.lbl.menuReports")
-            }}</q-item-label>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuReports") }}
+            </q-item-label>
           </q-item-section>
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/tags">
@@ -90,9 +90,9 @@
             <q-icon color="secondary" name="mdi-tag-multiple" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">{{
-              $t("view.home.lbl.menuTags")
-            }}</q-item-label>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuTags") }}
+            </q-item-label>
           </q-item-section>
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/indicators">
@@ -100,9 +100,9 @@
             <q-icon color="secondary" name="mdi-finance" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">{{
-              $t("view.home.lbl.menuIndicators")
-            }}</q-item-label>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuIndicators") }}
+            </q-item-label>
           </q-item-section>
         </q-item>
       </q-expansion-item>
