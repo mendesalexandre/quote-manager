@@ -23,7 +23,7 @@ export default {
         menuMyFinances: 'Minhas contas',
         menuMyCloseToOverdue: 'Contas à vencer',
         menuMyOverdueBills: 'Contas atrasadas',
-        menuFinances: 'Finanças',
+        menuFinances: 'Minhas contas',
         menuDefaulters: 'Inadimplentes',
         menuReports: 'Relatórios',
         menuTags: 'Tags',
@@ -95,13 +95,26 @@ export default {
     }
   },
   msg: {
+    bill: {
+      newSuccess: 'Conta cadastrada com sucesso',
+      paidSuccess: 'Conta paga como sucesso'
+    },
     login: {
       success: 'Sucesso ao efetuar login',
       error: '',
       networkError: 'Erro no servidor',
       wrongPass: ''
     },
-    notMapped: 'Error not mapped'
+    plan: {
+      success: 'Sucesso ao consultar planos'
+    },
+    task: {
+      newSuccess: 'Tarefa cadastrada com sucesso',
+      doneSuccess: 'Tarefa concluída com sucesso'
+    },
+    notMapped: 'Erro não mapeado',
+    success: 'Sucesso ao executar a ação',
+    error: 'Erro não mapeado'
   },
   logs: {},
   components: {

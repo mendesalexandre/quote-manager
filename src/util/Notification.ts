@@ -5,7 +5,7 @@ export function notifySuccess (message: string) {
   Notify.create({
     type: 'positive',
     position: 'top',
-    message: message || i18n.global.t('messages.success'),
+    message: message || i18n.global.t('msg.success'),
     actions: [
       {
         label: 'Ok',
@@ -22,7 +22,7 @@ export function notifyError (message: string) {
     type: 'negative',
     position: 'top',
     icon: 'report_problem',
-    message: message || i18n.global.t('messages.error'),
+    message: message || i18n.global.t('msg.error'),
     actions: [
       {
         label: 'Ok',

@@ -8,10 +8,10 @@ import i18n from './i18n'
 export function mapError (errorMessage: string) {
   const err = errorMessage.toUpperCase().trim()
 
-  if (typeof (err) !== 'string' || err === '') return i18n.global.t('messages.notMapped')
+  if (typeof (err) !== 'string' || err === '') return i18n.global.t('msg.notMapped')
   else {
     switch (err) {
-      case 'NETWORK ERROR': return i18n.global.t('messages.login.networkError')
+      case 'NETWORK ERROR': return i18n.global.t('msg.login.networkError')
       default: return errorMessage
     }
   }
