@@ -7,3 +7,4 @@
 - Create a default structure for i18n messages [#4](https://github.com/BIEMAX/quote-manager/issues/4)
 - Fix menu 'Task todo' not accessible [#7](https://github.com/BIEMAX/quote-manager/issues/7)
 - Add new sub routes for finances [#8](https://github.com/BIEMAX/quote-manager/issues/8)
+- Added import to mdi-v6 icons
