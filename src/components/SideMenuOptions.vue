@@ -47,7 +47,7 @@
         </q-item>
         <q-item :inset-level="0.5" clickable v-ripple to="/close-to-overdue">
           <q-item-section avatar>
-            <q-icon color="secondary" name="fa-solid fa-file-invoice-dollar" />
+            <q-icon color="secondary" name="mdi-calendar-clock" />
           </q-item-section>
           <q-item-section>
             <q-item-label color="secondary">
@@ -55,9 +55,9 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item :inset-level="0" clickable v-ripple to="/not-paid">
+        <q-item :inset-level="0.5" clickable v-ripple to="/not-paid">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi mdi-clock-alert"/>
+            <q-icon color="secondary" name="mdi-calendar-alert" />
           </q-item-section>
           <q-item-section>
             <q-item-label color="secondary">
