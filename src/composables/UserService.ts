@@ -1,5 +1,5 @@
 import { apiAuth, apiLogin, apiNewUser } from 'src/boot/axios'
-import { UserLogin, UserUpdate } from 'src/models/user'
+import { UserLogin, UserUpdate } from 'src/models/UserModel'
 
 export async function getUser (payload: UserLogin) {
   return await apiLogin

@@ -65,7 +65,7 @@ import {
 } from 'vue'
 import { useStore } from 'vuex'
 import { showLoading } from 'src/util/Loading'
-import { LoadingStatus } from 'src/models/status'
+import { LoadingStatus } from 'src/models/StatusModel'
 import { useQuasar } from 'quasar'
 
 export default defineComponent({

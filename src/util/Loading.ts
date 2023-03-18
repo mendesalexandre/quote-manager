@@ -1,5 +1,5 @@
 import { Loading } from 'quasar'
-import { LoadingStatus } from 'src/models/status'
+import { LoadingStatus } from 'src/models/StatusModel'
 
 /**
  * Function that show a loading at the center of the screen from quasar library

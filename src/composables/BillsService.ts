@@ -38,7 +38,7 @@ export async function getBillsCloseToOverdue () {
 /**
  * Get bills pay payed status (true or false)
  */
-export async function getBillsNotPayed (payload) {
+export async function getBillsNotPayed () {
   return await apiAuth
     .get('bill/payed/false')
     .then((response: any) => {
@@ -49,4 +49,4 @@ export async function getBillsNotPayed (payload) {
     })
 }
 
-export default { getBills, getBillsCloseToOverdue }
+export default { getBills, getBillsCloseToOverdue, getBillsNotPayed }
