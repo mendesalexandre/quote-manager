@@ -44,7 +44,7 @@ export default defineComponent({
     const store = useStore()
     const temp = computed(() => store.getters['bills/getBillsCloseToOverdue'])
     const columns = closeToOverdueColumns()
-    let rows = temp.value
+    let rows = null
 
     watchEffect(async () => {
       if (temp.value !== undefined) {
