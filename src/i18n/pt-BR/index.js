@@ -155,7 +155,10 @@ export default {
     monthPicker: 'Escolha um mês',
     inputRequire: 'Campo obrigatório',
     checkBoxRequire: 'Você precisa marcar a caixa acima', // TODO: End this translation properly
-    searchInTable: 'Pesquisar'
+    searchInTable: 'Pesquisar',
+    pagRecordsPerPage: 'Registros por página', // Records per page
+    noDataLabel: '', // 'I didn\'t find anything for you',
+    noResultsLabel: '' // 'The filter didn\'t uncover any results'
   },
   generic: {
     currencySymbol: 'R$',

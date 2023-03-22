@@ -1,12 +1,13 @@
 <template>
   <q-table
     header-class="text-primary"
-    title="Contas próximas do vencimento"
+    :title="title"
     title-class="text-primary"
     :rows="rows"
     :columns="columns"
     :filter="filter"
     selection="single"
+    pagination-label="$t('components.pagRecordsPerPage')"
   >
     <template v-slot:top-right>
       <q-input borderless dense debounce="300" v-model="filter" :placeholder="$t('components.searchInTable')">
