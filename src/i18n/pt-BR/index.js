@@ -1,8 +1,8 @@
 export default {
   view: {
-    billOverdue: {
+    closeToOverdue: {
       lbl: {
-
+        title: 'Contas próximas do vencimento'
       }
     },
     defaulter: {
@@ -39,6 +39,11 @@ export default {
       },
       tip: {
         access: 'Clique para acessar os dados'
+      }
+    },
+    notPaid: {
+      lbl: {
+        title: 'Contas atrasadas/vencidas'
       }
     },
     userSubMenu: {
@@ -113,6 +118,11 @@ export default {
       isBillPayed: 'Conta paga',
       isToDivideValue: 'Valor parcelado',
       actions: 'Ações'
+    },
+    notPaid: {
+      name: 'Nome da conta',
+      dueDate: 'Vencimento',
+      value: 'Valor'
     }
   },
   msg: {
@@ -144,7 +154,8 @@ export default {
     buttonNew: 'Novo',
     monthPicker: 'Escolha um mês',
     inputRequire: 'Campo obrigatório',
-    checkBoxRequire: 'Você precisa marcar a caixa acima' // TODO: End this translation properly
+    checkBoxRequire: 'Você precisa marcar a caixa acima', // TODO: End this translation properly
+    searchInTable: 'Pesquisar'
   },
   generic: {
     currencySymbol: 'R$',

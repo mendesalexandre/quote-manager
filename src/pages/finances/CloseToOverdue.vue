@@ -2,17 +2,8 @@
 <template>
   <q-page padding>
     <!-- content -->
-    <filter-data v-show="true"></filter-data>
-
-    <q-table
-      header-class="text-primary"
-      title="Contas próximas do vencimento"
-      title-class="text-primary"
-      :rows="rows"
-      :columns="columns"
-      selection="single"
-      v-model:selected="selected"
-    />
+    <filter-panel v-show="true"/>
+    <table-panel :title="$t('view.closeToOverdue.lbl.title')" :columns="billsColumns" :rows="rows" />
   </q-page>
 </template>
 
@@ -24,7 +15,8 @@ import {
   watchEffect,
   onMounted
 } from 'vue'
-import FilterData from 'src/components/FilterData.vue'
+import FilterPanel from 'src/components/FilterPanel.vue'
+import TablePanel from 'src/components/TablePanel.vue'
 import { useStore } from 'vuex'
 import { closeToOverdueColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
@@ -33,17 +25,17 @@ import { LoadingStatus } from 'src/models/StatusModel'
 export default defineComponent({
   name: 'CloseToOverdue',
   components: {
-    FilterData
+    FilterPanel,
+    TablePanel
   },
   data () {
     onMounted(() => {
       showLoading(LoadingStatus.ON)
     })
 
-    const data = ref(true)
     const store = useStore()
     const temp = computed(() => store.getters['bills/getBillsCloseToOverdue'])
-    const columns = closeToOverdueColumns()
+    const billsColumns = closeToOverdueColumns()
     let rows = null
 
     watchEffect(async () => {
@@ -54,9 +46,8 @@ export default defineComponent({
     })
 
     return {
-      data,
       rows,
-      columns,
+      billsColumns,
       selected: ref([])
     }
   }

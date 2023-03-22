@@ -25,4 +25,22 @@ export function closeToOverdueColumns () {
   ]
 }
 
+/**
+ * Columns for 'Bills not paid' screen/view
+ */
+export function notPaidColumns () {
+  return [
+    {
+      name: 'name',
+      field: 'name',
+      required: true,
+      label: i18n.global.t('columns.notPaid.name'),
+      sortable: true,
+      align: 'left'
+    },
+    { name: 'dueDate', field: 'dueDate', label: i18n.global.t('columns.notPaid.dueDate'), sortable: true, align: 'left' },
+    { name: 'value', field: 'value', label: i18n.global.t('columns.notPaid.value'), sortable: true, format: val => `${i18n.global.t('generic.currencySymbol')} ${val}`, align: 'left' }
+  ]
+}
+
 export default { closeToOverdueColumns }

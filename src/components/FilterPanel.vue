@@ -58,7 +58,7 @@ import ButtonSearch from './ButtonSearch.vue'
 import MonthPickerVue from './MonthPicker.vue'
 
 export default defineComponent({
-  name: 'FilterData',
+  name: 'FilterPanel',
   components: {
     ButtonNew,
     ButtonSearch,

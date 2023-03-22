@@ -8,3 +8,4 @@
 - Fix menu 'Task todo' not accessible [#7](https://github.com/BIEMAX/quote-manager/issues/7)
 - Add new sub routes for finances [#8](https://github.com/BIEMAX/quote-manager/issues/8)
 - Added import to mdi-v6 icons
+- Added search in table data [#9](https://github.com/BIEMAX/quote-manager/issues/9)

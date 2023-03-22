@@ -1,73 +1,21 @@
-<!-- eslint-disable @typescript-eslint/no-non-null-assertion -->
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-
-  <q-expansion-item
-    expand-separator
-    icon="mdi-filter-outline"
-    label="Filtro"
-    caption="Preencha os campos para o filtro"
-    header-class="text-primary"
-  >
-    <q-card>
-      <q-card-section>
-        <filter-data v-show="true">
-
-        </filter-data>
-        <!-- <div class="q-pa-md row items-start q-gutter-md">
-          <q-input filled v-model="billName" label="Nome da conta">
-            <template v-slot:prepend>
-              <q-icon name="mdi-text-box-outline" />
-            </template>
-          </q-input>
-          <q-input filled v-model="tagName" label="Nome da tag">
-            <template v-slot:prepend>
-              <q-icon name="mdi-tag" />
-            </template>
-          </q-input>
-          <q-input filled
-            label="Mês/Ano"
-            v-model="currentDate"
-            mask="##/####"
-            fill-mask="##/####"
-          >
-            <template v-slot:prepend>
-              <q-icon name="event" class="cursor-pointer">
-                <q-popup-proxy ref="qDateProxy" cover transition-show="scale" transition-hide="scale" :breakpoint="0">
-                  <q-date
-                    v-model="currentDate"
-                    years-in-month-view
-                    default-view="Months"
-                    emit-immediately
-                    @update:model-value="onUpdateMv"
-                    :key="dpKey"
-                    minimal mask="MM/YYYY"
-                  ></q-date>
-                </q-popup-proxy>
-              </q-icon>
-            </template>
-          </q-input>
-          <q-btn outline rounded color="primary" label="Novo" icon="add"/>
-          <q-btn outline rounded color="primary" label="Pesquisar" icon="search"/>
-        </div> -->
-      </q-card-section>
-    </q-card>
-  </q-expansion-item>
-
-  <q-separator/>
+  <q-page padding>
+    <!-- content -->
+    <filter-panel v-show="true"></filter-panel>
+  </q-page>
 
 </template>
 
 <script lang="ts">
 import { ref, computed, defineComponent } from 'vue'
 import moment from 'moment'
-import FilterData from 'src/components/FilterData.vue'
+import FilterPanel from 'src/components/FilterPanel.vue'
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Finances',
   components: {
-    FilterData
+    FilterPanel
   },
   setup () {
     const currentDate = ref(moment().format('MM/YYYY').toString())
