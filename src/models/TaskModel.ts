@@ -1,5 +1,3 @@
-import { History } from './HistoryModel'
-
 export interface TaskNew {
   user: string
   name: string
