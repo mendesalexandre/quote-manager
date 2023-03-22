@@ -1,5 +1,10 @@
 export default {
   view: {
+    billOverdue: {
+      lbl: {
+
+      }
+    },
     defaulter: {
       lbl: {
         aa: 'bb'
@@ -94,6 +99,22 @@ export default {
       planFour: 'Enterprise'
     }
   },
+  columns: {
+    closeToOverdue: {
+      id: 'Identificador',
+      user: 'Usuário',
+      name: 'Nome da conta',
+      dueDate: 'Vencimento',
+      desc: 'Descrição',
+      value: 'Valor',
+      qtd: 'Nº Parcelas',
+      tags: 'Tags',
+      isCashEntry: 'Dinheiro de entrada',
+      isBillPayed: 'Conta paga',
+      isToDivideValue: 'Valor parcelado',
+      actions: 'Ações'
+    }
+  },
   msg: {
     bill: {
       newSuccess: 'Conta cadastrada com sucesso',
@@ -126,6 +147,7 @@ export default {
     checkBoxRequire: 'Você precisa marcar a caixa acima' // TODO: End this translation properly
   },
   generic: {
+    currencySymbol: 'R$',
     language: 'Idioma',
     msg: {
       success: 'Sucesso ao executar a ação',
