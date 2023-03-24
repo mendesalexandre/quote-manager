@@ -3,7 +3,7 @@
     outline
     rounded
     color="primary"
-    :label="$t('components.buttonNew')"
+    :label="$t('components.lbl.buttonNew')"
     icon="add"
   />
 </template>

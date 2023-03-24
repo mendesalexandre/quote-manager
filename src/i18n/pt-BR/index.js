@@ -122,7 +122,8 @@ export default {
     notPaid: {
       name: 'Nome da conta',
       dueDate: 'Vencimento',
-      value: 'Valor'
+      value: 'Valor',
+      actions: 'Ações'
     }
   },
   msg: {
@@ -149,16 +150,25 @@ export default {
   },
   logs: {},
   components: {
-    buttonOk: 'Ok',
-    buttonSearch: 'Pesquisar',
-    buttonNew: 'Novo',
-    monthPicker: 'Escolha um mês',
-    inputRequire: 'Campo obrigatório',
-    checkBoxRequire: 'Você precisa marcar a caixa acima', // TODO: End this translation properly
-    searchInTable: 'Pesquisar',
-    pagRecordsPerPage: 'Registros por página', // Records per page
-    noDataLabel: '', // 'I didn\'t find anything for you',
-    noResultsLabel: '' // 'The filter didn\'t uncover any results'
+    lbl: {
+      buttonOk: 'Ok',
+      buttonSearch: 'Pesquisar',
+      buttonNew: 'Novo',
+      monthPicker: 'Escolha um mês',
+      inputRequire: 'Campo obrigatório',
+      checkBoxRequire: 'Você precisa marcar a caixa acima', // TODO: End this translation properly
+      searchInTable: 'Pesquisar',
+      pagRecordsPerPage: 'Registros por página', // Records per page
+      noDataLabel: 'Desculpa, não encontramos nada para você', // 'I didn\'t find anything for you',
+      noResultsLabel: 'O filtro não localizou nenhum resultado' // 'The filter didn\'t uncover any results'
+    },
+    tip: {
+      edit: 'Editar',
+      remove: 'Remover',
+      new: 'Cadastrar',
+      list: 'Lista',
+      grid: 'Grade'
+    }
   },
   generic: {
     currencySymbol: 'R$',

@@ -3,7 +3,7 @@
     outline
     rounded
     color="primary"
-    :label="$t('components.buttonSearch')"
+    :label="$t('components.lbl.buttonSearch')"
     icon="add"
   />
 </template>
