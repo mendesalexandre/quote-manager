@@ -16,7 +16,8 @@ export function closeToOverdueColumns () {
     },
     { name: 'dueDate', field: 'dueDate', label: i18n.global.t('columns.closeToOverdue.dueDate'), sortable: true },
     // { name: 'description', label: i18n.global.t('columns.closeToOverdue.desc'), sortable: false },
-    { name: 'value', field: 'value', label: i18n.global.t('columns.closeToOverdue.value'), sortable: true, format: val => `${i18n.global.t('generic.currencySymbol')} ${val}` }
+    { name: 'value', field: 'value', label: i18n.global.t('columns.closeToOverdue.value'), sortable: true, format: val => `${i18n.global.t('generic.currencySymbol')} ${val}` },
+    { name: 'actions', label: i18n.global.t('columns.closeToOverdue.actions'), sortable: false, align: 'center' }
     // { name: 'quantityAmount', label: i18n.global.t('columns.closeToOverdue.qtd'), sortable: false },
     // { name: 'tags', label: i18n.global.t('columns.closeToOverdue.tags'), sortable: false },
     // { name: 'isCashEntry', label: i18n.global.t('columns.closeToOverdue.isCashEntry'), sortable: false },
@@ -39,7 +40,8 @@ export function notPaidColumns () {
       align: 'left'
     },
     { name: 'dueDate', field: 'dueDate', label: i18n.global.t('columns.notPaid.dueDate'), sortable: true, align: 'left' },
-    { name: 'value', field: 'value', label: i18n.global.t('columns.notPaid.value'), sortable: true, format: val => `${i18n.global.t('generic.currencySymbol')} ${val}`, align: 'left' }
+    { name: 'value', field: 'value', label: i18n.global.t('columns.notPaid.value'), sortable: true, format: val => `${i18n.global.t('generic.currencySymbol')} ${val}`, align: 'left' },
+    { name: 'actions', label: i18n.global.t('columns.notPaid.actions'), sortable: false, align: 'center' }
   ]
 }
 

@@ -1,8 +1,7 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <q-page padding>
-    <!-- content -->
     <filter-panel v-show="true"/>
+    <br>
     <table-panel :title="$t('view.closeToOverdue.lbl.title')" :columns="billsColumns" :rows="rows" />
   </q-page>
 </template>

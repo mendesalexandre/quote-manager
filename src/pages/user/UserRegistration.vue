@@ -94,7 +94,7 @@
             :label="$t('view.newUser.lbl.termAccepted')"
             checked-icon="task_alt"
             unchecked-icon="highlight_off"
-            :rules="[(val) => val || $t('components.checkBoxRequire')]"
+            :rules="[(val) => val || $t('components.lbl.checkBoxRequire')]"
           />
         </div>
 

@@ -1,6 +1,7 @@
 <template>
   <q-page padding>
     <filter-panel v-show="true"></filter-panel>
+    <br>
     <table-panel :title="$t('view.notPaid.lbl.title')" :columns="billsColumns" :rows="rows" />
   </q-page>
 </template>
