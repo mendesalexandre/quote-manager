@@ -1,4 +1,5 @@
 <template>
+  <q-space/>
   <q-carousel
     animated
     v-model="slide"
@@ -32,6 +33,7 @@
         </div>
       </div>
     </q-carousel-slide>
+
     <q-carousel-slide :name="2" class="column no-wrap flex-center">
       <q-icon name="style" size="56px" />
       <div class="q-mt-md text-center">
@@ -49,6 +51,48 @@
             <q-tooltip>{{ $t("view.home.tip.access") }}</q-tooltip>
           </q-btn>
         </div>
+      </div>
+    </q-carousel-slide>
+
+    <q-carousel-slide :name="3" class="column no-wrap flex-center">
+      <q-icon name="style" size="56px" />
+      <div class="q-mt-md text-center">
+        {{ $t('view.home.lbl.tasksTodo') }}
+        {{ tasksTodo }}
+
+        <div class="q-mt-md">
+          <q-btn
+            push
+            icon="mdi-arrow-top-right-bold-outline"
+            class="bg-white text-primary"
+            :label="$t('view.home.lbl.access')"
+            to="/todo"
+          >
+            <q-tooltip>{{ $t("view.home.tip.access") }}</q-tooltip>
+          </q-btn>
+        </div>
+      </div>
+    </q-carousel-slide>
+
+    <q-carousel-slide :name="4" class="column no-wrap flex-center">
+      <q-icon name="style" size="56px" />
+      <div class="q-mt-md text-center">
+        {{ $t('view.home.lbl.tips') }}
+        <br>
+        <div v-html="tips">
+        </div>
+
+        <!-- <div class="q-mt-md">
+          <q-btn
+            push
+            icon="mdi-arrow-top-right-bold-outline"
+            class="bg-white text-primary"
+            :label="$t('view.home.lbl.access')"
+            to="/todo"
+          >
+            <q-tooltip>{{ $t("view.home.tip.access") }}</q-tooltip>
+          </q-btn>
+        </div> -->
       </div>
     </q-carousel-slide>
   </q-carousel>
@@ -83,6 +127,17 @@ export default defineComponent({
 
     const billsCloseToOverdue = computed(() => store.getters['bills/getBillsCloseToOverdueLength'])
     const billsNotPayed = computed(() => store.getters['bills/getBillsNotPayedLength'])
+    const tasksTodo = 0
+    const tips = `
+    -O melhor dia de ir ao mercado é entre os dias 15 à 28<br>
+    -Procurando por um preço mais acessível para abastecer? Utilize o waze para pesquisar a gasolina mais barata e mais próxima da sua localização<br>
+    -Evite deixar lâmpadas ligadas desnecessariamente, isso ajuda o meio ambiente e ajuda na economia de energia<br>
+    -Quer economizar no gás? Abre somente meia válvula, isso evita o desperdício do gás de cozinha
+    `
+    const saveMoney = `
+    -Quer aprender como gastar corretamente seu dinheiro? Acesse os indicadores
+    -Quer aprender a investir o seu dinheiro? Invista em CDB do banco BTG, na liquidez diária.
+    `
 
     watch(billsCloseToOverdue, () => {
       showLoading(LoadingStatus.OFF)
@@ -113,7 +168,10 @@ export default defineComponent({
       store,
       autoPlayCarouselSlides: ref(true),
       billsNotPayed,
-      billsCloseToOverdue
+      billsCloseToOverdue,
+      tasksTodo,
+      tips,
+      saveMoney
     }
   }
 })

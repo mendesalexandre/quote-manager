@@ -35,7 +35,9 @@ export default {
         menuIndicators: 'Indicadores',
         billToOverdue: 'Contas próximas do vencimento',
         billAlreadyOverdue: 'Contas vencidas ou atrasadas',
-        access: 'Acessar'
+        access: 'Acessar',
+        tasksTodo: 'Tarefas à serem feitas',
+        tips: 'Dicas'
       },
       tip: {
         access: 'Clique para acessar os dados'
@@ -166,6 +168,7 @@ export default {
       edit: 'Editar',
       remove: 'Remover',
       new: 'Cadastrar',
+      pay: 'Pagar',
       list: 'Lista',
       grid: 'Grade'
     }
