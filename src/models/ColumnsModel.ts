@@ -45,4 +45,21 @@ export function notPaidColumns () {
   ]
 }
 
-export default { closeToOverdueColumns }
+/**
+ * Columns for 'Bills to pay' screen/view
+ */
+export function myBillsColumns () {
+  return [
+    {
+      name: 'name',
+      field: 'name',
+      required: true,
+      label: i18n.global.t('columns.notPaid.name'),
+      sortable: true,
+      align: 'left'
+    },
+    { name: 'dueDate', field: 'dueDate', label: i18n.global.t('columns.bills.dueDate'), sortable: true, align: 'left' }
+  ]
+}
+
+export default { closeToOverdueColumns, notPaidColumns, myBillsColumns }

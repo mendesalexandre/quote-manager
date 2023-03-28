@@ -17,7 +17,13 @@ export default {
         cc: 'aa'
       }
     },
-    finance: {},
+    finance: {
+      lbl: {
+        title: 'Minhas contas',
+        billName: 'Nome da conta',
+        tagName: 'Nome da tag'
+      }
+    },
     home: {
       lbl: {
         title: 'Página inicial',
@@ -107,6 +113,20 @@ export default {
     }
   },
   columns: {
+    bills: {
+      id: 'Identificador',
+      user: 'Usuário',
+      name: 'Nome da conta',
+      dueDate: 'Vencimento',
+      description: 'Descrição',
+      value: 'Valor',
+      quantityAmount: 'Nº Parcelas',
+      tags: 'Tags',
+      isCashEntry: 'Tipo de conta',
+      isBillPayed: 'Conta paga',
+      isToDivideValue: 'Valor parcelado',
+      actions: 'Ações'
+    },
     closeToOverdue: {
       id: 'Identificador',
       user: 'Usuário',
@@ -116,7 +136,7 @@ export default {
       value: 'Valor',
       qtd: 'Nº Parcelas',
       tags: 'Tags',
-      isCashEntry: 'Dinheiro de entrada',
+      isCashEntry: 'Tipo de conta',
       isBillPayed: 'Conta paga',
       isToDivideValue: 'Valor parcelado',
       actions: 'Ações'
@@ -131,7 +151,8 @@ export default {
   msg: {
     bill: {
       newSuccess: 'Conta cadastrada com sucesso',
-      paidSuccess: 'Conta paga como sucesso'
+      paidSuccess: 'Conta paga como sucesso',
+      querySuccess: 'Sucesso ao consultar as contas'
     },
     login: {
       success: 'Sucesso ao efetuar login',
@@ -162,7 +183,9 @@ export default {
       searchInTable: 'Pesquisar',
       pagRecordsPerPage: 'Registros por página', // Records per page
       noDataLabel: 'Desculpa, não encontramos nada para você', // 'I didn\'t find anything for you',
-      noResultsLabel: 'O filtro não localizou nenhum resultado' // 'The filter didn\'t uncover any results'
+      noResultsLabel: 'O filtro não localizou nenhum resultado', // 'The filter didn\'t uncover any results'
+      filterTitle: 'Filtro',
+      filterCaption: 'Preencha os campos para o filtro'
     },
     tip: {
       edit: 'Editar',

@@ -66,8 +66,7 @@ const actions = {
       const bills = await getBills(payload)
       commit('setBills', bills)
       showLoading(LoadingStatus.OFF)
-      notifySuccess(i18n.global.t('msg.login.success'))
-      $router.push('/home')
+      notifySuccess(i18n.global.t('msg.bill.querySuccess'))
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)

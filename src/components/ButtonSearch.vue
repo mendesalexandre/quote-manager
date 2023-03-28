@@ -4,7 +4,7 @@
     rounded
     color="primary"
     :label="$t('components.lbl.buttonSearch')"
-    icon="add"
+    icon="search"
   />
 </template>
 
