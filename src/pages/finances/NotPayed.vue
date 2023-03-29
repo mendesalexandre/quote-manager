@@ -2,7 +2,16 @@
   <q-page padding>
     <filter-panel v-show="true"></filter-panel>
     <br>
-    <table-panel :title="$t('view.notPaid.lbl.title')" :columns="billsColumns" :rows="rows" />
+    <table-panel
+      :title="$t('view.notPaid.lbl.title')"
+      :columns="billsColumns"
+      :rows="rows"
+      :show-button-edit="false"
+      :show-button-remove="false"
+      :show-button-pay="true"
+      :action-pay="onPayClick()"
+    >
+    </table-panel>
   </q-page>
 </template>
 
@@ -19,6 +28,7 @@ import { useStore } from 'vuex'
 import { notPaidColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
 import { LoadingStatus } from 'src/models/StatusModel'
+import { notifySuccess } from 'src/util/Notification'
 
 export default defineComponent({
   name: 'NotPayed',
@@ -28,24 +38,27 @@ export default defineComponent({
   },
   data () {
     onMounted(() => {
-      showLoading(LoadingStatus.ON)
+      // showLoading(LoadingStatus.ON)
     })
 
     const store = useStore()
-    const temp = computed(() => store.getters['bills/getBillsNotPayed'])
+    const rows = computed(() => store.getters['bills/getBillsNotPayed'])
     const billsColumns = notPaidColumns()
-    let rows = null
-
-    watchEffect(async () => {
-      if (temp.value !== undefined) {
-        rows = temp.value
-        showLoading(LoadingStatus.OFF)
-      }
-    })
 
     return {
       rows,
       billsColumns
+    }
+  },
+  methods: {
+    onEditClick () {
+      notifySuccess('teste edição')
+    },
+    onRemoveClick () {
+      notifySuccess('teste remoção')
+    },
+    onPayClick () {
+      notifySuccess('teste pagamento')
     }
   }
 })

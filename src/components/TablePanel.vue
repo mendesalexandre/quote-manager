@@ -3,8 +3,8 @@
     header-class="text-primary"
     :title="title"
     title-class="text-primary"
-    :rows="rows"
-    :columns="columns"
+    :rows="rows || []"
+    :columns="columns || []"
     :filter="filter"
     :grid="changeToGrid"
     :rows-per-page-label="$t('components.lbl.pagRecordsPerPage')"
@@ -59,16 +59,14 @@
     <!--Buttons for list/table view-->
     <template v-slot:body-cell-actions="props">
       <q-td :props="props">
-        <!--<q-btn dense round flat color="grey" icon="edit"></q-btn>--> <!-- @click="editRow(props)"-->
-        <!--<q-btn dense round flat color="grey" icon="delete"></q-btn>--> <!--@click="deleteRow(props)"-->
-        <!-- <q-btn dense round flat  color="secondary" icon="mdi-file-plus-outline">
-          <q-tooltip>{{ $t("components.tip.new") }}</q-tooltip>
-        </q-btn> -->
-        <q-btn dense round flat color="secondary" icon="mdi-pencil-outline">
+        <q-btn dense round flat color="secondary" icon="mdi-pencil-outline" :disable="!showButtonEdit" @click="actionEdit(props)">
           <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
         </q-btn>
-        <q-btn dense round flat color="secondary" icon="mdi-delete-outline">
+        <q-btn dense round flat color="secondary" icon="mdi-delete-outline" :disable="!showButtonRemove" @click="actionRemove(props)">
           <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
+        </q-btn>
+        <q-btn dense round flat color="secondary" icon="mdi-cash-check" :disable="!showButtonPay" @click="actionPay(props)">
+          <q-tooltip>{{ $t("components.tip.pay") }}</q-tooltip>
         </q-btn>
       </q-td>
     </template>
@@ -82,14 +80,16 @@
           dense
           class="text-weight-bolder"
           square
-        >{{props.row.status}}</q-chip>
+        >
+          {{props.row.status}}
+        </q-chip>
       </component>
     </template>
     <template #body-cell-action="props">
       <component :is="changeToGrid ? 'div' : 'q-td'" :props="props">
         <!--<q-btn dense flat color="primary" field="edit" icon="edit"></q-btn> @click="editItem(props.row)"-->
-        <q-btn dense flat color="secondary" icon="mdi-delete-outline">
-          <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
+        <q-btn dense flat color="secondary" icon="mdi-pencil-outline">
+          <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
         </q-btn>
         <q-btn dense flat color="secondary" icon="mdi-delete-outline">
           <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
@@ -118,6 +118,39 @@ export default defineComponent({
     columns: {
       type: Array,
       required: true
+    },
+    /**
+     * Enable or disable button for editing
+     */
+    showButtonEdit: {
+      type: Boolean,
+      required: true
+    },
+    /**
+     * Enable or disable button for removing
+     */
+    showButtonRemove: {
+      type: Boolean,
+      required: true
+    },
+    /**
+     * Enable or disable button for pay the bill
+     */
+    showButtonPay: {
+      type: Boolean,
+      required: true
+    },
+    actionEdit: {
+      type: Event,
+      require: false
+    },
+    actionRemove: {
+      type: Event,
+      require: false
+    },
+    actionPay: {
+      type: Function,
+      require: false
     }
   },
   data () {

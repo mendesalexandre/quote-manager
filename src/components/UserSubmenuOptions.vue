@@ -95,7 +95,8 @@ export default defineComponent({
   },
   methods: {
     logout () {
-      clear()
+      // clear() // TODO: Fix the cookies clear function (throwing exception after updated)
+      console.log('this.$router: ', this.$router)
       this.$router.push('/').catch(() => {})
     }
   }

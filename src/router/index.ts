@@ -34,15 +34,19 @@ export default route(function ({ store /*, ssrContext */ }) {
 
   // Router guard
   Router.beforeEach((to, from, next) => {
+    // console.log('1. to: ', to)
+    // console.log('2. from: ', from)
+    // console.log('3. next: ', next)
     if (to.name === undefined) {
       next() // First access
     } else {
       const destination = to.name?.toString() || ''
       const permissions = store.getters['user/getPermissions']
-      // console.log('permissions !== undefined: ', permissions !== undefined)
-      // console.log('permissions.length > 0: ', permissions.length > 0)
-      // console.log('destination !== \'\': ', destination !== '')
-      // console.log('destination: ', destination)
+      // console.log('4. permissions: ', permissions)
+      // console.log('5. permissions !== undefined: ', permissions !== undefined)
+      // console.log('6. permissions.length > 0: ', permissions.length > 0)
+      // console.log('7. destination !== \'\': ', destination !== '')
+      // console.log('8. destination: ', destination)
       if (destination === 'Welcome') next()
       else if (permissions !== undefined && permissions.length > 0 && destination !== '') {
         const hasPermission = permissions

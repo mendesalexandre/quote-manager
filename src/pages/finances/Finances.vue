@@ -46,8 +46,8 @@
     <br>
     <table-panel
       :title="$t('view.finance.lbl.title')"
-      :columns="billsColumns"
-      :rows="rows"
+      :columns="billsColumns || []"
+      :rows="rows || []"
       :show-button-edit="true"
       :show-button-remove="true"
       :show-button-pay="true"
