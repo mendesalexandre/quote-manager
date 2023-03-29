@@ -138,7 +138,7 @@ export default defineComponent({
      */
     showButtonPay: {
       type: Boolean,
-      required: true
+      required: false
     },
     actionEdit: {
       type: Event,

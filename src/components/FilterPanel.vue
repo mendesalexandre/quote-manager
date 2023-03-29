@@ -29,7 +29,7 @@
             <month-picker></month-picker>
             <!--Action buttons-->
             <button-new></button-new>
-            <button-search></button-search>
+            <button-search @onClick="handleClick()"></button-search>
           </div>
         </q-card-section>
       </q-card>
@@ -54,6 +54,16 @@ export default defineComponent({
     label: {
       type: String,
       required: false
+    }
+  },
+  emits: ['onClickSearchButton'],
+  setup (props, { emit }) {
+    const handleClick = () => {
+      console.log('clicking')
+      emit('onClickSearchButton')
+    }
+    return {
+      handleClick
     }
   }
 })

@@ -5,6 +5,7 @@
     color="primary"
     :label="$t('components.lbl.buttonSearch')"
     icon="search"
+    @click="handleClick()"
   />
 </template>
 
@@ -17,6 +18,16 @@ export default defineComponent({
     dio: {
       type: String,
       required: false
+    }
+  },
+  emits: ['onClick'],
+  setup (props, { emit }) {
+    const handleClick = () => {
+      console.log('clicking in button search')
+      emit('onClick')
+    }
+    return {
+      handleClick
     }
   }
 })
