@@ -2,7 +2,7 @@
   <q-page padding>
 
     <!--Filter panel-->
-    <filter-panel :onClickSearchButton="onSearchClick()"></filter-panel>
+    <filter-panel @onClickInfo="onSearchClick()"></filter-panel>
     <!-- <q-list bordered class="rounded-borders">
       <q-expansion-item
         expand-separator
@@ -92,16 +92,21 @@ export default defineComponent({
     let doCall = false
 
     const onSearchClick = () => {
-      if (!doCall) {
-        showLoading(LoadingStatus.ON)
-        store.dispatch('bills/getBillsList', { month: '', year: '', description: '', tag: '' })
-        doCall = true
-      }
+      // console.log('0. triggered on finances screen')
+      // if (!doCall) {
+      //   console.log('0.1 - I enter um request')
+      //   showLoading(LoadingStatus.ON)
+      //   store.dispatch('bills/getBillsList', { month: '', year: '', description: '', tag: '' })
+      //   doCall = true
+      // }
+      showLoading(LoadingStatus.ON)
+      store.dispatch('bills/getBillsList', { month: '', year: '', description: '', tag: '' })
     }
 
     const rows = computed(() => store.getters['bills/getBills'])
 
     watch(rows, () => {
+      doCall = false
       showLoading(LoadingStatus.OFF)
     })
 

@@ -20,11 +20,11 @@ export default defineComponent({
       required: false
     }
   },
-  emits: ['onClick'],
+  emits: ['onClickInfo'],
   setup (props, { emit }) {
     const handleClick = () => {
-      console.log('clicking in button search')
-      emit('onClick')
+      console.log('1. clicking in button search')
+      emit('onClickInfo')
     }
     return {
       handleClick
