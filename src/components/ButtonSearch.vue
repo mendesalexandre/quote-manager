@@ -23,7 +23,6 @@ export default defineComponent({
   emits: ['onClickInfo'],
   setup (props, { emit }) {
     const handleClick = () => {
-      console.log('1. clicking in button search')
       emit('onClickInfo')
     }
     return {
