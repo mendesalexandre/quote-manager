@@ -51,7 +51,7 @@
         <q-btn
           push
           icon="login"
-          class="bg-primary text-white"
+          class="bg-white text-primary"
           :label="$t('view.login.lbl.enter')"
           @click="login()"
         >

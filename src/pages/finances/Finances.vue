@@ -2,8 +2,7 @@
   <q-page padding>
 
     <!--Filter panel-->
-    <filter-panel @onClickInfo="onSearchClick()"></filter-panel>
-    <!-- <q-list bordered class="rounded-borders">
+    <q-list bordered class="rounded-borders">
       <q-expansion-item
         expand-separator
         icon="mdi-filter-outline"
@@ -17,32 +16,31 @@
           <q-card-section>
 
             <div class="q-pa-md row items-start q-gutter-md">
-              Bill name
+              <!-- Bill name -->
               <q-input filled v-model="billName" :label="$t('view.finance.lbl.billName')">
                 <template v-slot:prepend>
                   <q-icon name="mdi-text-box-outline" />
                 </template>
               </q-input>
-              Tag name
+              <!-- Tag name -->
               <q-input filled v-model="tagName" :label="$t('view.finance.lbl.tagName')">
                 <template v-slot:prepend>
                   <q-icon name="mdi-tag" />
                 </template>
               </q-input>
-              Date picker
-              <month-picker-vue></month-picker-vue>
-              Action buttons
-              <q-separator/>
-              <q-space/>
+              <!-- Date picker -->
+              <month-picker v-model="selectDate"/>
+              <!-- <date-input :label="$t('view.finance.lbl.tagName')" v-model="selectDate" /> -->
+            </div>
+            <!-- Action buttons -->
+            <div>
               <button-new />
-              <button-search @click="onSearchClick()">
-
-              </button-search>
+              <button-search @click="onSearchClick()"/>
             </div>
           </q-card-section>
         </q-card>
       </q-expansion-item>
-    </q-list> -->
+    </q-list>
 
     <br>
     <table-panel
@@ -69,44 +67,36 @@ import { useStore } from 'vuex'
 import { myBillsColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
 import { LoadingStatus } from 'src/models/StatusModel'
-import FilterPanel from 'src/components/FilterPanel.vue'
 import TablePanel from 'src/components/TablePanel.vue'
 import ButtonNew from 'src/components/ButtonNew.vue'
 import ButtonSearch from 'src/components/ButtonSearch.vue'
-import MonthPickerVue from 'src/components/MonthPicker.vue'
+import MonthPicker from 'src/components/MonthPicker.vue'
+import DateInput from 'src/components/DateInput.vue'
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Finances',
   components: {
-    FilterPanel,
-    TablePanel
-    // TablePanel,
-    // MonthPickerVue,
-    // ButtonNew,
-    // ButtonSearch
+    TablePanel,
+    MonthPicker,
+    ButtonNew,
+    ButtonSearch,
+    // eslint-disable-next-line vue/no-unused-components
+    DateInput
   },
   data () {
     const store = useStore()
     const billsColumns = myBillsColumns()
-    let doCall = false
 
     const onSearchClick = () => {
-      // console.log('0. triggered on finances screen')
-      // if (!doCall) {
-      //   console.log('0.1 - I enter um request')
-      //   showLoading(LoadingStatus.ON)
-      //   store.dispatch('bills/getBillsList', { month: '', year: '', description: '', tag: '' })
-      //   doCall = true
-      // }
       showLoading(LoadingStatus.ON)
-      store.dispatch('bills/getBillsList', { month: '', year: '', description: '', tag: '' })
+      console.log('selectDate: ', this.selectDate)
+      store.dispatch('bills/getBillsList', { month: '', year: '', description: this.billName, tag: this.tagName })
     }
 
     const rows = computed(() => store.getters['bills/getBills'])
 
     watch(rows, () => {
-      doCall = false
       showLoading(LoadingStatus.OFF)
     })
 
@@ -119,6 +109,7 @@ export default defineComponent({
       billsColumns,
       billName: ref(''),
       tagName: ref(''),
+      selectDate: ref(''),
       onSearchClick
     }
   },
