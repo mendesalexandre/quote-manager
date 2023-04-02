@@ -79,6 +79,25 @@ export default {
         login: 'Clique para efetuar o login'
       }
     },
+    newFinance: {
+      lbl: {
+        firstTitle: 'Dados gerais',
+        secondTitle: 'Valores',
+        thirdTitle: 'Finalizar',
+        continue: 'Continuar',
+        back: 'Voltar',
+        finish: 'Finalizar',
+        billName: 'Nome da conta',
+        dueDate: 'Data de vencimento',
+        desc: 'Descrição',
+        value: 'Valor R$',
+        qtd: 'Número de prestações',
+        tags: 'Tags',
+        type: 'Tipo de despesa',
+        billPaid: 'Conta paga?',
+        divideValue: 'Dividir o valor em prestações'
+      }
+    },
     newUser: {
       lbl: {
         firstTitle: 'Dados gerais',
