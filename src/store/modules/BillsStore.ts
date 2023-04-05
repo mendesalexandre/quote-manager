@@ -60,7 +60,7 @@ const getters = {
 
 const actions = {
   async getBillsList ({ commit }, payload) {
-    const $router = (this as any).$router
+    // const $router = (this as any).$router
     showLoading(LoadingStatus.ON)
     try {
       const bills = await getBills(payload)

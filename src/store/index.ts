@@ -2,9 +2,9 @@ import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 
 // Modules
-import user from './modules/User'
-import bills from './modules/Bills'
-import tasks from './modules/Tasks'
+import user from './modules/UserStore'
+import bills from './modules/BillsStore'
+import tasks from './modules/TasksStore'
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
