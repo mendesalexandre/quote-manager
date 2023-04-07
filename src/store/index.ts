@@ -5,12 +5,14 @@ import { createStore } from 'vuex'
 import user from './modules/UserStore'
 import bills from './modules/BillsStore'
 import tasks from './modules/TasksStore'
+import tags from './modules/TagsStore'
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       user,
       bills,
+      tags,
       tasks
     }
     // enable strict mode (adds overhead!)

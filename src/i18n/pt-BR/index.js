@@ -89,13 +89,22 @@ export default {
         finish: 'Finalizar',
         billName: 'Nome da conta',
         dueDate: 'Data de vencimento',
+        billType: 'Tipo de movimento da conta',
+        billPaid: 'Conta paga?',
         desc: 'Descrição',
         value: 'Valor R$',
         qtd: 'Número de prestações',
-        tags: 'Tags',
+        tags: 'Selecione as tags',
         type: 'Tipo de despesa',
-        billPaid: 'Conta paga?',
-        divideValue: 'Dividir o valor em prestações'
+        divideValue: 'Dividir o valor em prestações?',
+        reset: 'Reiniciar',
+        addNewTag: 'Ou insira uma nova tag',
+        starterTag: 'Contas fixa'
+      },
+      opt: {
+        in: 'Entrada',
+        out: 'Saída',
+        select: '<Selecione>'
       }
     },
     newUser: {
@@ -182,13 +191,20 @@ export default {
     plan: {
       success: 'Sucesso ao consultar planos'
     },
+    tag: {
+      newSuccess: 'Tag cadastrada com sucesso',
+      querySuccess: 'Sucesso ao consultar as tags',
+      deleteSuccess: 'Sucesso ao deletar a tag',
+      tagAlreadyAdded: 'Tag já adicionada à lista'
+    },
     task: {
       newSuccess: 'Tarefa cadastrada com sucesso',
       doneSuccess: 'Tarefa concluída com sucesso'
     },
     notMapped: 'Erro não mapeado',
     success: 'Sucesso ao executar a ação',
-    error: 'Erro não mapeado'
+    error: 'Erro não mapeado',
+    wait: 'Aguarde uns instantes...'
   },
   logs: {},
   components: {
@@ -204,7 +220,9 @@ export default {
       noDataLabel: 'Desculpa, não encontramos nada para você', // 'I didn\'t find anything for you',
       noResultsLabel: 'O filtro não localizou nenhum resultado', // 'The filter didn\'t uncover any results'
       filterTitle: 'Filtro',
-      filterCaption: 'Preencha os campos para o filtro'
+      filterCaption: 'Preencha os campos para o filtro',
+      close: 'Fechar',
+      helpButton: 'Clique para obter ajuda'
     },
     tip: {
       edit: 'Editar',

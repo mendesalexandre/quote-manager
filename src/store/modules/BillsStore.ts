@@ -1,4 +1,9 @@
-import { getBills, getBillsCloseToOverdue, getBillsNotPayed } from 'src/composables/BillsService'
+import {
+  getBills,
+  getBillsCloseToOverdue,
+  getBillsNotPayed,
+  newBill
+} from 'src/composables/BillsService'
 
 // Utils
 import { showLoading } from 'src/util/Loading'
@@ -93,6 +98,17 @@ const actions = {
       commit('setBillsNotPayedLength', bills?.length || 0)
       showLoading(LoadingStatus.OFF)
       return bills
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(mapError(error))
+    }
+  },
+  async registerNewBill ({ commit }, payload) {
+    try {
+      showLoading(LoadingStatus.ON)
+      const newBillResp = await newBill(payload)
+      showLoading(LoadingStatus.OFF)
+      return newBillResp
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(mapError(error))
