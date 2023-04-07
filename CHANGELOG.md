@@ -12,6 +12,7 @@
 - Fix loop when logout [#3](https://github.com/BIEMAX/quote-manager/issues/3)
 - Fix menu 'Task todo' not accessible [#7](https://github.com/BIEMAX/quote-manager/issues/7)
 - Fix the view of month bills disappear after click on search button [14](https://github.com/BIEMAX/quote-manager/issues/14)
+- Fixed the month selector not receiving the data selected by user
 
 #### Implemented
 - Implement cookies for login [#1](https://github.com/BIEMAX/quote-manager/issues/1)

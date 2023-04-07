@@ -29,12 +29,12 @@
                 </template>
               </q-input>
               <!-- Date picker -->
-              <month-picker v-model="selectDate"/>
+              <month-picker @input="onDateUpdateEvent"></month-picker>
               <!-- <date-input :label="$t('view.finance.lbl.tagName')" v-model="selectDate" /> -->
             </div>
             <!-- Action buttons -->
             <div>
-              <button-new />
+              <button-new @click="openDialogNewBill()"/>
               <button-search @click="onSearchClick()"/>
             </div>
           </q-card-section>
@@ -67,11 +67,13 @@ import { useStore } from 'vuex'
 import { myBillsColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
 import { LoadingStatus } from 'src/models/StatusModel'
+
 import TablePanel from 'src/components/TablePanel.vue'
 import ButtonNew from 'src/components/ButtonNew.vue'
 import ButtonSearch from 'src/components/ButtonSearch.vue'
 import MonthPicker from 'src/components/MonthPicker.vue'
-import DateInput from 'src/components/DateInput.vue'
+
+import NewFinance from 'src/pages/finances/NewFinance.vue'
 
 export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
@@ -80,18 +82,21 @@ export default defineComponent({
     TablePanel,
     MonthPicker,
     ButtonNew,
-    ButtonSearch,
-    // eslint-disable-next-line vue/no-unused-components
-    DateInput
+    ButtonSearch
   },
   data () {
     const store = useStore()
     const billsColumns = myBillsColumns()
 
     const onSearchClick = () => {
+      // console.log('selectDate: ', this.selectDate)
       showLoading(LoadingStatus.ON)
-      console.log('selectDate: ', this.selectDate)
-      store.dispatch('bills/getBillsList', { month: '', year: '', description: this.billName, tag: this.tagName })
+      store.dispatch('bills/getBillsList', {
+        month: this.selectDate.toString().split('/')[0],
+        year: this.selectDate.toString().split('/')[1],
+        description: this.billName,
+        tag: this.tagName
+      })
     }
 
     const rows = computed(() => store.getters['bills/getBills'])
@@ -110,9 +115,29 @@ export default defineComponent({
       billName: ref(''),
       tagName: ref(''),
       selectDate: ref(''),
-      onSearchClick
+      onSearchClick,
+      store
     }
   },
-  methods: { }
+  methods: {
+    openDialogNewBill () {
+      this.$q
+        .dialog({
+          component: NewFinance,
+          persistent: true,
+          cancel: true
+        })
+        .onOk((newBill: any) => {
+          console.log('newBill: ', newBill.user)
+          this.store.dispatch('bills/registerNewBill', newBill)
+        })
+    },
+    onDateUpdateEvent (newValue) {
+      this.selectDate = newValue
+    },
+    registerNewBill () {
+
+    }
+  }
 })
 </script>
