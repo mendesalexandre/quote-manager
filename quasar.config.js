@@ -86,11 +86,6 @@ module.exports = configure(function (ctx) {
           .use('i18n')
           .loader('@intlify/vue-i18n-loader')
       }
-      // vueLoaderOptions: {
-      //   compilerOptions: {
-      //     isCustomElement: tag => tag === 'MonthPickerVue'
-      //   }
-      // }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
