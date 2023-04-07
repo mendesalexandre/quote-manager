@@ -1,5 +1,6 @@
 import { Loading } from 'quasar'
 import { LoadingStatus } from 'src/models/StatusModel'
+import i18n from 'src/util/i18n'
 
 /**
  * Function that show a loading at the center of the screen from quasar library
@@ -8,7 +9,7 @@ import { LoadingStatus } from 'src/models/StatusModel'
 export function showLoading (status: LoadingStatus) {
   if (status === LoadingStatus.ON) {
     Loading.show({
-      message: 'Aguarde uns instantes...'
+      message: i18n.global.t('msg.wait')
     })
   } else Loading.hide()
 }
