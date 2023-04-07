@@ -124,7 +124,7 @@
 import { defineComponent, ref } from 'vue'
 import InputRequired from 'src/components/InputRequired.vue'
 import { useDialogPluginComponent } from 'quasar'
-import { UserNew, UserPlan } from 'src/models/UserModel'
+import { UserNew } from 'src/models/UserModel'
 
 export default defineComponent({
   name: 'UserRegistration',
