@@ -2,6 +2,7 @@
   <q-dialog v-model="confirm" ref="dialog">
     <q-stepper v-model="step" vertical color="primary" animated>
       <q-step
+        push
         :name="1"
         :title="$t('view.newFinance.lbl.firstTitle')"
         icon="settings"
@@ -9,12 +10,19 @@
       >
         <div class="q-gutter-md">
           <input-required v-model="billName" :label="$t('view.newFinance.lbl.billName')" />
-          <date-picker :v-model="dueDate" :label="$t('view.newFinance.lbl.dueDate')"/>
-          <input-required v-model="description" :label="$t('view.newFinance.lbl.mail')" />
+          <date-picker :label="$t('view.newFinance.lbl.dueDate')" @input="onDateUpdateEvent"/>
+          <q-select filled v-model="billType" :options="billTypeOptions" :label="$t('view.newFinance.lbl.billType')" />
+
+          <div v-if="billType == $t('view.newFinance.opt.out')">
+            <q-checkbox v-model="billPaid" :label="$t('view.newFinance.lbl.billPaid')" />
+          </div>
+
+          <input-required v-model="description" :label="$t('view.newFinance.lbl.desc')" />
         </div>
 
         <q-stepper-navigation>
           <q-btn
+            push
             @click="step = 2"
             color="primary"
             :label="$t('view.newFinance.lbl.continue')"
@@ -29,44 +37,53 @@
         :done="step > 2"
       >
         <div class="q-gutter-md">
-          <input-required v-model="password" :label="$t('view.newFinance.lbl.password')" />
-          <input-required
-            v-model="repeatPass"
-            :label="$t('view.newFinance.lbl.repeatPass')"
-          />
+          <input-required v-model="billValue" :label="$t('view.newFinance.lbl.value')" type="Number" mask="###.##"/>
+          <input-required v-model="quantityAmount" :label="$t('view.newFinance.lbl.qtd')" step="1" type="Number" mask="##" pattern="[0-9]*"/>
+
+          <div v-if="quantityAmount > 1">
+            <q-checkbox v-model="isToDivideValue" :label="$t('view.newFinance.lbl.divideValue')" />
+            <help-button @click="openHelpDialog()"></help-button>
+          </div>
+
+          <q-form style="min-width: 250px">
+            <q-select
+              color="primary"
+              filled
+              v-model="selectedTags"
+              multiple
+              :options="tagsList"
+              use-chips
+              stack-label
+              :label="$t('view.newFinance.lbl.tags')"
+            />
+            <q-input
+              filled
+              v-model="newTag"
+              :label="$t('view.newFinance.lbl.addNewTag')"
+              @keyup.enter="onEnterKey()"
+            />
+            <q-space/>
+            <q-btn
+              push
+              class="bg-white text-primary q-ml-sm"
+              :label="$t('view.newFinance.lbl.reset')"
+              @click="onResetClick()"
+            />
+          </q-form>
         </div>
 
         <q-stepper-navigation>
           <q-btn
-            @click="step = 3"
-            color="primary"
-            :label="$t('view.newFinance.lbl.continue')"
-          />
-          <q-btn
-            flat
-            @click="step = 1"
-            color="primary"
-            :label="$t('view.newFinance.lbl.back')"
-            class="q-ml-sm"
-          />
-        </q-stepper-navigation>
-      </q-step>
-
-      <q-step :name="3" :title="$t('view.newFinance.lbl.thirdTitle')" icon="add_comment">
-        <div class="q-gutter-md"></div>
-
-        <q-stepper-navigation>
-          <q-btn
+            push
             color="primary"
             @click="onOkClick()"
             :label="$t('view.newFinance.lbl.finish')"
           />
           <q-btn
-            flat
-            @click="step = 2"
-            color="primary"
+            push
+            @click="step = 1"
+            class="bg-white text-primary q-ml-sm"
             :label="$t('view.newFinance.lbl.back')"
-            class="q-ml-sm"
           />
         </q-stepper-navigation>
       </q-step>
@@ -75,66 +92,122 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import {
+  defineComponent,
+  ref,
+  onMounted
+} from 'vue'
 import { useDialogPluginComponent } from 'quasar'
 import { useStore } from 'vuex'
+import moment from 'moment'
+
+import { notifyError } from 'src/util/Notification'
+import i18n from 'src/util/i18n'
+import convertDate from 'src/util/ConvertDateToDateTime'
 
 import { NewFinance } from 'src/models/BillModel'
+import { divideBillValue } from 'src/models/HelpModel'
+
 import DatePicker from 'src/components/DatePicker.vue'
+import InputRequired from 'src/components/InputRequired.vue'
+import HelpButton from 'src/components/HelpButton.vue'
 
 export default defineComponent({
   name: 'NewFinance',
-  compoents: {
-    DatePicker
+  components: {
+    DatePicker,
+    InputRequired,
+    HelpButton
   },
   data () {
+    onMounted(() => {
+      store.dispatch('tags/getTagsList')
+    })
+
+    const translate = i18n.global
     const store = useStore()
     const user = store.getters['user/getUser']
+    console.log('user: ', user)
+    const tagsList = store.getters['tags/getTags']
+    const billTypeOptions = [translate.t('view.newFinance.opt.in'), translate.t('view.newFinance.opt.out')]
+    const starterTag = translate.t('view.newFinance.lbl.starterTag')
+
     return {
       confirm: false,
       step: ref(1),
+      // Bill objects
       billName: ref(''), // Login
-      dueDate: ref(''),
+      dueDate: ref(moment().format('DD/MM/YYYY').toString()),
       description: ref(''),
-      value: ref(0.0),
+      billType: ref(translate.t('view.newFinance.opt.select')),
+      billValue: ref(0.0),
       quantityAmount: ref(1),
-      tags: ref([]),
       isCashEntry: ref(false),
       isBillPayed: ref(false),
       isToDivideValue: ref(false),
-      user
+      billPaid: ref(false),
+      user,
+      tagsList,
+      selectedTags: ref([starterTag]),
+      newTag: ref(''),
+      starterTag,
+      billTypeOptions,
+      translate
     }
   },
   emits: {
-    // REQUIRED; need to specify some events that your
-    // component will emit through useDialogPluginComponent()
     ...useDialogPluginComponent.emits
   },
   methods: {
-    onOkClick: function () {
-      const newUser = new NewFinance(
-        this.user.userName,
+    onOkClick () {
+      const newBill = new NewFinance(
+        '',
+        this.user.data.user,
         this.billName,
-        this.dueDate,
+        convertDate(this.dueDate),
         this.description,
-        this.value,
+        this.billValue,
         this.quantityAmount,
-        this.tags,
+        this.selectedTags,
         this.isCashEntry,
         this.isBillPayed,
         this.isToDivideValue
       )
-      console.log('newUser from dialog: ', newUser)
-      this.$emit('ok', newUser)
+      this.$emit('ok', newBill)
       this.$emit('hide')
-      // this.$refs.dialog.ok(newUser)
-      // onDialogOK(newUser)
     },
     onCancelClick () {
-      this.$refs.dialog.cancel()
+      (this as any).$refs.dialog.cancel()
     },
     show () {
-      this.$refs.dialog.show()
+      (this as any).$refs.dialog.show()
+    },
+    onResetClick () {
+      this.selectedTags.length = 0
+      this.selectedTags.push(this.starterTag)
+    },
+    onEnterKey () {
+      if (this.selectedTags.length <= 0) this.selectedTags.push(this.newTag)
+      else if (this.selectedTags.filter(t => t.toUpperCase().trim() === this.newTag.toUpperCase().trim()).length > 0) {
+        notifyError(this.translate.t('msg.tag.tagAlreadyAdded'))
+        this.newTag = ''
+      } else {
+        this.selectedTags.push(this.newTag)
+        this.newTag = ''
+      }
+    },
+    openHelpDialog () {
+      this.$q
+        .dialog({
+          title: 'Help',
+          message: divideBillValue(),
+          html: true,
+          persistent: true,
+          cancel: true
+        })
+    },
+    onDateUpdateEvent (newValue) {
+      this.dueDate = newValue
     }
   }
 })

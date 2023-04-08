@@ -212,7 +212,8 @@ export default {
       buttonOk: 'Ok',
       buttonSearch: 'Pesquisar',
       buttonNew: 'Novo',
-      monthPicker: 'Escolha um mês',
+      monthPicker: 'Mês/Ano',
+      datePicker: 'Selecione uma data',
       inputRequire: 'Campo obrigatório',
       checkBoxRequire: 'Você precisa marcar a caixa acima', // TODO: End this translation properly
       searchInTable: 'Pesquisar',
