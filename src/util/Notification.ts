@@ -1,11 +1,11 @@
 import { Notify } from 'quasar'
 import i18n from './i18n'
 
-export function notifySuccess (message: string) {
+export function notifySuccess (successMessage: string) {
   Notify.create({
     type: 'positive',
     position: 'top',
-    message: message || i18n.global.t('msg.success'),
+    message: successMessage || i18n.global.t('msg.success'),
     actions: [
       {
         label: 'Ok',
