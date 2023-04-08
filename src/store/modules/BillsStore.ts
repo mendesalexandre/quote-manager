@@ -108,6 +108,7 @@ const actions = {
       showLoading(LoadingStatus.ON)
       const newBillResp = await newBill(payload)
       showLoading(LoadingStatus.OFF)
+      notifySuccess(newBillResp)
       return newBillResp
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
