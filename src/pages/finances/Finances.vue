@@ -30,7 +30,6 @@
               </q-input>
               <!-- Date picker -->
               <month-picker @input="onDateUpdateEvent"></month-picker>
-              <!-- <date-input :label="$t('view.finance.lbl.tagName')" v-model="selectDate" /> -->
             </div>
             <!-- Action buttons -->
             <div>
@@ -128,7 +127,6 @@ export default defineComponent({
           cancel: true
         })
         .onOk((newBill: any) => {
-          console.log('newBill: ', newBill.user)
           this.store.dispatch('bills/registerNewBill', newBill)
         })
     },
