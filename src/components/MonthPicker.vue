@@ -1,7 +1,7 @@
 <template>
   <q-input
     filled
-    label="Mês/Ano"
+    :label="$t('components.lbl.monthPicker')"
     mask="##/####"
     fill-mask="##/####"
     v-model="currentDate"
@@ -33,17 +33,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref } from 'vue'
 import moment from 'moment'
 
 export default defineComponent({
   name: 'MonthPicker',
-  props: {
-    dio: {
-      type: String,
-      required: false
-    }
-  },
   setup () {
     const currentDate = ref(moment().format('MM/YYYY').toString())
     const qDateProxy = ref()
@@ -64,9 +58,6 @@ export default defineComponent({
         this.qDateProxy.hide()
         this.$emit('input', this.dpKey)
       }
-    },
-    emitValueUpdated () {
-      this.$emit('input', this.dpKey)
     }
   }
 })

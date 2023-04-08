@@ -1,12 +1,32 @@
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
-  <div class="q-pa-md" style="max-width: 300px">
-    <q-input filled v-model="date" mask="date" :rules="['date']">
-      <template v-slot:append>
+  <div>
+    <q-input
+      filled
+     :label="$t('components.lbl.datePicker')"
+      mask="##/##/####"
+      fill-mask="##/##/####"
+      v-model="selectedDate"
+    >
+      <template v-slot:prepend>
         <q-icon name="event" class="cursor-pointer">
-          <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-            <q-date v-model="date">
+          <q-popup-proxy
+            ref="qDateProxy"
+            cover
+            transition-show="scale"
+            transition-hide="scale"
+            :breakpoint="0"
+          >
+            <q-date
+              v-model="selectedDate"
+              emit-immediately
+              @update:model-value="onDateUpdate"
+              :key="dpKey"
+              minimal
+              mask="DD/MM/YYYY"
+            >
               <div class="row items-center justify-end">
-                <q-btn v-close-popup label="Close" color="primary" flat />
+                <q-btn v-close-popup :label="$t('components.lbl.close')" color="primary" flat />
               </div>
             </q-date>
           </q-popup-proxy>
@@ -20,11 +40,28 @@
 import { defineComponent, ref } from 'vue'
 import moment from 'moment'
 
-export default {
+export default defineComponent({
   setup () {
+    const selectedDate = ref(moment().format('DD/MM/YYYY').toString())
+    const qDateProxy = ref()
+    const dpKey = ref('')
     return {
-      date: ref(moment().format('MM/YYYY').toString())
+      billName: ref(''),
+      tagName: ref(''),
+      selectedDate,
+      qDateProxy,
+      dpKey
+    }
+  },
+  methods: {
+    onDateUpdate (value: any, reason: any) {
+      if (reason === 'add-day') {
+        this.dpKey = value
+        this.selectedDate = value
+        this.qDateProxy.hide()
+        this.$emit('input', this.dpKey)
+      }
     }
   }
-}
+})
 </script>
