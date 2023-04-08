@@ -1,14 +1,13 @@
 <template>
   <div>
-    <q-btn-dropdown color="secondary" label="Olá Dionei">
+    <q-btn-dropdown color="secondary" :label="userFirstName">
       <div class="row no-wrap q-pa-md">
         <div class="column items-center">
           <q-avatar size="72px">
             <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
           </q-avatar>
 
-          <div class="text-subtitle1 q-mt-md q-mb-xs">Dionei Beilke</div>
-          <!--TODO: End this implementation to show correct user name-->
+          <div class="text-subtitle1 q-mt-md q-mb-xs">{{ userCompoundName }}</div>
           <q-list>
             <q-item clickable color="secondary">
               <q-item-section>
@@ -75,13 +74,16 @@
 import { defineComponent, ref, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import { clear } from 'src/util/Cookies'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'UserSubmenuOptions',
   data () {
     const $q = useQuasar()
+    const store = useStore()
     // eslint-disable-next-line prefer-const
     let enableDarkMode = ref(false)
+    const user = store.getters['user/getUser']
 
     watch(enableDarkMode, () => {
       $q.dark.set(enableDarkMode.value)
@@ -90,13 +92,27 @@ export default defineComponent({
     return {
       mobileData: ref(false),
       bluetooth: ref(false),
-      enableDarkMode
+      enableDarkMode,
+      userCompoundName: this.getCompoundUserName(user.data.userName),
+      userFirstName: `Olá ${this.getFirstUserName(user.data.userName)}`
     }
   },
   methods: {
     logout () {
       // clear() // TODO: Fix the cookies clear function (throwing exception after updated)
       this.$router.push('/').catch(() => {})
+    },
+    getCompoundUserName (fullName: string) {
+      const names = fullName.includes(' ') ? fullName.split(' ') : fullName.substring(0, 10)
+      if (names.length > 1) {
+        return `${names[0]} ${names[1]}`
+      } else return names
+    },
+    getFirstUserName (fullName: string) {
+      const names = fullName.includes(' ') ? fullName.split(' ') : fullName.substring(0, 10)
+      if (names.length > 1) {
+        return names[0]
+      } else return names
     }
   }
 })
