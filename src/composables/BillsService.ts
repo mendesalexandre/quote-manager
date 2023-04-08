@@ -53,7 +53,7 @@ export async function newBill (payload: any) {
   return await apiAuth
     .post('bill/new', payload)
     .then((response: any) => {
-      return response.data.data
+      return response.data.message
     })
     .catch((error: any) => {
       throw error?.response?.data?.message || error?.message
