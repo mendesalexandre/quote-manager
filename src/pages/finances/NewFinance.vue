@@ -127,7 +127,6 @@ export default defineComponent({
     const translate = i18n.global
     const store = useStore()
     const user = store.getters['user/getUser']
-    console.log('user: ', user)
     const tagsList = store.getters['tags/getTags']
     const billTypeOptions = [translate.t('view.newFinance.opt.in'), translate.t('view.newFinance.opt.out')]
     const starterTag = translate.t('view.newFinance.lbl.starterTag')

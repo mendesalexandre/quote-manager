@@ -12,8 +12,10 @@
       <q-card>
         <q-card-section>
           <div class="q-pa-md row items-start q-gutter-md">
-            <slot name="filter-content">
-            </slot>
+            <slot name="filter-content"></slot>
+          </div>
+          <div>
+            <slot name="filter-buttons"></slot>
           </div>
         </q-card-section>
       </q-card>

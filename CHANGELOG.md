@@ -1,3 +1,13 @@
+## [1.0.1]
+
+#### Changed
+
+#### Fix
+- Fix `Filter Panel` component not showing properly the components added in template slot
+
+#### Implement
+- Implement sections for 'field to query' and 'buttons' on `Filter panel`
+
 ## [1.0.0]
 
 #### Changed
@@ -16,7 +26,7 @@
 - Fixed the user name not show properly in settings
 - Fix the buttons in grid view not showing properly [#20](https://github.com/BIEMAX/quote-manager/issues/20)
 
-#### Implemented
+#### Implement
 - Implement cookies for login [#1](https://github.com/BIEMAX/quote-manager/issues/1)
 - Implement navigation guard [#2](https://github.com/BIEMAX/quote-manager/issues/2)
 - Implement i18n with support to english and portuguese [#2](https://github.com/BIEMAX/financial-manager-app/issues/2)
