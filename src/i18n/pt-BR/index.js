@@ -180,7 +180,9 @@ export default {
     bill: {
       newSuccess: 'Conta cadastrada com sucesso',
       paidSuccess: 'Conta paga como sucesso',
-      querySuccess: 'Sucesso ao consultar as contas'
+      querySuccess: 'Sucesso ao consultar as contas',
+      queryCloseToOverdueSuccess: 'Sucesso ao consultar contas próximas a vencer',
+      queryBillNotPaidSuccess: 'Sucesso ao consultar contas não pagas'
     },
     login: {
       success: 'Sucesso ao efetuar login',
