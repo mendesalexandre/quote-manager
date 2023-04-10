@@ -13,7 +13,8 @@ export function notifySuccess (successMessage: string) {
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         handler: () => { }
       }
-    ]
+    ],
+    timeout: 1500
   })
 }
 
@@ -30,7 +31,8 @@ export function notifyError (message: string) {
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         handler: () => { }
       }
-    ]
+    ],
+    timeout: 1500
   })
 }
 

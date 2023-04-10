@@ -1,6 +1,7 @@
 ## [1.0.1]
 
 #### Changed
+- Change the time notification from '5 milliseconds' to '1,5 milliseconds'
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot
