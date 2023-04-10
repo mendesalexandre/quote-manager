@@ -12,12 +12,6 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ButtonNew',
-  props: {
-    dio: {
-      type: String,
-      required: false
-    }
-  }
+  name: 'ButtonNew'
 })
 </script>

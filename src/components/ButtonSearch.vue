@@ -14,12 +14,6 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ButtonSearch',
-  props: {
-    dio: {
-      type: String,
-      required: false
-    }
-  },
   emits: ['onClickInfo'],
   setup (props, { emit }) {
     const handleClick = () => {
