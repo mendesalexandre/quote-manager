@@ -61,7 +61,7 @@ export default {
         releaseNotes: 'Notas de atualização',
         history: 'Histórico',
         settings: 'Configurações',
-        help: 'Ajuda &amp; Feedback',
+        help: 'Ajuda & Feedback',
         logout: 'Sair...'
       }
     },
@@ -223,7 +223,9 @@ export default {
       filterTitle: 'Filtro',
       filterCaption: 'Preencha os campos para o filtro',
       close: 'Fechar',
-      helpButton: 'Clique para obter ajuda'
+      helpButton: 'Clique para obter ajuda',
+      tableFullscreen: 'Tela cheia',
+      tableToggleFullscreen: 'Sair da tela cheia'
     },
     tip: {
       edit: 'Editar',

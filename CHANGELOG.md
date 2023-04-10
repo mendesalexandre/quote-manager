@@ -14,8 +14,12 @@
 - Fix the view of month bills disappear after click on search button [14](https://github.com/BIEMAX/quote-manager/issues/14)
 - Fixed the month selector not receiving the data selected by user
 - Fixed the user name not show properly in settings
+- Fix the buttons in grid view not showing properly [#20](https://github.com/BIEMAX/quote-manager/issues/20)
 
 #### Implemented
 - Implement cookies for login [#1](https://github.com/BIEMAX/quote-manager/issues/1)
 - Implement navigation guard [#2](https://github.com/BIEMAX/quote-manager/issues/2)
 - Implement i18n with support to english and portuguese [#2](https://github.com/BIEMAX/financial-manager-app/issues/2)
+- Implement button to edit rows in tables [#10](https://github.com/BIEMAX/quote-manager/issues/10)
+- Implement button to delete rows in tables [#11](https://github.com/BIEMAX/quote-manager/issues/11)
+- Implement button to custom actions in tables rows [#12](https://github.com/BIEMAX/quote-manager/issues/12)

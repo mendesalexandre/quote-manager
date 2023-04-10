@@ -10,6 +10,7 @@
     :rows-per-page-label="$t('components.lbl.pagRecordsPerPage')"
     :no-data-label="$t('components.lbl.noDataLabel')"
     :no-results-label="$t('components.lbl.noResultsLabel')"
+    row-key="id"
   >
     <template v-slot:header="props">
       <q-tr :props="props">
@@ -39,7 +40,7 @@
         @click="props.toggleFullscreen"
         color="secondary"
       >
-        <q-tooltip>{{ props.inFullscreen ? "Exit Fullscreen" : "Toggle Fullscreen" }}</q-tooltip>
+        <q-tooltip>{{ props.inFullscreen ? $t('components.lbl.tableFullscreen') : $t('components.lbl.tableToggleFullscreen') }}</q-tooltip>
       </q-btn>
 
       <q-btn
@@ -56,45 +57,61 @@
       <div class="q-pa-sm q-gutter-sm"></div>
     </template>
 
-    <!--Buttons for list/table view-->
+    <!--Buttons for table view-->
     <template v-slot:body-cell-actions="props">
-      <q-td :props="props">
-        <q-btn dense round flat color="secondary" icon="mdi-pencil-outline" :disable="!showButtonEdit" @click="actionEdit(props)">
+      <q-td v-if="!changeToGrid" :props="props">
+        <q-btn v-if="showButtonEdit" dense round flat color="secondary" icon="mdi-pencil-outline">
           <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
         </q-btn>
-        <q-btn dense round flat color="secondary" icon="mdi-delete-outline" :disable="!showButtonRemove" @click="actionRemove(props)">
+        <q-btn v-if="showButtonRemove" dense round flat color="secondary" icon="mdi-delete-outline">
           <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
         </q-btn>
-        <q-btn dense round flat color="secondary" icon="mdi-cash-check" :disable="!showButtonPay" @click="actionPay(props)">
+        <q-btn v-if="showButtonPay" dense round flat color="secondary" icon="mdi-cash-check">
           <q-tooltip>{{ $t("components.tip.pay") }}</q-tooltip>
         </q-btn>
       </q-td>
     </template>
 
     <!--Buttons for grid view-->
-    <template #body-cell-status="props">
-      <component :is="changeToGrid ? 'div' : 'q-td'" :props="props">
-        <q-chip
-          :color="props.row.status === 'Active' ? 'green': 'red'"
-          text-color="white"
-          dense
-          class="text-weight-bolder"
-          square
-        >
-          {{props.row.status}}
-        </q-chip>
-      </component>
-    </template>
-    <template #body-cell-action="props">
-      <component :is="changeToGrid ? 'div' : 'q-td'" :props="props">
-        <!--<q-btn dense flat color="primary" field="edit" icon="edit"></q-btn> @click="editItem(props.row)"-->
-        <q-btn dense flat color="secondary" icon="mdi-pencil-outline">
-          <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
-        </q-btn>
-        <q-btn dense flat color="secondary" icon="mdi-delete-outline">
-          <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
-        </q-btn>
-      </component>
+    <template v-slot:item="props">
+      <div
+        class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-style-transition"
+        :style="props.selected ? 'transform: scale(0.95);' : ''"
+      >
+        <q-card>
+          <q-card-section>
+            <q-chip outline color="primary" text-color="white" icon="event">
+              {{ props.row.name }}
+            </q-chip>
+          </q-card-section>
+          <q-separator ></q-separator>
+          <q-list dense>
+            <q-item v-for="col in props.cols.filter(col => col.name !== 'desc')" :key="col.name">
+              <template v-if="col.name !== 'actions'">
+                <q-item-section>
+                  <q-item-label>{{ col.label }}</q-item-label>
+                </q-item-section>
+                <q-item-section side>
+                  <q-item-label caption>{{ col.value }}</q-item-label>
+                </q-item-section>
+              </template>
+              <q-item-section v-else>
+                <div class="row justify-center">
+                  <q-btn v-if="showButtonEdit" dense round flat color="secondary" icon="mdi-pencil-outline">
+                    <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
+                  </q-btn>
+                  <q-btn v-if="showButtonRemove" dense round flat color="secondary" icon="mdi-delete-outline">
+                    <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
+                  </q-btn>
+                  <q-btn v-if="showButtonPay" dense round flat color="secondary" icon="mdi-cash-check">
+                    <q-tooltip>{{ $t("components.tip.pay") }}</q-tooltip>
+                  </q-btn>
+                </div>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-card>
+      </div>
     </template>
 
   </q-table>
@@ -138,19 +155,7 @@ export default defineComponent({
      */
     showButtonPay: {
       type: Boolean,
-      required: false
-    },
-    actionEdit: {
-      type: Event,
-      require: false
-    },
-    actionRemove: {
-      type: Event,
-      require: false
-    },
-    actionPay: {
-      type: Function,
-      require: false
+      required: true
     }
   },
   data () {
