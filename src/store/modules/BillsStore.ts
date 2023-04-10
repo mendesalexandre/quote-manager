@@ -83,6 +83,7 @@ const actions = {
       const bills = await getBillsCloseToOverdue()
       commit('setBillsCloseToOverdue', bills)
       commit('setBillsCloseToOverdueLength', bills?.length || 0)
+      if (payload.showMessage) notifySuccess(i18n.global.t('msg.bill.queryCloseToOverdueSuccess'))
       showLoading(LoadingStatus.OFF)
       return bills
     } catch (error: any) {
@@ -96,6 +97,7 @@ const actions = {
       const bills = await getBillsNotPayed()
       commit('setBillsOverdue', bills)
       commit('setBillsNotPayedLength', bills?.length || 0)
+      if (payload.showMessage) notifySuccess(i18n.global.t('msg.bill.queryBillNotPaidSuccess'))
       showLoading(LoadingStatus.OFF)
       return bills
     } catch (error: any) {
