@@ -28,12 +28,6 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'FilterPanel',
-  props: {
-    label: {
-      type: String,
-      required: false
-    }
-  },
   setup () {
     return { }
   }
