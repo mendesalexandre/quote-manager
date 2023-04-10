@@ -11,25 +11,9 @@
       <div></div>
       <q-card>
         <q-card-section>
-
           <div class="q-pa-md row items-start q-gutter-md">
-            <!--Bill name-->
-            <q-input filled :label="$t('view.finance.lbl.billName')">
-              <template v-slot:prepend>
-                <q-icon name="mdi-text-box-outline" />
-              </template>
-            </q-input>
-            <!--Tag name-->
-            <q-input filled :label="$t('view.finance.lbl.tagName')">
-              <template v-slot:prepend>
-                <q-icon name="mdi-tag" />
-              </template>
-            </q-input>
-            <!--Date picker-->
-            <month-picker></month-picker>
-            <!--Action buttons-->
-            <button-new></button-new>
-            <button-search @onClickInfo="handleClick()"></button-search>
+            <slot name="filter-content">
+            </slot>
           </div>
         </q-card-section>
       </q-card>
@@ -39,32 +23,17 @@
 
 <script>
 import { defineComponent } from 'vue'
-import ButtonNew from './ButtonNew.vue'
-import ButtonSearch from './ButtonSearch.vue'
-import MonthPicker from './MonthPicker.vue'
 
 export default defineComponent({
   name: 'FilterPanel',
-  components: {
-    ButtonNew,
-    ButtonSearch,
-    MonthPicker
-  },
   props: {
     label: {
       type: String,
       required: false
     }
   },
-  emits: ['onClickInfo'],
-  setup (props, { emit }) {
-    const handleClick = () => {
-      console.log('2. clicking in button filterPanel')
-      emit('onClickInfo')
-    }
-    return {
-      handleClick
-    }
+  setup () {
+    return { }
   }
 })
 </script>
