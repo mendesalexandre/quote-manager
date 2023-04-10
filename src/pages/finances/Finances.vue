@@ -43,7 +43,6 @@ import {
   ref,
   computed,
   watch,
-  watchEffect,
   defineComponent
 } from 'vue'
 import { useStore } from 'vuex'
@@ -90,10 +89,6 @@ export default defineComponent({
 
     watch(rows, () => {
       showLoading(LoadingStatus.OFF)
-    })
-
-    watchEffect(async () => {
-      if (rows.value === undefined) showLoading(LoadingStatus.OFF)
     })
 
     return {
