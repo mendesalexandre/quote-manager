@@ -190,6 +190,12 @@ export default {
       networkError: 'Erro no servidor',
       wrongPass: ''
     },
+    payBill: {
+      title: 'Deseja realmente pagar a conta?',
+      message: 'Uma vez feito, o processo não poderá ser desfeito!',
+      successToPay: 'Sucesso ao pagar a conta',
+      notPaidError: 'Erro ao pagar conta'
+    },
     plan: {
       success: 'Sucesso ao consultar planos'
     },

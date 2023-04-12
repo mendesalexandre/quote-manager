@@ -2,7 +2,8 @@ import {
   getBills,
   getBillsCloseToOverdue,
   getBillsNotPayed,
-  newBill
+  newBill,
+  payBill
 } from 'src/composables/BillsService'
 
 // Utils
@@ -65,7 +66,6 @@ const getters = {
 
 const actions = {
   async getBillsList ({ commit }, payload) {
-    // const $router = (this as any).$router
     showLoading(LoadingStatus.ON)
     try {
       const bills = await getBills(payload)
@@ -91,7 +91,7 @@ const actions = {
       notifyError(mapError(error))
     }
   },
-  async getBillsNotPayedList ({ commit }, payload) {
+  async getBillsOverdueList ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
       const bills = await getBillsNotPayed()
@@ -102,7 +102,7 @@ const actions = {
       return bills
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
-      notifyError(mapError(error))
+      notifyError(error)
     }
   },
   async registerNewBill ({ commit }, payload) {
@@ -114,7 +114,20 @@ const actions = {
       return newBillResp
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
-      notifyError(mapError(error))
+      notifyError(error)
+    }
+  },
+  async payBillOverdue ({ commit }, payload) {
+    try {
+      showLoading(LoadingStatus.ON)
+      console.log('payload on payBillOverdue: ', payload)
+      const response = await payBill(payload)
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(i18n.global.t('msg.payBill.successToPay'))
+      return response
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
     }
   }
 }

@@ -4,6 +4,8 @@
       <template #filter-content>
         <!-- Date picker -->
         <month-picker></month-picker>
+      </template>
+      <template #filter-buttons>
         <button-search @click="onSearchClick()"/>
       </template>
     </filter-panel>

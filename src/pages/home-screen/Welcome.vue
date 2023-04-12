@@ -122,7 +122,7 @@ export default defineComponent({
     onMounted(() => {
       showLoading(LoadingStatus.ON)
       store.dispatch('bills/getBillsCloseToOverdueList', { showMessage: false })
-      store.dispatch('bills/getBillsNotPayedList', { showMessage: false })
+      store.dispatch('bills/getBillsOverdueList', { showMessage: false })
     })
 
     const billsCloseToOverdue = computed(() => store.getters['bills/getBillsCloseToOverdueLength'])

@@ -60,4 +60,15 @@ export async function newBill (payload: any) {
     })
 }
 
+export async function payBill (payload: any) {
+  return await apiAuth
+    .put(`bill/pay/${payload}`)
+    .then((response: any) => {
+      return response.data.message
+    })
+    .catch((error: any) => {
+      throw error?.response?.data?.message || error?.message
+    })
+}
+
 export default { getBills, getBillsCloseToOverdue, getBillsNotPayed }
