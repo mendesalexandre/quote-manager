@@ -60,13 +60,13 @@
     <!--Buttons for table view-->
     <template v-slot:body-cell-actions="props">
       <q-td v-if="!changeToGrid" :props="props">
-        <q-btn v-if="showButtonEdit" dense round flat color="secondary" icon="mdi-pencil-outline">
+        <q-btn v-if="showButtonEdit" dense round flat color="secondary" icon="mdi-pencil-outline" @click="onEditClick(props)">
           <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
         </q-btn>
-        <q-btn v-if="showButtonRemove" dense round flat color="secondary" icon="mdi-delete-outline">
+        <q-btn v-if="showButtonRemove" dense round flat color="secondary" icon="mdi-delete-outline" @click="onRemoveClick(props)">
           <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
         </q-btn>
-        <q-btn v-if="showButtonPay" dense round flat color="secondary" icon="mdi-cash-check">
+        <q-btn v-if="showButtonPay" dense round flat color="secondary" icon="mdi-cash-check" @click="onPayClick(props)">
           <q-tooltip>{{ $t("components.tip.pay") }}</q-tooltip>
         </q-btn>
       </q-td>
@@ -97,13 +97,13 @@
               </template>
               <q-item-section v-else>
                 <div class="row justify-center">
-                  <q-btn v-if="showButtonEdit" dense round flat color="secondary" icon="mdi-pencil-outline">
+                  <q-btn v-if="showButtonEdit" dense round flat color="secondary" icon="mdi-pencil-outline" @click="onEditClick(props)">
                     <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
                   </q-btn>
-                  <q-btn v-if="showButtonRemove" dense round flat color="secondary" icon="mdi-delete-outline">
+                  <q-btn v-if="showButtonRemove" dense round flat color="secondary" icon="mdi-delete-outline" @click="onRemoveClick(props)">
                     <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
                   </q-btn>
-                  <q-btn v-if="showButtonPay" dense round flat color="secondary" icon="mdi-cash-check">
+                  <q-btn v-if="showButtonPay" dense round flat color="secondary" icon="mdi-cash-check" @click="onPayClick(props)">
                     <q-tooltip>{{ $t("components.tip.pay") }}</q-tooltip>
                   </q-btn>
                 </div>
@@ -164,6 +164,17 @@ export default defineComponent({
       selected: ref([]),
       changeToGrid: ref($q.platform.is.mobile),
       filter: ref('')
+    }
+  },
+  methods: {
+    onEditClick (props: any) {
+      this.$emit('on-edit-click-event', props.row)
+    },
+    onRemoveClick (props: any) {
+      this.$emit('on-remove-click-event', props.row)
+    },
+    onPayClick (props: any) {
+      this.$emit('on-pay-click-event', props.row)
     }
   }
 })
