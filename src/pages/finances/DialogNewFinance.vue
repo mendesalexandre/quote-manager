@@ -113,7 +113,7 @@ import InputRequired from 'src/components/InputRequired.vue'
 import HelpButton from 'src/components/HelpButton.vue'
 
 export default defineComponent({
-  name: 'NewFinance',
+  name: 'DialogNewFinance',
   components: {
     DatePicker,
     InputRequired,
