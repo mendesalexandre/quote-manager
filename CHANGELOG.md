@@ -5,6 +5,7 @@
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot
+- Fix the buttons in table row not triggering events when clicked [#21](https://github.com/BIEMAX/quote-manager/issues/21)
 
 #### Implement
 - Implement sections for 'field to query' and 'buttons' on `Filter panel`
