@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment'
  */
 export function encrypt (data: any) {
   try {
-    return CryptoJS.AES.encrypt(JSON.stringify(data), environment.api.secret.toString()).toString()
+    return CryptoJS.AES.encrypt(JSON.stringify(data), environment.cipher.enc.toString()).toString()
   } catch (e) {
     console.log('Error during encrypt: ', e)
   }
@@ -17,7 +17,7 @@ export function encrypt (data: any) {
  */
 export function decrypt (data: any) {
   try {
-    const bytes = CryptoJS.AES.decrypt(data, environment.api.secret.toString())
+    const bytes = CryptoJS.AES.decrypt(data, environment.cipher.enc.toString())
     if (bytes.toString()) {
       return JSON.parse(bytes.toString(CryptoJS.enc.Utf8)).toString()
     }

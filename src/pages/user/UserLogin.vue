@@ -78,6 +78,8 @@
 import { defineComponent, ref } from 'vue'
 import { useStore } from 'vuex'
 import UserRegistration from './UserRegistration.vue'
+import { get, add, hasCookies, clear } from 'src/util/Cookies'
+import { decrypt, encrypt } from 'src/util/Encrypt'
 
 export default defineComponent({
   name: 'UserLogin',
@@ -100,20 +102,24 @@ export default defineComponent({
   },
   methods: {
     login (isAutomaticLogin = false) {
-      //                   module/function name
       this.store.dispatch('user/doLogin', {
         userLogin: this.userLogin,
         password: this.userPassword,
         automaticLogin: isAutomaticLogin
       })
+      // Before save the cookies, clear.
+      if (hasCookies()) clear()
+      add('twi_kc', encrypt(this.keepUserConnected))
+      add('twi_id', encrypt(this.userLogin))
+      add('twi_pd', encrypt(this.userPassword))
     },
     isUserAutomaticLogin () {
-      // const keepUserConnected = decrypt(get('twi_kc'))
-      // if (keepUserConnected) {
-      //   this.userLogin = decrypt(get('twi_id'))
-      //   this.userPassword = decrypt(get('twi_pd'))
-      //   this.login(true)
-      // }
+      const keepUserConnected = decrypt(get('twi_kc'))
+      if (keepUserConnected === 'true') {
+        this.userLogin = decrypt(get('twi_id'))
+        this.userPassword = decrypt(get('twi_pd'))
+        this.login(true)
+      }
     },
     openDialogUserRegistration () {
       this.$q
@@ -134,6 +140,8 @@ export default defineComponent({
     }
   },
   beforeMount () {
+    const keepConnect = decrypt(get('twi_kc'))
+    this.keepUserConnected = keepConnect === 'true'
     this.isUserAutomaticLogin()
   }
 })
