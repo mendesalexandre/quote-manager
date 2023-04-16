@@ -3,6 +3,7 @@
     filled
     :label="label"
     :rules="[(val) => (val && val.length > 0) || $t('components.lbl.inputRequire')]"
+    :hint="$t('components.lbl.mandatory')"
   />
 </template>
 
