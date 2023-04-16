@@ -57,9 +57,13 @@ export class UserNew {
    */
   // eslint-disable-next-line no-use-before-define
   userPlan: UserPlan
+  /**
+   * device info from device that the user is logged in
+   */
+  deviceInfo: string
 
   // eslint-disable-next-line no-use-before-define
-  constructor (User: string, UserName: string, Password: string, Email: string, Logged: boolean, Active: boolean, UserPlan: UserPlan.FREE) {
+  constructor (User: string, UserName: string, Password: string, Email: string, Logged: boolean, Active: boolean, UserPlan: UserPlan.FREE, DeviceInfo: string) {
     this.user = User
     this.userName = UserName
     this.password = Password
@@ -67,6 +71,7 @@ export class UserNew {
     this.loggedIn = Logged
     this.active = Active
     this.userPlan = UserPlan
+    this.deviceInfo = DeviceInfo
   }
 }
 

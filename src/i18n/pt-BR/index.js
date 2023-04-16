@@ -29,8 +29,10 @@ export default {
         title: 'Página inicial',
         subTitle: 'Gestor de finanças',
         search: 'Pesquisar',
+        // Home
         menuTaskTodo: 'Tarefas à fazer',
         menuTaskDone: 'Tarefas completas',
+        // Finances
         menuMyFinances: 'Minhas contas',
         menuMyCloseToOverdue: 'Contas à vencer',
         menuMyOverdueBills: 'Contas atrasadas',
@@ -39,6 +41,13 @@ export default {
         menuReports: 'Relatórios',
         menuTags: 'Tags',
         menuIndicators: 'Indicadores',
+        // Presale
+        menuMyAds: 'Meus Anúncios',
+        menuMyPresell: 'Páginas pré-venda',
+        menuMyCampaigns: 'Campanhas',
+        menuTips: 'Dicas',
+        menuMyRoi: 'ROI',
+        // Carrousel
         billToOverdue: 'Contas próximas do vencimento',
         billAlreadyOverdue: 'Contas vencidas ou atrasadas',
         access: 'Acessar',
@@ -105,6 +114,25 @@ export default {
         in: 'Entrada',
         out: 'Saída',
         select: '<Selecione>'
+      }
+    },
+    newPresell: {
+      lbl: {
+        firstTitle: 'Sobre o produto',
+        secondTitle: 'Estilização da página',
+        thirdTitle: 'Finalizar',
+        continue: 'Continuar',
+        back: 'Voltar',
+        finish: 'Finalizar',
+        productName: 'Nome do produto',
+        platform: 'Nome da plataforma',
+        affiliateUrl: 'Link de afiliado',
+        showLastChanceToBuy: 'Mostrar \'última chance para comprar\'?',
+        image: 'Imagem do produto',
+        colorBack1: 'Cor de fundo 1',
+        colorBack2: 'Cor de fundo 2',
+        buttonColor: 'Cor do botão',
+        showButtonAnimation: 'Mostrar animação no botão?'
       }
     },
     newUser: {
@@ -174,6 +202,12 @@ export default {
       dueDate: 'Vencimento',
       value: 'Valor',
       actions: 'Ações'
+    },
+    presell: {
+      productName: 'Nome do produto',
+      onSince: 'Online desde',
+      platform: 'Plataforma',
+      actions: 'Ações'
     }
   },
   msg: {
@@ -223,6 +257,7 @@ export default {
       monthPicker: 'Mês/Ano',
       datePicker: 'Selecione uma data',
       inputRequire: 'Campo obrigatório',
+      mandatory: '*Obrigatório',
       checkBoxRequire: 'Você precisa marcar a caixa acima', // TODO: End this translation properly
       searchInTable: 'Pesquisar',
       pagRecordsPerPage: 'Registros por página', // Records per page

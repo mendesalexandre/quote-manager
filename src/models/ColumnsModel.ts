@@ -64,4 +64,23 @@ export function myBillsColumns () {
   ]
 }
 
-export default { closeToOverdueColumns, notPaidColumns, myBillsColumns }
+/**
+ * Columns for 'Pre sale' screen/view
+ */
+export function preSellColumns () {
+  return [
+    {
+      name: 'name',
+      field: 'name',
+      required: true,
+      label: i18n.global.t('columns.presell.productName'),
+      sortable: true,
+      align: 'left'
+    },
+    { name: 'dueDate', field: 'dueDate', label: i18n.global.t('columns.presell.onSince'), sortable: true, align: 'left' },
+    { name: 'value', field: 'value', label: i18n.global.t('columns.presell.platform'), sortable: true, align: 'left' },
+    { name: 'actions', field: 'action', label: i18n.global.t('columns.presell.actions'), sortable: false, align: 'right' }
+  ]
+}
+
+export default { closeToOverdueColumns, notPaidColumns, myBillsColumns, preSellColumns }
