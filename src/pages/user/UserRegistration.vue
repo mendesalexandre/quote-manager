@@ -158,7 +158,8 @@ export default defineComponent({
         this.userMail,
         false,
         true,
-        this.module
+        this.module,
+        JSON.stringify(this.$q.platform.is)
       )
       console.log('newUser from dialog: ', newUser)
       this.$emit('ok', newUser)

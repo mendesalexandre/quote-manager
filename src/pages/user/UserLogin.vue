@@ -100,11 +100,11 @@ export default defineComponent({
   },
   methods: {
     login (isAutomaticLogin = false) {
-      //                   module/function name
       this.store.dispatch('user/doLogin', {
         userLogin: this.userLogin,
         password: this.userPassword,
-        automaticLogin: isAutomaticLogin
+        automaticLogin: isAutomaticLogin,
+        deviceInfo: JSON.stringify(this.$q.platform.is)
       })
     },
     isUserAutomaticLogin () {
