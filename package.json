@@ -12,7 +12,8 @@
     "build:pwa": "quasar build -m pwa",
     "lint": "eslint --ext .js,.ts,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
-    "app": "quasar dev -m electron"
+    "app": "quasar dev -m electron",
+    "build-app": "quasar build -m electron -d"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.1",
@@ -34,6 +35,7 @@
     "@typescript-eslint/parser": "^5.10.0",
     "@volar-plugins/vetur": "latest",
     "electron": "^22.2.0",
+    "electron-packager": "^15.5.2",
     "eslint": "^8.10.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.19.1",

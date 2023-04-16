@@ -8,6 +8,7 @@
 
 #### Implement
 - Implement sections for 'field to query' and 'buttons' on `Filter panel`
+- Build dependency to generate executable for other operational systems [#23](https://github.com/BIEMAX/quote-manager/issues/23)
 
 ## [1.0.0]
 
