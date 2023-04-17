@@ -12,9 +12,11 @@
         <div class="q-gutter-md">
           <q-input
             outlined
-            v-model="userLogin"
-            :label="$t('view.login.lbl.login')"
+            v-model="userEmail"
+            :label="$t('view.login.lbl.email')"
             class="text-white"
+            type="email"
+            hint="E.g.: user.mail@server.com"
           />
 
           <q-input
@@ -92,7 +94,7 @@ export default defineComponent({
 
     return {
       keepUserConnected: ref(false),
-      userLogin: ref(''),
+      userEmail: ref(''),
       userPassword: ref(''),
       isPwd: ref(true),
       essentialLinks: null,
@@ -103,20 +105,21 @@ export default defineComponent({
   methods: {
     login (isAutomaticLogin = false) {
       this.store.dispatch('user/doLogin', {
-        userLogin: this.userLogin,
+        email: this.userEmail,
         password: this.userPassword,
-        automaticLogin: isAutomaticLogin
+        automaticLogin: isAutomaticLogin,
+        deviceInfo: JSON.stringify(this.$q.platform.is)
       })
       // Before save the cookies, clear.
       if (hasCookies()) clear()
       add('twi_kc', encrypt(this.keepUserConnected))
-      add('twi_id', encrypt(this.userLogin))
+      add('twi_id', encrypt(this.userEmail))
       add('twi_pd', encrypt(this.userPassword))
     },
     isUserAutomaticLogin () {
       const keepUserConnected = decrypt(get('twi_kc'))
       if (keepUserConnected === 'true') {
-        this.userLogin = decrypt(get('twi_id'))
+        this.userEmail = decrypt(get('twi_id'))
         this.userPassword = decrypt(get('twi_pd'))
         this.login(true)
       }
