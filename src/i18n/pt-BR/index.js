@@ -61,14 +61,19 @@ export default {
         releaseNotes: 'Notas de atualização',
         history: 'Histórico',
         settings: 'Configurações',
+        about: 'Sobre',
         help: 'Ajuda & Feedback',
-        logout: 'Sair...'
+        logout: 'Sair...',
+        titleAbout: 'Ambiente %s',
+        descAbout: 'Ambientes estáveis e operacionais',
+        dbOnText: 'Servidor de banco de dados online e estável',
+        beOnText: 'Servidor de processamento de dados online e estável'
       }
     },
     login: {
       lbl: {
         title: 'Bem-vindo ao gestor de finanças',
-        login: 'Login',
+        email: 'E-mail',
         password: 'Senha',
         keepConnect: 'Mantenha-me conectado',
         newAccount: 'Criar nova conta',

@@ -2,16 +2,18 @@
 
 #### Changed
 - Change the time notification from '5 milliseconds' to '1,5 milliseconds'
+- Change 'user login' to 'user email' [#27](https://github.com/BIEMAX/quote-manager/issues/27)
+
+#### Implement
+- Implement sections for 'field to query' and 'buttons' on `Filter panel`
+- Build dependency to generate executable for other operational systems [#23](https://github.com/BIEMAX/quote-manager/issues/23)
+- Implement 'About section' to check database and backend services [#19](https://github.com/BIEMAX/quote-manager/issues/19)
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot
 - Fix the buttons in table row not triggering events when clicked [#21](https://github.com/BIEMAX/quote-manager/issues/21)
 - Fix invalid date after login [#17](https://github.com/BIEMAX/quote-manager/issues/17)
 - Fix 'keep me connected' not working [#22](https://github.com/BIEMAX/quote-manager/issues/22)
-
-#### Implement
-- Implement sections for 'field to query' and 'buttons' on `Filter panel`
-- Build dependency to generate executable for other operational systems [#23](https://github.com/BIEMAX/quote-manager/issues/23)
 
 ## [1.0.0]
 

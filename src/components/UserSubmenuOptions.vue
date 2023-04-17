@@ -48,9 +48,16 @@
               <q-item-section>{{ $t("view.userSubMenu.lbl.settings") }}</q-item-section>
             </q-item>
             <q-separator />
-            <q-item clickable color="secondary">
+            <q-item clickable color="secondary" @click="onAboutClick()">
               <q-item-section avatar>
                 <q-icon name="help_outline" color="primary" />
+              </q-item-section>
+              <q-item-section>{{ $t("view.userSubMenu.lbl.about") }}</q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item clickable color="secondary">
+              <q-item-section avatar>
+                <q-icon name="fa-regular fa-comment" color="primary" />
               </q-item-section>
               <q-item-section>{{ $t("view.userSubMenu.lbl.help") }}</q-item-section>
             </q-item>
@@ -71,10 +78,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import {
+  defineComponent,
+  ref,
+  watch
+} from 'vue'
 import { useQuasar } from 'quasar'
-import { clear } from 'src/util/Cookies'
 import { useStore } from 'vuex'
+
+import { clear } from 'src/util/Cookies'
+import i18n from 'src/util/i18n'
+
+import ServerAvailability from 'src/pages/generic/ServerAvailability.vue'
 
 export default defineComponent({
   name: 'UserSubmenuOptions',
@@ -84,6 +99,7 @@ export default defineComponent({
     // eslint-disable-next-line prefer-const
     let enableDarkMode = ref(false)
     const user = store.getters['user/getUser']
+    const translation = i18n.global
 
     watch(enableDarkMode, () => {
       $q.dark.set(enableDarkMode.value)
@@ -94,12 +110,13 @@ export default defineComponent({
       bluetooth: ref(false),
       enableDarkMode,
       userCompoundName: this.getCompoundUserName(user.data.userName),
-      userFirstName: `Olá ${this.getFirstUserName(user.data.userName)}`
+      userFirstName: `Olá ${this.getFirstUserName(user.data.userName)}`,
+      translation
     }
   },
   methods: {
     logout () {
-      // clear() // TODO: Fix the cookies clear function (throwing exception after updated)
+      clear()
       this.$router.push('/').catch(() => {})
     },
     getCompoundUserName (fullName: string) {
@@ -113,6 +130,16 @@ export default defineComponent({
       if (names.length > 1) {
         return names[0]
       } else return names
+    },
+    onAboutClick () {
+      console.log('1. cheguei aqui')
+      this.$q
+        .dialog({
+          component: ServerAvailability,
+          persistent: true,
+          cancel: true
+        })
+        .onOk((data: any) => { })
     }
   }
 })
