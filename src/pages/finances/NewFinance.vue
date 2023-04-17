@@ -25,7 +25,7 @@
             push
             @click="step = 2"
             color="primary"
-            :label="$t('view.newFinance.lbl.continue')"
+            :label="$t('components.lbl.buttonContinue')"
           />
         </q-stepper-navigation>
       </q-step>
@@ -77,13 +77,13 @@
             push
             color="primary"
             @click="onOkClick()"
-            :label="$t('view.newFinance.lbl.finish')"
+            :label="$t('components.lbl.buttonFinish')"
           />
           <q-btn
             push
             @click="step = 1"
             class="bg-white text-primary q-ml-sm"
-            :label="$t('view.newFinance.lbl.back')"
+            :label="$t('components.lbl.buttonReturn')"
           />
         </q-stepper-navigation>
       </q-step>

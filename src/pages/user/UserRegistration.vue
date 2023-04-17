@@ -17,7 +17,7 @@
           <q-btn
             @click="step = 2"
             color="primary"
-            :label="$t('view.newUser.lbl.continue')"
+            :label="$t('components.lbl.buttonContinue')"
           />
         </q-stepper-navigation>
       </q-step>
@@ -41,13 +41,13 @@
           <q-btn
             @click="step = 3"
             color="primary"
-            :label="$t('view.newUser.lbl.continue')"
+            :label="$t('components.lbl.buttonContinue')"
           />
           <q-btn
             flat
             @click="step = 1"
             color="primary"
-            :label="$t('view.newUser.lbl.back')"
+            :label="$t('components.lbl.buttonReturn')"
             class="q-ml-sm"
           />
         </q-stepper-navigation>
@@ -102,13 +102,13 @@
           <q-btn
             color="primary"
             @click="onOkClick()"
-            :label="$t('view.newUser.lbl.finish')"
+            :label="$t('components.lbl.buttonFinish')"
           />
           <q-btn
             flat
             @click="step = 2"
             color="primary"
-            :label="$t('view.newUser.lbl.back')"
+            :label="$t('components.lbl.buttonReturn')"
             class="q-ml-sm"
           />
         </q-stepper-navigation>

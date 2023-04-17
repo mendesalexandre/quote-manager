@@ -16,7 +16,7 @@
         push
         @click="onOkClick()"
         class="bg-white text-primary q-ml-sm"
-        :label="$t('view.newFinance.lbl.back')"
+        :label="$t('components.lbl.buttonReturn')"
       />
     </div>
   </q-dialog>

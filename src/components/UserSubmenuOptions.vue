@@ -26,7 +26,7 @@
               <q-item-section>{{ $t("view.userSubMenu.lbl.update") }}</q-item-section>
             </q-item>
             <q-separator />
-            <q-item clickable color="secondary">
+            <q-item clickable color="secondary" @click="onReleaseNotesClick()">
               <q-item-section avatar>
                 <q-icon name="newspaper" color="primary" />
               </q-item-section>
@@ -41,7 +41,7 @@
               <q-item-section>{{ $t("view.userSubMenu.lbl.history") }}</q-item-section>
             </q-item>
             <q-separator />
-            <q-item clickable color="secondary">
+            <q-item clickable color="secondary" disabled>
               <q-item-section avatar>
                 <q-icon name="settings" color="primary" />
               </q-item-section>
@@ -55,7 +55,7 @@
               <q-item-section>{{ $t("view.userSubMenu.lbl.about") }}</q-item-section>
             </q-item>
             <q-separator />
-            <q-item clickable color="secondary">
+            <q-item clickable color="secondary" disabled>
               <q-item-section avatar>
                 <q-icon name="fa-regular fa-comment" color="primary" />
               </q-item-section>
@@ -90,6 +90,7 @@ import { clear } from 'src/util/Cookies'
 import i18n from 'src/util/i18n'
 
 import ServerAvailability from 'src/pages/generic/ServerAvailability.vue'
+import ReleaseNotes from 'src/pages/generic/ReleaseNotes.vue'
 
 export default defineComponent({
   name: 'UserSubmenuOptions',
@@ -132,10 +133,18 @@ export default defineComponent({
       } else return names
     },
     onAboutClick () {
-      console.log('1. cheguei aqui')
       this.$q
         .dialog({
           component: ServerAvailability,
+          persistent: true,
+          cancel: true
+        })
+        .onOk((data: any) => { })
+    },
+    onReleaseNotesClick () {
+      this.$q
+        .dialog({
+          component: ReleaseNotes,
           persistent: true,
           cancel: true
         })
