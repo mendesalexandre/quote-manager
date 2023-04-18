@@ -64,4 +64,15 @@ export function myBillsColumns () {
   ]
 }
 
-export default { closeToOverdueColumns, notPaidColumns, myBillsColumns }
+/**
+ * Columns for 'User history' screen/view
+ */
+export function userHistoryColumns () {
+  return [
+    { name: 'createdOn', field: 'createdOn', label: i18n.global.t('columns.history.eventDate'), sortable: true, align: 'right' },
+    { name: 'action', field: 'action', required: true, label: i18n.global.t('columns.history.action'), sortable: true, align: 'left' },
+    { name: 'description', field: 'description', label: i18n.global.t('columns.history.description'), sortable: true, align: 'left' }
+  ]
+}
+
+export default { closeToOverdueColumns, notPaidColumns, myBillsColumns, userHistoryColumns }

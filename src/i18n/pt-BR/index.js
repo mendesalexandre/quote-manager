@@ -168,6 +168,11 @@ export default {
       isToDivideValue: 'Valor parcelado',
       actions: 'Ações'
     },
+    history: {
+      action: 'Tipo de ação',
+      description: 'Descrição',
+      eventDate: 'Data do evento'
+    },
     notPaid: {
       name: 'Nome da conta',
       dueDate: 'Vencimento',
@@ -197,6 +202,9 @@ export default {
     },
     plan: {
       success: 'Sucesso ao consultar planos'
+    },
+    usr: {
+      historySuccess: 'Sucesso ao consultar histórico'
     },
     tag: {
       newSuccess: 'Tag cadastrada com sucesso',

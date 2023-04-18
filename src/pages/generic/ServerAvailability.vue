@@ -1,7 +1,6 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <q-dialog v-model="confirm" ref="dialog">
-    <div class="q-gutter-md">
+    <q-card class="q-gutter-md">
       <q-chip color="primary" text-color="white">
         {{ envName }}
       </q-chip>
@@ -18,7 +17,8 @@
         class="bg-white text-primary q-ml-sm"
         :label="$t('components.lbl.buttonReturn')"
       />
-    </div>
+      <q-space></q-space>
+    </q-card>
   </q-dialog>
 </template>
 

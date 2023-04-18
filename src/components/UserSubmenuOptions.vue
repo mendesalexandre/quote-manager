@@ -34,7 +34,7 @@
                 $t("view.userSubMenu.lbl.releaseNotes")
               }}</q-item-section>
             </q-item>
-            <q-item clickable color="secondary">
+            <q-item clickable color="secondary" @click="onHistoryClick()">
               <q-item-section avatar>
                 <q-icon name="history" color="primary" />
               </q-item-section>
@@ -69,7 +69,7 @@
             push
             size="sm"
             v-close-popup
-            @click="logout()"
+            @click="onLogoutClick()"
           />
         </div>
       </div>
@@ -91,6 +91,7 @@ import i18n from 'src/util/i18n'
 
 import ServerAvailability from 'src/pages/generic/ServerAvailability.vue'
 import ReleaseNotes from 'src/pages/generic/ReleaseNotes.vue'
+import UserHistory from 'src/pages/user/UserHistory.vue'
 
 export default defineComponent({
   name: 'UserSubmenuOptions',
@@ -116,10 +117,6 @@ export default defineComponent({
     }
   },
   methods: {
-    logout () {
-      clear()
-      this.$router.push('/').catch(() => {})
-    },
     getCompoundUserName (fullName: string) {
       const names = fullName.includes(' ') ? fullName.split(' ') : fullName.substring(0, 10)
       if (names.length > 1) {
@@ -132,6 +129,25 @@ export default defineComponent({
         return names[0]
       } else return names
     },
+    onReleaseNotesClick () {
+      this.$q
+        .dialog({
+          component: ReleaseNotes,
+          persistent: true,
+          cancel: true
+        })
+        .onOk((data: any) => { })
+    },
+    onHistoryClick () {
+      console.log('cheguei aqui')
+      this.$q
+        .dialog({
+          component: UserHistory,
+          persistent: true,
+          cancel: true
+        })
+        .onOk((data: any) => { })
+    },
     onAboutClick () {
       this.$q
         .dialog({
@@ -141,14 +157,9 @@ export default defineComponent({
         })
         .onOk((data: any) => { })
     },
-    onReleaseNotesClick () {
-      this.$q
-        .dialog({
-          component: ReleaseNotes,
-          persistent: true,
-          cancel: true
-        })
-        .onOk((data: any) => { })
+    onLogoutClick () {
+      clear()
+      this.$router.push('/').catch(() => {})
     }
   }
 })

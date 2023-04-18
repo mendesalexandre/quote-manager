@@ -1,4 +1,4 @@
-import { getUser, newUser, updateUser } from 'src/composables/UserService'
+import { getUser, newUser, updateUser, getHistory } from 'src/composables/UserService'
 
 // Utils
 import { showLoading } from 'src/util/Loading'
@@ -14,7 +14,8 @@ const state = {
   user: undefined,
   auth: '',
   permissions: [],
-  darkMode: false
+  darkMode: false,
+  userHistory: []
 }
 
 /**
@@ -32,6 +33,9 @@ const mutations = {
   },
   setDarkMode (state, value) {
     state.darkMode = value
+  },
+  setUserHistory (state, value) {
+    state.userHistory = value
   }
 }
 
@@ -50,6 +54,9 @@ const getters = {
   },
   getDarkMode (state) {
     return state.darkMode
+  },
+  getUserHistory (state) {
+    return state.userHistory
   }
 }
 
@@ -106,6 +113,26 @@ const actions = {
       notifySuccess(i18n.global.t('msg.login.success'))
 
       return user
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(mapError(error))
+    }
+  },
+  async queryUserHistory ({ commit }, payload) {
+    try {
+      console.log('1')
+      showLoading(LoadingStatus.ON)
+      console.log('2')
+      const history = await getHistory()
+      console.log('3: ', history)
+      commit('setUserHistory', history)
+      console.log('4')
+
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(i18n.global.t('msg.usr.historySuccess'))
+      console.log('5')
+
+      return history
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(mapError(error))
