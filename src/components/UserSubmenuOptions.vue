@@ -19,7 +19,7 @@
                 />
               </q-item-section>
             </q-item>
-            <q-item clickable color="secondary">
+            <q-item clickable color="secondary" @click="onUserDataUpdateClick()">
               <q-item-section avatar>
                 <q-icon name="edit" color="primary" />
               </q-item-section>
@@ -92,6 +92,8 @@ import i18n from 'src/util/i18n'
 import ServerAvailability from 'src/pages/generic/ServerAvailability.vue'
 import ReleaseNotes from 'src/pages/generic/ReleaseNotes.vue'
 import UserHistory from 'src/pages/user/UserHistory.vue'
+import UserUpdate from 'src/pages/user/UserUpdate.vue'
+import { store } from 'quasar/wrappers'
 
 export default defineComponent({
   name: 'UserSubmenuOptions',
@@ -113,7 +115,8 @@ export default defineComponent({
       enableDarkMode,
       userCompoundName: this.getCompoundUserName(user.data.userName),
       userFirstName: `Olá ${this.getFirstUserName(user.data.userName)}`,
-      translation
+      translation,
+      store
     }
   },
   methods: {
@@ -129,6 +132,18 @@ export default defineComponent({
         return names[0]
       } else return names
     },
+    onUserDataUpdateClick () {
+      this.$q
+        .dialog({
+          component: UserUpdate,
+          persistent: true,
+          cancel: true
+        })
+        .onOk((userToUpdate: any) => {
+          console.log('userToUpdate: ', userToUpdate)
+          this.store.dispatch('user/updateUser', userToUpdate)
+        })
+    },
     onReleaseNotesClick () {
       this.$q
         .dialog({
@@ -139,7 +154,6 @@ export default defineComponent({
         .onOk((data: any) => { })
     },
     onHistoryClick () {
-      console.log('cheguei aqui')
       this.$q
         .dialog({
           component: UserHistory,

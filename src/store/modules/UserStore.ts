@@ -1,4 +1,4 @@
-import { getUser, newUser, updateUser, getHistory } from 'src/composables/UserService'
+import { getUser, newUser, updateUser, getUserHistory } from 'src/composables/UserService'
 
 // Utils
 import { showLoading } from 'src/util/Loading'
@@ -120,17 +120,12 @@ const actions = {
   },
   async queryUserHistory ({ commit }, payload) {
     try {
-      console.log('1')
       showLoading(LoadingStatus.ON)
-      console.log('2')
-      const history = await getHistory()
-      console.log('3: ', history)
+      const history = await getUserHistory()
       commit('setUserHistory', history)
-      console.log('4')
 
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.usr.historySuccess'))
-      console.log('5')
 
       return history
     } catch (error: any) {

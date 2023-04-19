@@ -1,0 +1,99 @@
+<template>
+  <q-dialog v-model="confirm" ref="dialog">
+    <q-card class="q-gutter-md" style="max-width: 580px;">
+      <q-input
+        class="text-white"
+        outlined
+        v-model="userName"
+        type="text"
+        :label="$t('view.userUpdate.lbl.userName')"
+      />
+
+      <q-input
+        outlined
+        v-model="userEmail"
+        type="email"
+        :label="$t('view.userUpdate.lbl.userEmail')"
+      />
+
+      <q-input
+        outlined
+        v-model="oldPassword"
+        :type="isPwd ? 'password' : 'text'"
+        :label="$t('view.userUpdate.lbl.oldPassword')"
+      >
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
+          />
+        </template>
+      </q-input>
+
+      <q-input
+        outlined
+        v-model="newPassword"
+        :type="isPwd ? 'password' : 'text'"
+        :label="$t('view.userUpdate.lbl.newPassword')"
+      >
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
+          />
+        </template>
+      </q-input>
+      <q-separator></q-separator>
+      <q-btn
+        push
+        @click="onOkClick()"
+        class="bg-white text-primary q-ml-sm"
+        :label="$t('components.lbl.buttonFinish')"
+      />
+      <q-space></q-space>
+    </q-card>
+  </q-dialog>
+</template>
+
+<script lang="ts">
+
+import { defineComponent, ref } from 'vue'
+import { useDialogPluginComponent } from 'quasar'
+import { useStore } from 'vuex'
+
+export default defineComponent({
+  name: 'UserUpdate',
+  data () {
+    const store = useStore()
+    const user = store.getters['user/getUser']
+    return {
+      confirm: false,
+      user,
+      userName: user.data.userName,
+      userEmail: user.data.email,
+      oldPassword: ref(''),
+      newPassword: ref(''),
+      isPwd: ref(true)
+    }
+  },
+  emits: {
+    ...useDialogPluginComponent.emits
+  },
+  methods: {
+    onOkClick () {
+      this.$emit('ok', {
+        oldUserName: this.user.data.userName,
+        newUserName: this.userName === this.user.data.userName ? '' : this.userName,
+        oldEmail: this.user.data.email,
+        newEmail: this.userEmail === this.user.data.userEmail ? '' : this.userEmail,
+        oldPassword: this.oldPassword,
+        newPassword: this.newPassword === this.oldPassword ? '' : this.newPassword
+      })
+      this.$emit('hide')
+    }
+  }
+})
+
+</script>

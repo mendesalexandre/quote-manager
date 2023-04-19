@@ -131,6 +131,14 @@ export default {
         termAccepted: 'Aceito os termos'
       }
     },
+    userUpdate: {
+      lbl: {
+        userName: 'Nome do usuário',
+        userEmail: 'Endereço de e-mail',
+        oldPassword: 'Senha atual',
+        newPassword: 'Senha nova'
+      }
+    },
     task: {},
     plan: {
       planOne: 'Gratuito', // Free

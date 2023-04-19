@@ -45,7 +45,7 @@ export async function deleteUser (payload: any) {
     })
 }
 
-export async function getHistory () {
+export async function getUserHistory () {
   return await apiAuth
     .get('user/history')
     .then(async (response: any) => {
@@ -56,4 +56,4 @@ export async function getHistory () {
     })
 }
 
-export default { getUser, updateUser, newUser, deleteUser, getHistory }
+export default { getUser, updateUser, newUser, deleteUser, getUserHistory }
