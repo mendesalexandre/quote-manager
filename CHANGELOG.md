@@ -9,6 +9,7 @@
 - Build dependency to generate executable for other operational systems [#23](https://github.com/BIEMAX/quote-manager/issues/23)
 - Implement 'About section' to check database and backend services [#19](https://github.com/BIEMAX/quote-manager/issues/19)
 - Implement 'User history' [#28](https://github.com/BIEMAX/quote-manager/issues/28)
+- Implement 'User update info' page [#26](https://github.com/BIEMAX/quote-manager/issues/26)
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot

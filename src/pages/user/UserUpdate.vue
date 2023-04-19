@@ -4,14 +4,14 @@
       <q-input
         class="text-white"
         outlined
-        v-model="userName"
+        v-model="currentUserName"
         type="text"
         :label="$t('view.userUpdate.lbl.userName')"
       />
 
       <q-input
         outlined
-        v-model="userEmail"
+        v-model="currentUserEmail"
         type="email"
         :label="$t('view.userUpdate.lbl.userEmail')"
       />
@@ -68,14 +68,18 @@ export default defineComponent({
   data () {
     const store = useStore()
     const user = store.getters['user/getUser']
+    const currentUserName = user.data.userName
+    const currentUserEmail = user.data.email
+    console.log('1. currentUserName: ', currentUserName)
+    console.log('2. currentUserEmail: ', currentUserEmail)
     return {
       confirm: false,
-      user,
-      userName: user.data.userName,
-      userEmail: user.data.email,
+      currentUserName,
+      currentUserEmail,
       oldPassword: ref(''),
       newPassword: ref(''),
-      isPwd: ref(true)
+      isPwd: ref(true),
+      user
     }
   },
   emits: {
@@ -83,14 +87,16 @@ export default defineComponent({
   },
   methods: {
     onOkClick () {
-      this.$emit('ok', {
+      const user = {
         oldUserName: this.user.data.userName,
-        newUserName: this.userName === this.user.data.userName ? '' : this.userName,
+        newUserName: this.user.data.userName === this.currentUserName ? '' : this.currentUserName,
         oldEmail: this.user.data.email,
-        newEmail: this.userEmail === this.user.data.userEmail ? '' : this.userEmail,
+        newEmail: this.user.data.email === this.currentUserEmail ? '' : this.currentUserEmail,
         oldPassword: this.oldPassword,
         newPassword: this.newPassword === this.oldPassword ? '' : this.newPassword
-      })
+      }
+      console.log('3. user to update: ', user)
+      this.$emit('ok', user)
       this.$emit('hide')
     }
   }
