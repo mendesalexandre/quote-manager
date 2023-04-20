@@ -3,6 +3,7 @@
     <q-list bordered class="rounded-borders">
       <q-input outlined v-model="textSearch" :placeholder="$t('view.home.lbl.search')" />
 
+      <!--Home-->
       <q-expansion-item
         expand-separator
         :label="$t('view.home.lbl.title')"
@@ -28,6 +29,7 @@
         </q-item>
       </q-expansion-item>
 
+      <!--Finances-->
       <q-expansion-item
         expand-separator
         :label="$t('view.home.lbl.menuMyFinances')"
@@ -102,6 +104,59 @@
           <q-item-section>
             <q-item-label color="secondary">
               {{ $t("view.home.lbl.menuIndicators") }}
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+      </q-expansion-item>
+
+      <!--Advertisement (Ads)-->
+      <q-expansion-item
+        expand-separator
+        :label="$t('view.home.lbl.menuMyAds')"
+        class="text-secondary"
+        icon="mdi-google-ads"
+        default-opened
+      >
+        <q-item :inset-level="0.5" clickable v-ripple to="/presell">
+          <q-item-section avatar>
+            <q-icon color="secondary" name="mdi-web-plus" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuMyPresell") }}
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item :inset-level="0.5" clickable v-ripple to="/campaigns">
+          <q-item-section avatar>
+            <q-icon color="secondary" name="mdi-finance" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuMyCampaigns") }}
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item :inset-level="0.5" clickable v-ripple to="/ads-tips">
+          <q-item-section avatar>
+            <q-icon color="secondary" name="mdi-lightbulb-on" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuTips") }}
+            </q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item :inset-level="0.5" clickable v-ripple to="/roi">
+          <q-item-section avatar>
+            <q-icon color="secondary" name="mdi-chart-areaspline" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label color="secondary">
+              {{ $t("view.home.lbl.menuMyRoi") }}
             </q-item-label>
           </q-item-section>
         </q-item>

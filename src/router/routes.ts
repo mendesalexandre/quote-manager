@@ -14,6 +14,7 @@ const routes: RouteRecordRaw[] = [
     name: 'Home',
     component: () => import('pages/home-screen/HomeScreen.vue'),
     children: [
+      // Home and tasks
       {
         path: '/welcome',
         name: 'Home',
@@ -29,6 +30,7 @@ const routes: RouteRecordRaw[] = [
         name: 'TasksDone',
         component: () => import('pages/tasks/TasksDone.vue')
       },
+      // Finances
       {
         path: '/finances',
         name: 'Finances',
@@ -63,6 +65,27 @@ const routes: RouteRecordRaw[] = [
         path: '/indicators',
         name: 'Indicators',
         component: () => import('src/pages/finances/Indicators.vue')
+      },
+      // AdSense
+      {
+        path: '/presell',
+        name: 'Pre-sell',
+        component: () => import('src/pages/ad-words/PreSell.vue')
+      },
+      {
+        path: '/campaigns',
+        name: 'Campaigns',
+        component: () => import('src/pages/ad-words/Campaigns.vue')
+      },
+      {
+        path: '/ads-tips',
+        name: 'AdsTips',
+        component: () => import('src/pages/ad-words/AdsTips.vue')
+      },
+      {
+        path: '/roi',
+        name: 'Roi',
+        component: () => import('src/pages/ad-words/ReturnOfInvestment.vue')
       }
     ]
   }

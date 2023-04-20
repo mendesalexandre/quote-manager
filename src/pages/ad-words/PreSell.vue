@@ -1,6 +1,5 @@
 <template>
   <q-page padding>
-
     <!--Filter panel-->
     <filter-panel>
       <template #filter-content>
@@ -16,8 +15,6 @@
             <q-icon name="mdi-tag" />
           </template>
         </q-input>
-        <!-- Date picker -->
-        <month-picker @input="onDateUpdateEvent"></month-picker>
       </template>
       <template #filter-buttons>
         <button-new @click="openDialogNewBill()"/>
@@ -28,14 +25,13 @@
     <br>
     <table-panel
       :title="$t('view.finance.lbl.title')"
-      :columns="billsColumns || []"
+      :columns="sellColumns || []"
       :rows="rows || []"
       :show-button-edit="true"
       :show-button-remove="true"
       :show-button-pay="false"
     ></table-panel>
   </q-page>
-
 </template>
 
 <script lang="ts">
@@ -46,9 +42,8 @@ import {
   defineComponent
 } from 'vue'
 import { useStore } from 'vuex'
-import moment from 'moment'
 
-import { myBillsColumns } from 'src/models/ColumnsModel'
+import { preSellColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
 import { LoadingStatus } from 'src/models/StatusModel'
 
@@ -56,33 +51,23 @@ import FilterPanel from 'src/components/FilterPanel.vue'
 import TablePanel from 'src/components/TablePanel.vue'
 import ButtonNew from 'src/components/ButtonNew.vue'
 import ButtonSearch from 'src/components/ButtonSearch.vue'
-import MonthPicker from 'src/components/MonthPicker.vue'
-
-import DialogNewFinance from 'src/pages/finances/DialogNewFinance.vue'
+import DialogNewPresell from './DialogNewPresell.vue'
 
 export default defineComponent({
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Finances',
+  name: 'PreSell',
   components: {
     FilterPanel,
     TablePanel,
-    MonthPicker,
     ButtonNew,
     ButtonSearch
   },
   data () {
     const store = useStore()
-    const billsColumns = myBillsColumns()
-    const currentMonth = moment().format('MM/YYYY').toString()
+    const sellColumns = preSellColumns()
 
     const onSearchClick = () => {
       showLoading(LoadingStatus.ON)
-      store.dispatch('bills/getBillsList', {
-        month: this.selectDate.toString().split('/')[0],
-        year: this.selectDate.toString().split('/')[1],
-        description: this.billName,
-        tag: this.tagName
-      })
+      store.dispatch('bills/getBillsList', {})
     }
 
     const rows = computed(() => store.getters['bills/getBills'])
@@ -93,10 +78,9 @@ export default defineComponent({
 
     return {
       rows,
-      billsColumns,
+      sellColumns,
       billName: ref(''),
       tagName: ref(''),
-      selectDate: ref(currentMonth),
       onSearchClick,
       store
     }
@@ -105,17 +89,17 @@ export default defineComponent({
     openDialogNewBill () {
       this.$q
         .dialog({
-          component: DialogNewFinance,
+          component: DialogNewPresell,
           persistent: true,
           cancel: true
         })
         .onOk((newBill: any) => {
           this.store.dispatch('bills/registerNewBill', newBill)
         })
-    },
-    onDateUpdateEvent (newValue) {
-      this.selectDate = newValue
-    }
+    }//,
+    // onDateUpdateEvent (newValue) {
+    //   this.selectDate = newValue
+    // }
   }
 })
 </script>

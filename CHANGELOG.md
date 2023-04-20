@@ -1,4 +1,15 @@
-## [1.0.1]
+# [1.0.2]
+
+#### Changed
+-
+
+#### Fix
+-
+
+#### Implement
+- Get device information on user registration/login [25](https://github.com/BIEMAX/quote-manager/issues/25)
+
+# [1.0.1]
 
 #### Changed
 - Change the time notification from '5 milliseconds' to '1,5 milliseconds'
@@ -17,7 +28,7 @@
 - Fix invalid date after login [#17](https://github.com/BIEMAX/quote-manager/issues/17)
 - Fix 'keep me connected' not working [#22](https://github.com/BIEMAX/quote-manager/issues/22)
 
-## [1.0.0]
+# [1.0.0]
 
 #### Changed
 - Added import to mdi-v6 icons
