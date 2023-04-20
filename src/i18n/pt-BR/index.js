@@ -27,7 +27,7 @@ export default {
     home: {
       lbl: {
         title: 'Página inicial',
-        subTitle: 'Gestor de finanças',
+        subTitle: 'ASPlus',
         search: 'Pesquisar',
         menuTaskTodo: 'Tarefas à fazer',
         menuTaskDone: 'Tarefas completas',

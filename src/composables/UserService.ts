@@ -12,7 +12,8 @@ export async function getUser (payload: UserLogin) {
     })
 }
 
-export async function updateUser (payload: UserUpdate) {
+export async function updateUser (payload) {
+  console.log('4. payload: ', payload)
   return await apiAuth
     .post('user/update', payload)
     .then(async (response: any) => {

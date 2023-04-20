@@ -150,8 +150,8 @@ module.exports = configure(function (ctx) {
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'Quote Manager',
-        short_name: 'Quote Manager',
+        name: 'AffiliateSmartPlus',
+        short_name: 'ASPlus',
         description: '',
         display: 'standalone',
         orientation: 'portrait',

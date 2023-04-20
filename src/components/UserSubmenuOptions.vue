@@ -140,7 +140,7 @@ export default defineComponent({
           cancel: true
         })
         .onOk((userToUpdate: any) => {
-          console.log('userToUpdate: ', userToUpdate)
+          console.log('userToUpdate 2: ', userToUpdate)
           this.store.dispatch('user/updateUser', userToUpdate)
         })
     },

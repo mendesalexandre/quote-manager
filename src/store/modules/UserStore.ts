@@ -107,6 +107,7 @@ const actions = {
   async updateUser (payload) {
     try {
       showLoading(LoadingStatus.ON)
+      console.log('3. user to update: ', payload)
       const user = await updateUser(payload)
 
       showLoading(LoadingStatus.OFF)

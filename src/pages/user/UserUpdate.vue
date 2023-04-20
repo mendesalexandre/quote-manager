@@ -87,7 +87,7 @@ export default defineComponent({
   },
   methods: {
     onOkClick () {
-      const user = {
+      const userToUpdate = {
         oldUserName: this.user.data.userName,
         newUserName: this.user.data.userName === this.currentUserName ? '' : this.currentUserName,
         oldEmail: this.user.data.email,
@@ -95,8 +95,8 @@ export default defineComponent({
         oldPassword: this.oldPassword,
         newPassword: this.newPassword === this.oldPassword ? '' : this.newPassword
       }
-      console.log('3. user to update: ', user)
-      this.$emit('ok', user)
+      console.log('3. user to update 1: ', userToUpdate)
+      this.$emit('ok', userToUpdate)
       this.$emit('hide')
     }
   }
