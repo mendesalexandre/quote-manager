@@ -13,6 +13,7 @@ import { mapError } from 'src/util/MapError'
 const state = {
   user: undefined,
   auth: '',
+  permissionsObject: [],
   permissions: [],
   darkMode: false,
   userHistory: []
@@ -27,6 +28,9 @@ const mutations = {
   },
   setAuth (state, value) {
     state.auth = value
+  },
+  setPermissionsObject (state, value) {
+    state.permissionsObject = value
   },
   setPermissions (state, value) {
     state.permissions = value
@@ -48,6 +52,9 @@ const getters = {
   },
   getAuth (state) {
     return state.auth
+  },
+  getPermissionsObject (state) {
+    return state.permissionsObject
   },
   getPermissions (state) {
     return state.permissions
@@ -74,7 +81,8 @@ const actions = {
       if (user) {
         commit('setUser', user)
         commit('setAuth', user.bearerKey)
-        commit('setPermissions', user.data.permissions)
+        commit('setPermissionsObject', user.permissions)
+        commit('setPermissions', user.permissions.permissions)
         commit('setDarkMode', false)
         showLoading(LoadingStatus.OFF)
         notifySuccess(i18n.global.t('msg.login.success'))

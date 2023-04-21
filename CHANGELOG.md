@@ -27,6 +27,7 @@
 - Fix the buttons in table row not triggering events when clicked [#21](https://github.com/BIEMAX/quote-manager/issues/21)
 - Fix invalid date after login [#17](https://github.com/BIEMAX/quote-manager/issues/17)
 - Fix 'keep me connected' not working [#22](https://github.com/BIEMAX/quote-manager/issues/22)
+- Fix user permissions in submenu options not working properly [#29](https://github.com/BIEMAX/quote-manager/issues/29)
 
 # [1.0.0]
 
