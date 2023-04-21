@@ -1,7 +1,11 @@
 <template>
   <div class="q-pa-md" style="max-width: 350px">
     <q-list bordered class="rounded-borders">
-      <q-input outlined v-model="textSearch" :placeholder="$t('view.home.lbl.search')" />
+      <!-- <q-input
+        outlined
+        v-model="textSearch"
+        :placeholder="$t('view.home.lbl.search')"
+      /> -->
 
       <!--Home-->
       <q-expansion-item
@@ -187,5 +191,15 @@ export default defineComponent({
       return this.permissions.filter(p => p.name.toUpperCase().trim() === moduleName.toUpperCase().trim() && p.hasAccess === true).length > 0
     }
   }
+  // ,
+  // computed: {
+  //   filterMenus () {
+  //     if (!this.textSearch) {
+  //       return ''
+  //     }
+  //     const searchRegex = new RegExp(this.textSearch, 'i')
+  //     return this.items.filter((item) => searchRegex.test(item.label))
+  //   }
+  // }
 })
 </script>
