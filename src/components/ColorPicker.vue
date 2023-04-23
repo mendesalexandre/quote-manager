@@ -1,23 +1,20 @@
 <template>
-  <div class="q-pa-md">
-    <div class="q-gutter-md row items-start">
-      <q-input
-        filled
-        v-model="colorSelected"
-        :rules="['anyColor']"
-        hint="With validation"
-        class="my-input"
-        :label="label"
-      >
-        <template v-slot:append>
-          <q-icon name="colorize" class="cursor-pointer">
-            <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-              <q-color @update:model-value="onColorPick" v-value="colorSelected" />
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
-    </div>
+  <div class="q-gutter-md">
+    <q-input
+      filled
+      v-model="colorSelected"
+      :rules="['anyColor']"
+      class="my-input"
+      :label="label"
+    >
+      <template v-slot:append>
+        <q-icon name="colorize" class="cursor-pointer">
+          <q-popup-proxy cover transition-show="scale" transition-hide="scale">
+            <q-color @update:model-value="onColorPick" v-value="colorSelected" />
+          </q-popup-proxy>
+        </q-icon>
+      </template>
+    </q-input>
   </div>
 </template>
 
