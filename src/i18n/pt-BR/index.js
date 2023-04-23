@@ -245,6 +245,10 @@ export default {
     plan: {
       success: 'Sucesso ao consultar planos'
     },
+    presell: {
+      successUpload: 'Sucesso ao realizar o upload da imagem',
+      imgError: 'Certifique-se de que a imagem é da extensão \'*.png\' e contém menos de 1Mb'
+    },
     usr: {
       historySuccess: 'Sucesso ao consultar histórico'
     },
