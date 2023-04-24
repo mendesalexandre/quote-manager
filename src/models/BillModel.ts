@@ -2,7 +2,6 @@ import { EmptyFieldException } from 'src/util/EmptyFieldException'
 
 export class NewFinance {
   id: string
-  user: string
   name: string
   dueDate: string
   description: string
@@ -15,7 +14,6 @@ export class NewFinance {
 
   constructor (
     Id: string,
-    User: string,
     Name: string,
     DueDate: string,
     Description: string,
@@ -26,14 +24,11 @@ export class NewFinance {
     IsBillPayed: boolean,
     IsToDivideValue: boolean
   ) {
-    /* if (typeof (Id) === 'undefined' || !Id) throw new EmptyFieldException('Id')
-    else */
     if (typeof (Name) === 'undefined' || !Name) throw new EmptyFieldException('Nome da conta')
     else if (typeof (DueDate) === 'undefined' || !DueDate) throw new EmptyFieldException('Data de vencimento')
     else if (typeof (Value) === 'undefined' || !Value) throw new EmptyFieldException('Valor')
     else {
       this.id = Id
-      this.user = User
       this.name = Name
       this.dueDate = DueDate
       this.description = Description

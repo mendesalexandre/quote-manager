@@ -71,4 +71,22 @@ export async function payBill (payload: any) {
     })
 }
 
-export default { getBills, getBillsCloseToOverdue, getBillsNotPayed }
+export async function deleteBill (payload: any) {
+  return await apiAuth
+    .delete(`bill/delete/${payload}`)
+    .then((response: any) => {
+      return response.data.message
+    })
+    .catch((error: any) => {
+      throw error?.response?.data?.message || error?.message
+    })
+}
+
+export default {
+  getBills,
+  getBillsCloseToOverdue,
+  getBillsNotPayed,
+  newBill,
+  payBill,
+  deleteBill
+}

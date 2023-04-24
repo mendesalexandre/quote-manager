@@ -1,5 +1,4 @@
 export interface TaskNew {
-  user: string
   name: string
   description: string
   // eslint-disable-next-line no-use-before-define

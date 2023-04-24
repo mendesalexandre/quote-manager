@@ -22,6 +22,7 @@
 - Implement 'User history' [#28](https://github.com/BIEMAX/quote-manager/issues/28)
 - Implement 'User update info' page [#26](https://github.com/BIEMAX/quote-manager/issues/26)
 - Implement menu for 'Google Ads and affiliates' [#24](https://github.com/BIEMAX/quote-manager/issues/24)
+- Added function to remove bill from 'finances menu'
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot

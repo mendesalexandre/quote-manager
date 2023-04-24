@@ -223,6 +223,12 @@ export default {
     }
   },
   msg: {
+    deleteBill: {
+      title: 'Deseja realmente apagar a conta?',
+      message: 'Uma vez feito, o processo não poderá ser desfeito.',
+      deleteSuccess: 'Sucesso ao deletar a conta',
+      notDeleteError: 'Não foi possível de remover a conta'
+    },
     bill: {
       newSuccess: 'Conta cadastrada com sucesso',
       paidSuccess: 'Conta paga como sucesso',
@@ -238,7 +244,7 @@ export default {
     },
     payBill: {
       title: 'Deseja realmente pagar a conta?',
-      message: 'Uma vez feito, o processo não poderá ser desfeito!',
+      message: 'Uma vez feito, o processo não poderá ser desfeito.',
       successToPay: 'Sucesso ao pagar a conta',
       notPaidError: 'Erro ao pagar conta'
     },
@@ -247,7 +253,9 @@ export default {
     },
     presell: {
       successUpload: 'Sucesso ao realizar o upload da imagem',
-      imgError: 'Certifique-se de que a imagem é da extensão \'*.png\' e contém menos de 1Mb'
+      imgError: 'Certifique-se de que a imagem é da extensão \'*.png\' e contém menos de 1Mb',
+      newSuccess: 'Sucesso ao registrar a pre-sell',
+      querySuccess: 'Sucesso ao consultar a lista de pre-sell'
     },
     usr: {
       historySuccess: 'Sucesso ao consultar histórico'

@@ -3,7 +3,8 @@ import {
   getBillsCloseToOverdue,
   getBillsNotPayed,
   newBill,
-  payBill
+  payBill,
+  deleteBill
 } from 'src/composables/BillsService'
 
 // Utils
@@ -17,7 +18,7 @@ import { mapError } from 'src/util/MapError'
  * Contains the bills properties/state.
  */
 const state = {
-  bills: '',
+  bills: [],
   billsCloseToOverdue: [],
   billsOverdue: []
 }
@@ -120,10 +121,21 @@ const actions = {
   async payBillOverdue ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
-      console.log('payload on payBillOverdue: ', payload)
       const response = await payBill(payload)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.payBill.successToPay'))
+      return response
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
+    }
+  },
+  async removeBill ({ commit }, payload) {
+    try {
+      showLoading(LoadingStatus.ON)
+      const response = await deleteBill(payload)
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(i18n.global.t('msg.payBill.deleteSuccess'))
       return response
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)

@@ -33,6 +33,7 @@
       :show-button-edit="true"
       :show-button-remove="true"
       :show-button-pay="false"
+      @on-remove-click-event="onRemoveBill"
     ></table-panel>
   </q-page>
 
@@ -51,6 +52,8 @@ import moment from 'moment'
 import { myBillsColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
 import { LoadingStatus } from 'src/models/StatusModel'
+import { notifyError } from 'src/util/Notification'
+import i18n from 'src/util/i18n'
 
 import FilterPanel from 'src/components/FilterPanel.vue'
 import TablePanel from 'src/components/TablePanel.vue'
@@ -115,6 +118,22 @@ export default defineComponent({
     },
     onDateUpdateEvent (newValue) {
       this.selectDate = newValue
+    },
+    onRemoveBill (row) {
+      this.$q
+        .dialog({
+          title: i18n.global.t('msg.deleteBill.title'),
+          message: i18n.global.t('msg.deleteBill.message'),
+          persistent: true,
+          cancel: true
+        })
+        .onOk(() => {
+          this.store.dispatch('bills/removeBill', row.id)
+          this.onSearchClick()
+        })
+        .onCancel(() => {
+          notifyError(i18n.global.t('msg.deleteBill.notDeleteError'))
+        })
     }
   }
 })

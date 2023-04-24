@@ -3,7 +3,6 @@
  */
 export interface User {
   id: string
-  user: string | undefined
   userName: string
   password: string
   email: string
@@ -28,10 +27,6 @@ export interface UserLogin {
  * Represents a new user that will be registered
  */
 export class UserNew {
-  /**
-   * User login
-   */
-  user: string
   /**
    * User name
    */
@@ -63,8 +58,7 @@ export class UserNew {
   deviceInfo: string
 
   // eslint-disable-next-line no-use-before-define
-  constructor (User: string, UserName: string, Password: string, Email: string, Logged: boolean, Active: boolean, UserPlan: UserPlan.FREE, DeviceInfo: string) {
-    this.user = User
+  constructor (UserName: string, Password: string, Email: string, Logged: boolean, Active: boolean, UserPlan: UserPlan.FREE, DeviceInfo: string) {
     this.userName = UserName
     this.password = Password
     this.email = Email
