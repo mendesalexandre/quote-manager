@@ -3,28 +3,28 @@
     <!--Filter panel-->
     <filter-panel>
       <template #filter-content>
-        <!-- Bill name -->
-        <q-input filled v-model="billName" :label="$t('view.finance.lbl.billName')">
+        <!-- Product name -->
+        <q-input filled v-model="productName" :label="$t('view.presell.lbl.productName')">
           <template v-slot:prepend>
             <q-icon name="mdi-text-box-outline" />
           </template>
         </q-input>
-        <!-- Tag name -->
-        <q-input filled v-model="tagName" :label="$t('view.finance.lbl.tagName')">
-          <template v-slot:prepend>
+        <!-- Status -->
+        <q-select outlined v-model="status" :options="statusOptions" :label="$t('view.presell.lbl.status')">
+        <template v-slot:prepend>
             <q-icon name="mdi-tag" />
           </template>
-        </q-input>
+        </q-select>
       </template>
       <template #filter-buttons>
-        <button-new @click="openDialogNewBill()"/>
+        <button-new @click="openDialogNewPresell()"/>
         <button-search @click="onSearchClick()"/>
       </template>
     </filter-panel>
 
     <br>
     <table-panel
-      :title="$t('view.finance.lbl.title')"
+      :title="$t('view.presell.lbl.title')"
       :columns="sellColumns || []"
       :rows="rows || []"
       :show-button-edit="true"
@@ -46,6 +46,8 @@ import { useStore } from 'vuex'
 import { preSellColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
 import { LoadingStatus } from 'src/models/StatusModel'
+import i18n from 'src/util/i18n'
+import { PresellStatus } from 'src/models/PresellModel'
 
 import FilterPanel from 'src/components/FilterPanel.vue'
 import TablePanel from 'src/components/TablePanel.vue'
@@ -67,10 +69,25 @@ export default defineComponent({
 
     const onSearchClick = () => {
       showLoading(LoadingStatus.ON)
-      store.dispatch('bills/getBillsList', {})
+      console.log('status: ', this.status)
+      const status = getStatusEnum(this.status)
+      store.dispatch('presell/getPresellList', {
+        productName: this.productName,
+        status: status?.toString()
+      })
     }
 
-    const rows = computed(() => store.getters['bills/getBills'])
+    function getStatusEnum (status) {
+      switch (status.toUpperCase().trim()) {
+        case i18n.global.t('view.presell.opt.all'): return PresellStatus.ALL
+        case i18n.global.t('view.presell.opt.toCreate'): return PresellStatus.TO_BE_CREATED
+        case i18n.global.t('view.presell.opt.toUpdate'): return PresellStatus.TO_BE_UPDATED
+        case i18n.global.t('view.presell.opt.creating'): return PresellStatus.CREATING
+        case i18n.global.t('view.presell.opt.available'): return PresellStatus.CREATED
+      }
+    }
+
+    const rows = computed(() => store.getters['presell/getPresells'])
 
     watch(rows, () => {
       showLoading(LoadingStatus.OFF)
@@ -79,22 +96,30 @@ export default defineComponent({
     return {
       rows,
       sellColumns,
-      billName: ref(''),
-      tagName: ref(''),
+      statusOptions: [
+        i18n.global.t('view.presell.opt.all'),
+        i18n.global.t('view.presell.opt.toCreate'),
+        i18n.global.t('view.presell.opt.toUpdate'),
+        i18n.global.t('view.presell.opt.creating'),
+        i18n.global.t('view.presell.opt.available')
+      ],
+      productName: ref(''),
+      status: ref(i18n.global.t('view.presell.opt.all')),
       onSearchClick,
       store
     }
   },
   methods: {
-    openDialogNewBill () {
+    openDialogNewPresell () {
       this.$q
         .dialog({
           component: DialogNewPresell,
           persistent: true,
           cancel: true
         })
-        .onOk((newBill: any) => {
-          this.store.dispatch('bills/registerNewBill', newBill)
+        .onOk((newPresell: any) => {
+          console.log('newPresell: ', newPresell)
+          this.store.dispatch('presell/registerNewPresell', newPresell)
         })
     }//,
     // onDateUpdateEvent (newValue) {

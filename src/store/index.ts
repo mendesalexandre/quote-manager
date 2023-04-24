@@ -6,6 +6,7 @@ import user from './modules/UserStore'
 import bills from './modules/BillsStore'
 import tasks from './modules/TasksStore'
 import tags from './modules/TagsStore'
+import presell from './modules/PresellStore'
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
@@ -13,7 +14,8 @@ export default store(function (/* { ssrContext } */) {
       user,
       bills,
       tags,
-      tasks
+      tasks,
+      presell
     }
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

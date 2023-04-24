@@ -63,6 +63,20 @@ export default {
         title: 'Contas atrasadas/vencidas'
       }
     },
+    presell: {
+      lbl: {
+        title: 'Minhas páginas de pré-venda',
+        productName: 'Nome do produto',
+        status: 'Status'
+      },
+      opt: {
+        all: 'Todos',
+        toCreate: 'Em fila para criação',
+        toUpdate: 'Em fila para atualização',
+        creating: 'Em criação',
+        available: 'Online'
+      }
+    },
     userSubMenu: {
       lbl: {
         changeTheme: 'Trocar tema',
@@ -127,7 +141,9 @@ export default {
         back: 'Voltar',
         finish: 'Finalizar',
         productName: 'Nome do produto',
-        platform: 'Nome da plataforma',
+        pageTitleText: 'Título da página',
+        headLineText: 'Headline (manchete) da página',
+        buttonText: 'Texto do botão',
         affiliateUrl: 'Link de afiliado',
         showLastChanceToBuy: 'Mostrar \'última chance para comprar\'?',
         image: 'Imagem do produto',
@@ -135,6 +151,9 @@ export default {
         colorBack2: 'Cor de fundo 2',
         buttonColor: 'Cor do botão',
         showButtonAnimation: 'Mostrar animação no botão?'
+      },
+      help: {
+        productName: 'Produto a ser anunciado'
       }
     },
     newUser: {
@@ -252,8 +271,9 @@ export default {
       success: 'Sucesso ao consultar planos'
     },
     presell: {
-      successUpload: 'Sucesso ao realizar o upload da imagem',
-      imgError: 'Certifique-se de que a imagem é da extensão \'*.png\' e contém menos de 1Mb',
+      uploadSuccess: 'Sucesso ao realizar o upload da imagem',
+      deleteUploadSuccess: 'Sucesso ao remover a imagem',
+      imgError: 'Certifique-se de que a imagem é da extensão \'*.png\' e contém menos de 850Kb',
       newSuccess: 'Sucesso ao registrar a pre-sell',
       querySuccess: 'Sucesso ao consultar a lista de pre-sell'
     },
