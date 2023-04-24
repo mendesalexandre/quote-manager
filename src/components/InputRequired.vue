@@ -3,7 +3,7 @@
     filled
     :label="label"
     :rules="[(val) => (val && val.length > 0) || $t('components.lbl.inputRequire')]"
-    :hint="$t('components.lbl.mandatory')"
+    :hint="customHint || $t('components.lbl.mandatory')"
   />
 </template>
 
@@ -14,6 +14,10 @@ export default defineComponent({
   name: 'InputRequired',
   props: {
     label: {
+      type: String,
+      required: true
+    },
+    customHint: {
       type: String,
       required: false
     }

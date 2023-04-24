@@ -14,6 +14,7 @@
 #### Changed
 - Change the time notification from '5 milliseconds' to '1,5 milliseconds'
 - Change 'user login' to 'user email' [#27](https://github.com/BIEMAX/quote-manager/issues/27)
+- Added possibility to add a custom hint in 'required inputs'
 
 #### Implement
 - Implement sections for 'field to query' and 'buttons' on `Filter panel`
