@@ -21,6 +21,7 @@
 - Implement 'About section' to check database and backend services [#19](https://github.com/BIEMAX/quote-manager/issues/19)
 - Implement 'User history' [#28](https://github.com/BIEMAX/quote-manager/issues/28)
 - Implement 'User update info' page [#26](https://github.com/BIEMAX/quote-manager/issues/26)
+- Implement menu for 'Google Ads and affiliates' [#24](https://github.com/BIEMAX/quote-manager/issues/24)
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot
@@ -28,6 +29,7 @@
 - Fix invalid date after login [#17](https://github.com/BIEMAX/quote-manager/issues/17)
 - Fix 'keep me connected' not working [#22](https://github.com/BIEMAX/quote-manager/issues/22)
 - Fix user permissions in submenu options not working properly [#29](https://github.com/BIEMAX/quote-manager/issues/29)
+- Fix the menus always expanded after login [#32](https://github.com/BIEMAX/quote-manager/issues/32)
 
 # [1.0.0]
 

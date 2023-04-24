@@ -41,7 +41,6 @@
         :label="$t('view.home.lbl.menuMyFinances')"
         class="text-secondary"
         icon="account_balance"
-        default-opened
       >
         <q-item v-if="userHavePermission('Finances')" :inset-level="0.5" clickable v-ripple to="/finances">
           <q-item-section avatar>
@@ -122,7 +121,6 @@
         :label="$t('view.home.lbl.menuMyAds')"
         class="text-secondary"
         icon="mdi-google-ads"
-        default-opened
       >
         <q-item v-if="userHavePermission('Pre-sell')" :inset-level="0.5" clickable v-ripple to="/presell">
           <q-item-section avatar>
