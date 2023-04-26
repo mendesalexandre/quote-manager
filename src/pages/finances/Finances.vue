@@ -5,13 +5,13 @@
     <filter-panel>
       <template #filter-content>
         <!-- Bill name -->
-        <q-input filled v-model="billName" :label="$t('view.finance.lbl.billName')">
+        <q-input rounded outlined v-model="billName" :label="$t('view.finance.lbl.billName')">
           <template v-slot:prepend>
             <q-icon name="mdi-text-box-outline" />
           </template>
         </q-input>
         <!-- Tag name -->
-        <q-input filled v-model="tagName" :label="$t('view.finance.lbl.tagName')">
+        <q-input rounded outlined v-model="tagName" :label="$t('view.finance.lbl.tagName')">
           <template v-slot:prepend>
             <q-icon name="mdi-tag" />
           </template>

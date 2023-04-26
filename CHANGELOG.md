@@ -14,7 +14,8 @@
 #### Changed
 - Change the time notification from '5 milliseconds' to '1,5 milliseconds'
 - Change 'user login' to 'user email' [#27](https://github.com/BIEMAX/quote-manager/issues/27)
-- Added possibility to add a custom hint in 'required inputs'
+- Change the the custom hint in 'required inputs' to accept a custom one
+- Change the input from 'filled' to 'outlined' [#36](https://github.com/BIEMAX/quote-manager/issues/36)
 
 #### Implement
 - Implement sections for 'field to query' and 'buttons' on `Filter panel`
@@ -24,6 +25,7 @@
 - Implement 'User update info' page [#26](https://github.com/BIEMAX/quote-manager/issues/26)
 - Implement menu for 'Google Ads and affiliates' [#24](https://github.com/BIEMAX/quote-manager/issues/24)
 - Added function to remove bill from 'finances menu'
+- Option to upload pre-sell images [#31](https://github.com/BIEMAX/quote-manager/issues/31)
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot

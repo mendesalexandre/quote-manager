@@ -1,6 +1,6 @@
 <template>
   <q-input
-    filled
+    rounded outlined
     :label="$t('components.lbl.monthPicker')"
     mask="##/####"
     fill-mask="##/####"
