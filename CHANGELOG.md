@@ -16,6 +16,7 @@
 - Change 'user login' to 'user email' [#27](https://github.com/BIEMAX/quote-manager/issues/27)
 - Change the the custom hint in 'required inputs' to accept a custom one
 - Change the input from 'filled' to 'outlined' [#36](https://github.com/BIEMAX/quote-manager/issues/36)
+- Change the selected sub menu to highlight [#37](https://github.com/BIEMAX/quote-manager/issues/37)
 
 #### Implement
 - Implement sections for 'field to query' and 'buttons' on `Filter panel`

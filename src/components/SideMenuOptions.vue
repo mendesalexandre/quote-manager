@@ -16,17 +16,17 @@
         icon="home"
         to="/welcome"
       >
-        <q-item v-if="userHavePermission('TasksTodo')" :inset-level="0.5" clickable v-ripple to="/todo">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('TasksTodo')" :inset-level="0.5" clickable v-ripple to="/todo">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-format-list-bulleted" />
+            <q-icon name="mdi-format-list-bulleted" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t("view.home.lbl.menuTaskTodo") }}</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-if="userHavePermission('TasksDone')" :inset-level="0.5" clickable v-ripple to="/done">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('TasksDone')" :inset-level="0.5" clickable v-ripple to="/done">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-check-all" />
+            <q-icon name="mdi-check-all" />
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t("view.home.lbl.menuTaskDone") }}</q-item-label>
@@ -42,72 +42,72 @@
         class="text-secondary"
         icon="account_balance"
       >
-        <q-item v-if="userHavePermission('Finances')" :inset-level="0.5" clickable v-ripple to="/finances">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('Finances')" :inset-level="0.5" clickable v-ripple to="/finances">
           <q-item-section avatar>
-            <q-icon color="secondary" name="fa-solid fa-hand-holding-dollar" />
+            <q-icon name="fa-solid fa-hand-holding-dollar" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuFinances") }}
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-if="userHavePermission('CloseToOverdue')" :inset-level="0.5" clickable v-ripple to="/close-to-overdue">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('CloseToOverdue')" :inset-level="0.5" clickable v-ripple to="/close-to-overdue">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-calendar-clock" />
+            <q-icon name="mdi-calendar-clock" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuMyCloseToOverdue") }}
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-if="userHavePermission('NotPayed')" :inset-level="0.5" clickable v-ripple to="/not-paid">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('NotPayed')" :inset-level="0.5" clickable v-ripple to="/not-paid">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-calendar-alert" />
+            <q-icon name="mdi-calendar-alert" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuMyOverdueBills") }}
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-if="userHavePermission('Defaulters')" :inset-level="0.5" clickable v-ripple to="/defaulters">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('Defaulters')" :inset-level="0.5" clickable v-ripple to="/defaulters">
           <q-item-section avatar>
-            <q-icon color="secondary" name="assignment_ind" />
+            <q-icon name="assignment_ind" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuDefaulters") }}
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-if="userHavePermission('Reports')" :inset-level="0.5" clickable v-ripple to="/reports">
+        <q-item active-class="selected-item-menu"  v-if="userHavePermission('Reports')" :inset-level="0.5" clickable v-ripple to="/reports">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-chart-line" />
+            <q-icon name="mdi-chart-line" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuReports") }}
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-if="userHavePermission('Tags')" :inset-level="0.5" clickable v-ripple to="/tags">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('Tags')" :inset-level="0.5" clickable v-ripple to="/tags">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-tag-multiple" />
+            <q-icon name="mdi-tag-multiple" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuTags") }}
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item v-if="userHavePermission('Indicators')" :inset-level="0.5" clickable v-ripple to="/indicators">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('Indicators')" :inset-level="0.5" clickable v-ripple to="/indicators">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-finance" />
+            <q-icon name="mdi-finance" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuIndicators") }}
             </q-item-label>
           </q-item-section>
@@ -122,45 +122,45 @@
         class="text-secondary"
         icon="mdi-google-ads"
       >
-        <q-item v-if="userHavePermission('Pre-sell')" :inset-level="0.5" clickable v-ripple to="/presell">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('Pre-sell')" :inset-level="0.5" clickable v-ripple to="/presell">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-web-plus" />
+            <q-icon name="mdi-web-plus" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuMyPresell") }}
             </q-item-label>
           </q-item-section>
         </q-item>
 
-        <q-item v-if="userHavePermission('Campaigns')" :inset-level="0.5" clickable v-ripple to="/campaigns">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('Campaigns')" :inset-level="0.5" clickable v-ripple to="/campaigns">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-finance" />
+            <q-icon name="mdi-finance" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuMyCampaigns") }}
             </q-item-label>
           </q-item-section>
         </q-item>
 
-        <q-item v-if="userHavePermission('AdsTips')" :inset-level="0.5" clickable v-ripple to="/ads-tips">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('AdsTips')" :inset-level="0.5" clickable v-ripple to="/ads-tips">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-lightbulb-on" />
+            <q-icon name="mdi-lightbulb-on" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuTips") }}
             </q-item-label>
           </q-item-section>
         </q-item>
 
-        <q-item v-if="userHavePermission('Roi')" :inset-level="0.5" clickable v-ripple to="/roi">
+        <q-item active-class="selected-item-menu" v-if="userHavePermission('Roi')" :inset-level="0.5" clickable v-ripple to="/roi">
           <q-item-section avatar>
-            <q-icon color="secondary" name="mdi-chart-areaspline" />
+            <q-icon name="mdi-chart-areaspline" />
           </q-item-section>
           <q-item-section>
-            <q-item-label color="secondary">
+            <q-item-label>
               {{ $t("view.home.lbl.menuMyRoi") }}
             </q-item-label>
           </q-item-section>
@@ -201,3 +201,9 @@ export default defineComponent({
   // }
 })
 </script>
+
+<style lang="sass">
+.selected-item-menu
+  color: white
+  background: $secondary
+</style>
