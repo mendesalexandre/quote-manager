@@ -1,6 +1,7 @@
 <template>
   <q-list bordered class="rounded-borders">
     <q-expansion-item
+      :default-opened="isMobile"
       expand-separator
       icon="mdi-filter-outline"
       :label="$t('components.lbl.filterTitle')"
@@ -24,12 +25,16 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'FilterPanel',
   setup () {
-    return { }
+    const $q = useQuasar()
+    return {
+      isMobile: ref(!$q.platform.is.mobile)
+    }
   }
 })
 </script>
