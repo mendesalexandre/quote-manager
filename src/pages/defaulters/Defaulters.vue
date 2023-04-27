@@ -41,8 +41,7 @@
 import {
   defineComponent,
   ref,
-  computed,
-  watch
+  computed
 } from 'vue'
 import { useStore } from 'vuex'
 
@@ -81,11 +80,7 @@ export default defineComponent({
       })
     }
 
-    const rows = computed(() => store.getters['defaulter/getDefaulters'])
-
-    watch(rows, () => {
-      showLoading(LoadingStatus.OFF)
-    })
+    const rows = ref(computed(() => store.getters['defaulter/getDefaulters']))
 
     return {
       rows,
@@ -107,9 +102,8 @@ export default defineComponent({
         })
         .onOk((newDefaulter: any) => {
           this.store.dispatch('defaulter/registerNewDefaulter', newDefaulter)
+          this.onSearchClick()
         })
-
-      this.onSearchClick()
     },
     onAddDebt (row) {
       this.$q

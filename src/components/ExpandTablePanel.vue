@@ -91,7 +91,7 @@ export default defineComponent({
     },
     rows: {
       type: Array,
-      required: true
+      required: false
     },
     columns: {
       type: Object,

@@ -25,8 +25,7 @@
 import {
   defineComponent,
   ref,
-  computed,
-  watch
+  computed
 } from 'vue'
 import { useStore } from 'vuex'
 
@@ -56,11 +55,7 @@ export default defineComponent({
       store.dispatch('bills/getBillsCloseToOverdueList', { showMessage: true })
     }
 
-    const rows = computed(() => store.getters['bills/getBillsCloseToOverdue'])
-
-    watch(rows, () => {
-      showLoading(LoadingStatus.OFF)
-    })
+    const rows = ref(computed(() => store.getters['bills/getBillsCloseToOverdue']))
 
     return {
       rows,

@@ -44,7 +44,7 @@ export default defineComponent({
       store.dispatch('user/queryUserHistory')
     })
 
-    const rows = computed(() => store.getters['user/getUserHistory'])
+    const rows = ref(computed(() => store.getters['user/getUserHistory']))
 
     return {
       rows,

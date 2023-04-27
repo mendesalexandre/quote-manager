@@ -27,7 +27,7 @@
 import {
   defineComponent,
   computed,
-  watch
+  ref
 } from 'vue'
 import { useStore } from 'vuex'
 
@@ -52,7 +52,6 @@ export default defineComponent({
   },
   data () {
     const store = useStore()
-    // const translate = i18n.global
     const billsColumns = notPaidColumns()
 
     const onSearchClick = () => {
@@ -60,11 +59,7 @@ export default defineComponent({
       store.dispatch('bills/getBillsOverdueList', { showMessage: true })
     }
 
-    const rows = computed(() => store.getters['bills/getBillsNotPayed'])
-
-    watch(rows, () => {
-      showLoading(LoadingStatus.OFF)
-    })
+    const rows = ref(computed(() => store.getters['bills/getBillsNotPayed']))
 
     return {
       rows,

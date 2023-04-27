@@ -37,6 +37,7 @@
 - Fix 'keep me connected' not working [#22](https://github.com/BIEMAX/quote-manager/issues/22)
 - Fix user permissions in submenu options not working properly [#29](https://github.com/BIEMAX/quote-manager/issues/29)
 - Fix the menus always expanded after login [#32](https://github.com/BIEMAX/quote-manager/issues/32)
+- Fix tables not updating after insert a new register [#43](https://github.com/BIEMAX/quote-manager/issues/43)
 
 # [1.0.0]
 

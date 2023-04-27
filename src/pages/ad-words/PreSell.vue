@@ -38,7 +38,6 @@
 import {
   ref,
   computed,
-  watch,
   defineComponent
 } from 'vue'
 import { useStore } from 'vuex'
@@ -86,11 +85,7 @@ export default defineComponent({
       }
     }
 
-    const rows = computed(() => store.getters['presell/getPresells'])
-
-    watch(rows, () => {
-      showLoading(LoadingStatus.OFF)
-    })
+    const rows = ref(computed(() => store.getters['presell/getPresells']))
 
     return {
       rows,

@@ -103,8 +103,6 @@ import {
   defineComponent,
   ref,
   computed,
-  watch,
-  watchEffect,
   onMounted
 } from 'vue'
 import { useStore } from 'vuex'
@@ -125,8 +123,8 @@ export default defineComponent({
       store.dispatch('bills/getBillsOverdueList', { showMessage: false })
     })
 
-    const billsCloseToOverdue = computed(() => store.getters['bills/getBillsCloseToOverdueLength'])
-    const billsNotPayed = computed(() => store.getters['bills/getBillsNotPayedLength'])
+    const billsCloseToOverdue = ref(computed(() => store.getters['bills/getBillsCloseToOverdueLength']))
+    const billsNotPayed = ref(computed(() => store.getters['bills/getBillsNotPayedLength']))
     const tasksTodo = 0
     const tips = `
     -O melhor dia de ir ao mercado é entre os dias 15 à 28<br>
@@ -138,26 +136,6 @@ export default defineComponent({
     -Quer aprender como gastar corretamente seu dinheiro? Acesse os indicadores
     -Quer aprender a investir o seu dinheiro? Invista em CDB do banco BTG, na liquidez diária.
     `
-
-    watch(billsCloseToOverdue, () => {
-      showLoading(LoadingStatus.OFF)
-    })
-
-    watchEffect(async () => {
-      if (billsCloseToOverdue.value === undefined) {
-        showLoading(LoadingStatus.OFF)
-      }
-    })
-
-    watch(billsNotPayed, () => {
-      showLoading(LoadingStatus.OFF)
-    })
-
-    watchEffect(async () => {
-      if (billsNotPayed.value === undefined) {
-        showLoading(LoadingStatus.OFF)
-      }
-    })
 
     return {
       slide: ref(1),
