@@ -93,7 +93,6 @@ import ServerAvailability from 'src/pages/generic/ServerAvailability.vue'
 import ReleaseNotes from 'src/pages/generic/ReleaseNotes.vue'
 import UserHistory from 'src/pages/user/UserHistory.vue'
 import UserUpdate from 'src/pages/user/UserUpdate.vue'
-import { store } from 'quasar/wrappers'
 
 export default defineComponent({
   name: 'UserSubmenuOptions',

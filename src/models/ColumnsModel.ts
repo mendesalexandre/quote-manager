@@ -80,17 +80,35 @@ export function userHistoryColumns () {
  */
 export function preSellColumns () {
   return [
-    {
-      name: 'name',
-      field: 'name',
-      required: true,
-      label: i18n.global.t('columns.presell.productName'),
-      sortable: true,
-      align: 'left'
-    },
-    { name: 'dueDate', field: 'dueDate', label: i18n.global.t('columns.presell.onSince'), sortable: true, align: 'left' },
-    { name: 'value', field: 'value', label: i18n.global.t('columns.presell.platform'), sortable: true, align: 'left' },
+    { name: 'status', field: 'status', label: i18n.global.t('columns.presell.status'), sortable: true, align: 'left' },
+    { name: 'productName', field: 'productName', required: true, label: i18n.global.t('columns.presell.productName'), sortable: true, align: 'left' },
+    { name: 'finalUrl', field: 'finalUrl', required: true, label: i18n.global.t('columns.presell.finalUrl'), sortable: true, align: 'left' },
     { name: 'actions', field: 'action', label: i18n.global.t('columns.presell.actions'), sortable: false, align: 'right' }
+  ]
+}
+
+/*
+ * Columns for 'Defaulters' screen/view
+ */
+export function defaultersColumns () {
+  return [
+    { name: 'status', field: 'status', label: i18n.global.t('columns.defaulter.status'), sortable: true, align: 'left' },
+    { name: 'name', field: 'name', required: true, label: i18n.global.t('columns.defaulter.name'), sortable: true, align: 'left' },
+    { name: 'totalValue', field: 'totalValue', required: true, label: i18n.global.t('columns.defaulter.totalValue'), sortable: true, align: 'left' },
+    { name: 'lastUpdateOn', field: 'lastUpdateOn', required: true, label: i18n.global.t('columns.defaulter.lastUpdateOn'), sortable: true, align: 'left' },
+    { name: 'actions', field: 'action', label: i18n.global.t('columns.defaulter.actions'), sortable: false, align: 'right' }
+  ]
+}
+
+/*
+ * Columns for 'Defaulters child table (expand row)'
+ */
+export function defaultersChildColumns () {
+  return [
+    { name: 'desc', field: 'description', label: i18n.global.t('columns.defaulter.desc'), sortable: false, align: 'left' },
+    { name: 'value', field: 'value', label: i18n.global.t('columns.defaulter.value'), sortable: false, align: 'left', format: val => `${i18n.global.t('generic.currencySymbol')} ${val}` },
+    { name: 'type', field: 'type', label: i18n.global.t('columns.defaulter.type'), sortable: false, align: 'left' },
+    { name: 'createdOn', field: 'createdOn', label: i18n.global.t('columns.defaulter.createdOn'), sortable: false, align: 'left' }
   ]
 }
 
@@ -99,5 +117,7 @@ export default {
   notPaidColumns,
   myBillsColumns,
   userHistoryColumns,
-  preSellColumns
+  preSellColumns,
+  defaultersColumns,
+  defaultersChildColumns
 }

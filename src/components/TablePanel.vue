@@ -72,6 +72,18 @@
       </q-td>
     </template>
 
+    <!--Status cell with q-chip -->
+    <template v-slot:body-cell-status="props">
+      <!-- class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-style-transition"-->
+      <q-td>
+        <q-chip
+          text-color="white"
+          :label="translateStatus(props.row.status)"
+          :color="getStatusColor(props.row.status)"
+        />
+      </q-td>
+    </template>
+
     <!--Buttons for grid view-->
     <template v-slot:item="props">
       <div
@@ -120,6 +132,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { useQuasar } from 'quasar'
+import i18n from 'src/util/i18n'
 
 export default defineComponent({
   name: 'TablePanel',
@@ -163,7 +176,8 @@ export default defineComponent({
     return {
       selected: ref([]),
       changeToGrid: ref($q.platform.is.mobile),
-      filter: ref('')
+      filter: ref(''),
+      i18n
     }
   },
   methods: {
@@ -175,6 +189,26 @@ export default defineComponent({
     },
     onPayClick (props: any) {
       this.$emit('on-pay-click-event', props.row)
+    },
+    translateStatus (status) {
+      if (status === 'TO_BE_CREATED') return this.i18n.global.t('view.presell.opt.toCreate')
+      else if (status === 'TO_BE_UPDATED') return this.i18n.global.t('view.presell.opt.toUpdate')
+      else if (status === 'CREATING') return this.i18n.global.t('view.presell.opt.creating')
+      else if (status === 'CREATED') return this.i18n.global.t('view.presell.opt.available')
+      else return this.i18n.global.t('view.presell.opt.all')
+    },
+    getStatusColor (status) {
+      if (status === 'TO_BE_CREATED') {
+        return 'negative'
+      } else if (status === 'TO_BE_UPDATED') {
+        return 'info'
+      } else if (status === 'CREATING') {
+        return 'warning'
+      } else if (status === 'CREATED') {
+        return 'positive'
+      } else {
+        return 'tertiary'
+      }
     }
   }
 })

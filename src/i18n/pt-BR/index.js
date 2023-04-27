@@ -7,7 +7,13 @@ export default {
     },
     defaulter: {
       lbl: {
-        aa: 'bb'
+        title: 'Inadimplentes',
+        defaulterName: 'Nome do inadimplente',
+        desc: 'Descrição'
+      },
+      opt: {
+        debtor: 'Valor pendente',
+        creditor: 'Valor quitado'
       },
       msg: {
         success: '',
@@ -107,6 +113,28 @@ export default {
         login: 'Clique para efetuar o login'
       }
     },
+    newDefaulter: {
+      lbl: {
+        firstTitle: 'Informações',
+        secondTitle: 'Valores',
+        defaulterName: 'Nome do inadimplente',
+        type: ''
+      }
+    },
+    newDefAddValue: {
+      lbl: {
+        firstTitle: 'Valores',
+        description: 'Descrição',
+        value: 'Valor à ser cobrado',
+        type: 'Tipo',
+        payByInstallments: 'Pagar em parcelas?',
+        quantity: 'Quantidade de parcelas'
+      },
+      opt: {
+        debtor: 'Devedor',
+        creditor: 'Credor'
+      }
+    },
     newFinance: {
       lbl: {
         firstTitle: 'Dados gerais',
@@ -137,9 +165,6 @@ export default {
         firstTitle: 'Sobre o produto',
         secondTitle: 'Estilização da página',
         thirdTitle: 'Finalizar',
-        continue: 'Continuar',
-        back: 'Voltar',
-        finish: 'Finalizar',
         productName: 'Nome do produto',
         pageTitleText: 'Título da página',
         headLineText: 'Headline (manchete) da página',
@@ -223,6 +248,18 @@ export default {
       isToDivideValue: 'Valor parcelado',
       actions: 'Ações'
     },
+    defaulter: {
+      status: 'Situação',
+      name: 'Nome do inadimplente',
+      totalValue: 'Valor total',
+      actions: 'Ações',
+      lastUpdateOn: 'Última atualização',
+      // Child table
+      desc: 'Descrição',
+      value: 'Valor R$',
+      type: 'Tipo',
+      createdOn: 'Data do registro'
+    },
     history: {
       action: 'Tipo de ação',
       description: 'Descrição',
@@ -236,8 +273,8 @@ export default {
     },
     presell: {
       productName: 'Nome do produto',
-      onSince: 'Online desde',
-      platform: 'Plataforma',
+      status: 'Situação',
+      finalUrl: 'Link da pré-sell',
       actions: 'Ações'
     }
   },
@@ -254,6 +291,9 @@ export default {
       querySuccess: 'Sucesso ao consultar as contas',
       queryCloseToOverdueSuccess: 'Sucesso ao consultar contas próximas a vencer',
       queryBillNotPaidSuccess: 'Sucesso ao consultar contas não pagas'
+    },
+    defaulter: {
+      success: 'Sucesso ao obter os inadimplentes'
     },
     login: {
       success: 'Sucesso ao efetuar login',
@@ -304,6 +344,7 @@ export default {
       buttonFinish: 'Finalizar',
       buttonReturn: 'Voltar',
       buttonContinue: 'Continuar',
+      buttonExit: 'Sair...',
       monthPicker: 'Mês/Ano',
       datePicker: 'Selecione uma data',
       inputRequire: 'Campo obrigatório',
@@ -326,7 +367,9 @@ export default {
       new: 'Cadastrar',
       pay: 'Pagar',
       list: 'Lista',
-      grid: 'Grade'
+      grid: 'Grade',
+      add: 'Adicionar',
+      subtract: 'Subtrair'
     }
   },
   generic: {

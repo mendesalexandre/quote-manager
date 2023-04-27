@@ -7,7 +7,8 @@
 -
 
 #### Implement
-- Get device information on user registration/login [25](https://github.com/BIEMAX/quote-manager/issues/25)
+- Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)
+- Defaulters screen, add and subtract debt and user tracking changes on the values [#35](https://github.com/BIEMAX/quote-manager/issues/35)
 
 # [1.0.1]
 

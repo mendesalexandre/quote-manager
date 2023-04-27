@@ -24,7 +24,7 @@
             push
             @click="step = 2"
             color="primary"
-            :label="$t('view.newPresell.lbl.continue')"
+            :label="$t('components.lbl.buttonContinue')"
           />
         </q-stepper-navigation>
       </q-step>
@@ -59,13 +59,13 @@
             push
             color="primary"
             @click="onOkClick()"
-            :label="$t('view.newPresell.lbl.finish')"
+            :label="$t('components.lbl.buttonFinish')"
           />
           <q-btn
             push
             @click="step = 1"
             class="bg-white text-primary q-ml-sm"
-            :label="$t('view.newPresell.lbl.back')"
+            :label="$t('components.lbl.buttonReturn')"
           />
         </q-stepper-navigation>
       </q-step>
@@ -114,8 +114,8 @@ export default defineComponent({
       // Presell objects
       productName: ref(''),
       pageTitleText: ref(''),
-      headLineText: ref(''),
-      buttonText: ref(''),
+      headLineText: ref('Discover The Secret of {{ productName }}'),
+      buttonText: ref('Click Here and Access the Official Website > NOW!'),
       affiliateUrl: ref(''),
       showLastChanceToBuy: ref(false),
       imageId: ref(''),
@@ -203,6 +203,32 @@ export default defineComponent({
         })
         .catch((error: any) => {
           notifyError(error)
+        })
+    },
+    validateAffLink () {
+      const url = new URL(this.affiliateUrl)
+      fetch(url.toString())
+        .then(response => {
+          if (response.ok) {
+            // URL is valid and response was successful
+            return response.text()
+          } else {
+            // Error occurred, handle accordingly
+            throw new Error('Error requesting URL')
+          }
+        })
+        .then(data => {
+          // Check for malicious content in response data
+          if (data.includes('malware')) {
+            throw new Error('URL contains malware')
+          } else {
+            // URL is valid and does not contain malware
+            console.log('URL is valid and safe')
+          }
+        })
+        .catch(error => {
+          // Handle errors
+          console.error(error)
         })
     }
   }

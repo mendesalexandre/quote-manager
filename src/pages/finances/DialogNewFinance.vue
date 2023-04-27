@@ -159,20 +159,20 @@ export default defineComponent({
   },
   methods: {
     onOkClick () {
-      const newBill = new NewFinance(
-        '',
-        this.user.data.user,
-        this.billName,
-        convertDate(this.dueDate),
-        this.description,
-        this.billValue,
-        this.quantityAmount,
-        this.selectedTags,
-        this.isCashEntry,
-        this.isBillPayed,
-        this.isToDivideValue
-      )
-      this.$emit('ok', newBill)
+      // const newBill = new NewFinance(
+      //   '',
+      //   this.user.data.user,
+      //   this.billName,
+      //   convertDate(this.dueDate),
+      //   this.description,
+      //   this.billValue,
+      //   this.quantityAmount,
+      //   this.selectedTags,
+      //   this.isCashEntry,
+      //   this.isBillPayed,
+      //   this.isToDivideValue
+      // )
+      // this.$emit('ok', newBill)
       this.$emit('hide')
     },
     onCancelClick () {

@@ -69,7 +69,6 @@ export default defineComponent({
 
     const onSearchClick = () => {
       showLoading(LoadingStatus.ON)
-      console.log('status: ', this.status)
       const status = getStatusEnum(this.status)
       store.dispatch('presell/getPresellList', {
         productName: this.productName,
@@ -79,11 +78,11 @@ export default defineComponent({
 
     function getStatusEnum (status) {
       switch (status.toUpperCase().trim()) {
-        case i18n.global.t('view.presell.opt.all'): return PresellStatus.ALL
-        case i18n.global.t('view.presell.opt.toCreate'): return PresellStatus.TO_BE_CREATED
-        case i18n.global.t('view.presell.opt.toUpdate'): return PresellStatus.TO_BE_UPDATED
-        case i18n.global.t('view.presell.opt.creating'): return PresellStatus.CREATING
-        case i18n.global.t('view.presell.opt.available'): return PresellStatus.CREATED
+        case i18n.global.t('view.presell.opt.all').toUpperCase().trim(): return PresellStatus.ALL
+        case i18n.global.t('view.presell.opt.toCreate').toUpperCase().trim(): return PresellStatus.TO_BE_CREATED
+        case i18n.global.t('view.presell.opt.toUpdate').toUpperCase().trim(): return PresellStatus.TO_BE_UPDATED
+        case i18n.global.t('view.presell.opt.creating').toUpperCase().trim(): return PresellStatus.CREATING
+        case i18n.global.t('view.presell.opt.available').toUpperCase().trim(): return PresellStatus.CREATED
       }
     }
 
