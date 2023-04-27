@@ -17,7 +17,7 @@
             <q-checkbox v-model="billPaid" :label="$t('view.newFinance.lbl.billPaid')" />
           </div>
 
-          <input-required v-model="description" :label="$t('view.newFinance.lbl.desc')" />
+          <input-required v-model="description" :label="$t('components.lbl.desc')" />
         </div>
 
         <q-stepper-navigation>

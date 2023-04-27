@@ -11,7 +11,7 @@
           </template>
         </q-input>
         <!-- Description -->
-        <q-input rounded outlined v-model="description" :label="$t('view.defaulter.lbl.desc')">
+        <q-input rounded outlined v-model="description" :label="$t('components.lbl.desc')">
           <template v-slot:prepend>
             <q-icon name="mdi-tag" />
           </template>

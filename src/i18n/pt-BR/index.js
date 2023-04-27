@@ -8,19 +8,11 @@ export default {
     defaulter: {
       lbl: {
         title: 'Inadimplentes',
-        defaulterName: 'Nome do inadimplente',
-        desc: 'Descrição'
+        defaulterName: 'Nome do inadimplente'
       },
       opt: {
         debtor: 'Valor pendente',
         creditor: 'Valor quitado'
-      },
-      msg: {
-        success: '',
-        error: ''
-      },
-      tip: {
-        cc: 'aa'
       }
     },
     finance: {
@@ -34,7 +26,6 @@ export default {
       lbl: {
         title: 'Página inicial',
         subTitle: 'ASPlus',
-        search: 'Pesquisar',
         // Home
         menuTaskTodo: 'Tarefas à fazer',
         menuTaskDone: 'Tarefas completas',
@@ -117,14 +108,12 @@ export default {
       lbl: {
         firstTitle: 'Informações',
         secondTitle: 'Valores',
-        defaulterName: 'Nome do inadimplente',
-        type: ''
+        defaulterName: 'Nome do inadimplente'
       }
     },
     newDefAddValue: {
       lbl: {
         firstTitle: 'Valores',
-        description: 'Descrição',
         value: 'Valor à ser cobrado',
         type: 'Tipo',
         payByInstallments: 'Pagar em parcelas?',
@@ -144,7 +133,6 @@ export default {
         dueDate: 'Data de vencimento',
         billType: 'Tipo de movimento da conta',
         billPaid: 'Conta paga?',
-        desc: 'Descrição',
         value: 'Valor R$',
         qtd: 'Número de prestações',
         tags: 'Selecione as tags',
@@ -225,57 +213,48 @@ export default {
       user: 'Usuário',
       name: 'Nome da conta',
       dueDate: 'Vencimento',
-      description: 'Descrição',
       value: 'Valor',
       quantityAmount: 'Nº Parcelas',
       tags: 'Tags',
       isCashEntry: 'Tipo de conta',
       isBillPayed: 'Conta paga',
-      isToDivideValue: 'Valor parcelado',
-      actions: 'Ações'
+      isToDivideValue: 'Valor parcelado'
     },
     closeToOverdue: {
       id: 'Identificador',
       user: 'Usuário',
       name: 'Nome da conta',
       dueDate: 'Vencimento',
-      desc: 'Descrição',
       value: 'Valor',
       qtd: 'Nº Parcelas',
       tags: 'Tags',
       isCashEntry: 'Tipo de conta',
       isBillPayed: 'Conta paga',
-      isToDivideValue: 'Valor parcelado',
-      actions: 'Ações'
+      isToDivideValue: 'Valor parcelado'
     },
     defaulter: {
       status: 'Situação',
       name: 'Nome do inadimplente',
       totalValue: 'Valor total',
-      actions: 'Ações',
       lastUpdateOn: 'Última atualização',
       // Child table
-      desc: 'Descrição',
       value: 'Valor R$',
       type: 'Tipo',
       createdOn: 'Data do registro'
     },
     history: {
       action: 'Tipo de ação',
-      description: 'Descrição',
       eventDate: 'Data do evento'
     },
     notPaid: {
       name: 'Nome da conta',
       dueDate: 'Vencimento',
-      value: 'Valor',
-      actions: 'Ações'
+      value: 'Valor'
     },
     presell: {
       productName: 'Nome do produto',
       status: 'Situação',
-      finalUrl: 'Link da pré-sell',
-      actions: 'Ações'
+      finalUrl: 'Link da pré-sell'
     }
   },
   msg: {
@@ -359,7 +338,9 @@ export default {
       close: 'Fechar',
       helpButton: 'Clique para obter ajuda',
       tableFullscreen: 'Tela cheia',
-      tableToggleFullscreen: 'Sair da tela cheia'
+      tableToggleFullscreen: 'Sair da tela cheia',
+      desc: 'Descrição',
+      actions: 'Ações'
     },
     tip: {
       edit: 'Editar',

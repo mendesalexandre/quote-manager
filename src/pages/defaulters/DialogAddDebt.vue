@@ -9,7 +9,7 @@
         :done="step > 1"
       >
         <div class="q-gutter-md">
-          <input-required v-model="description" :label="$t('view.newDefAddValue.lbl.description')"/>
+          <input-required v-model="description" :label="$t('components.lbl.desc')"/>
           <input-required v-model="value" :label="$t('view.newDefAddValue.lbl.value')" type="number" mask="###"/>
           <!-- Type -->
           <q-select outlined v-model="typeSelected" :options="typeOptions" :label="$t('view.newDefAddValue.lbl.type')">

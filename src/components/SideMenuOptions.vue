@@ -4,7 +4,7 @@
       <!-- <q-input
         outlined
         v-model="textSearch"
-        :placeholder="$t('view.home.lbl.search')"
+        :placeholder="$t('components.lbl.buttonSearch')"
       /> -->
 
       <!--Home-->
