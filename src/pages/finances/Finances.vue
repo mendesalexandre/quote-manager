@@ -109,6 +109,7 @@ export default defineComponent({
         })
         .onOk((newBill: any) => {
           this.store.dispatch('bills/registerNewBill', newBill)
+          this.onSearchClick()
         })
     },
     onDateUpdateEvent (newValue) {
@@ -126,9 +127,7 @@ export default defineComponent({
           this.store.dispatch('bills/removeBill', row.id)
           this.onSearchClick()
         })
-        .onCancel(() => {
-          notifyError(i18n.global.t('msg.deleteBill.notDeleteError'))
-        })
+        .onCancel(() => { })
     }
   }
 })

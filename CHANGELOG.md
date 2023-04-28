@@ -41,6 +41,7 @@
 - Fix tables not updating after insert a new register [#43](https://github.com/BIEMAX/quote-manager/issues/43)
 - Fix the query data after the dialogs close's [#39](https://github.com/BIEMAX/quote-manager/issues/39)
 - Fix a bug that prevents a new bill be registered [#45](https://github.com/BIEMAX/quote-manager/issues/45)
+- Fix bill list not updating after dialog close [#47](https://github.com/BIEMAX/quote-manager/issues/47)
 
 # [1.0.0]
 
