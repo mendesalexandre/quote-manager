@@ -126,11 +126,20 @@
       </div>
     </template>
 
+    <!-- <div class="row justify-center q-mt-md">
+      <q-pagination
+        v-model="pagination.page"
+        color="grey-8"
+        :max="pagesNumber"
+        size="sm"
+      />
+    </div> -->
+
   </q-table>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { useQuasar } from 'quasar'
 import i18n from 'src/util/i18n'
 
