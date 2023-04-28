@@ -121,7 +121,7 @@ export default defineComponent({
   },
   data () {
     onMounted(() => {
-      store.dispatch('tags/getTagsList')
+      store.dispatch('tags/getTagsList', { showMessage: false })
     })
 
     const translate = i18n.global
@@ -159,20 +159,19 @@ export default defineComponent({
   },
   methods: {
     onOkClick () {
-      // const newBill = new NewFinance(
-      //   '',
-      //   this.user.data.user,
-      //   this.billName,
-      //   convertDate(this.dueDate),
-      //   this.description,
-      //   this.billValue,
-      //   this.quantityAmount,
-      //   this.selectedTags,
-      //   this.isCashEntry,
-      //   this.isBillPayed,
-      //   this.isToDivideValue
-      // )
-      // this.$emit('ok', newBill)
+      const newBill: NewFinance = {
+        id: '',
+        name: this.billName,
+        dueDate: convertDate(this.dueDate),
+        description: this.description,
+        value: this.billValue,
+        quantityAmount: this.quantityAmount,
+        tags: this.selectedTags,
+        isCashEntry: this.isCashEntry,
+        isBillPayed: this.isBillPayed,
+        isToDivideValue: this.isToDivideValue
+      }
+      this.$emit('ok', newBill)
       this.$emit('hide')
     },
     onCancelClick () {

@@ -32,14 +32,15 @@ const getters = {
 }
 
 const actions = {
-  async getTagsList ({ commit }) {
+  async getTagsList ({ commit }, payload) {
     try {
       showLoading(LoadingStatus.ON)
       const tags = await getTags()
       if (tags) {
         commit('setTags', tags)
         showLoading(LoadingStatus.OFF)
-        notifySuccess(i18n.global.t('msg.tag.querySuccess'))
+        if (payload.showMessage) notifySuccess(i18n.global.t('msg.tag.querySuccess'))
+        return tags
       }
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
