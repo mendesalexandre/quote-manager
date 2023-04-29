@@ -41,6 +41,9 @@
             <q-btn v-if="showButtonSubtract" dense round flat color="secondary" icon="mdi-minus-circle-outline" @click="onSubtractClick(props)">
               <q-tooltip>{{ $t("components.tip.subtract") }}</q-tooltip>
             </q-btn>
+            <q-btn v-if="showButtonRemove" dense round flat color="secondary" icon="mdi-delete-outline" @click="onRemoveClick(props)">
+              <q-tooltip>{{ $t("components.tip.remove") }}</q-tooltip>
+            </q-btn>
           </div>
           <div v-else>
             {{ col.value }}
@@ -114,6 +117,13 @@ export default defineComponent({
     showButtonSubtract: {
       type: Boolean,
       required: true
+    },
+    /**
+     * Enable or disable button for remove/delete defaulter.
+     */
+    showButtonRemove: {
+      type: Boolean,
+      required: true
     }
   },
   data () {
@@ -131,6 +141,9 @@ export default defineComponent({
     },
     onSubtractClick (props: any) {
       this.$emit('on-subtract-click-event', props.row)
+    },
+    onRemoveClick (props: any) {
+      this.$emit('on-remove-click-event', props.row)
     },
     translateType (type: string) {
       if (type.toUpperCase().trim() === 'DEBTOR') return this.i18n.global.t('view.defaulter.opt.debtor')

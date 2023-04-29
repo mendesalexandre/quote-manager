@@ -30,6 +30,7 @@
 - Implement menu for 'Google Ads and affiliates' [#24](https://github.com/BIEMAX/quote-manager/issues/24)
 - Added function to remove bill from 'finances menu'
 - Option to upload pre-sell images [#31](https://github.com/BIEMAX/quote-manager/issues/31)
+- Implement function to delete defaulter [#48](https://github.com/BIEMAX/quote-manager/issues/48)
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot

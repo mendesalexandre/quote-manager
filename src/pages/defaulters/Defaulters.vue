@@ -31,8 +31,10 @@
       :rows="rows"
       :show-button-add="true"
       :show-button-subtract="true"
+      :show-button-remove="true"
       @on-add-click-event="onAddDebt"
       @on-subtract-click-event="onSubDebt"
+      @on-remove-click-event="onRemoveDefaulter"
     ></expand-table-panel>
   </q-page>
 </template>
@@ -47,6 +49,7 @@ import { useStore } from 'vuex'
 
 import { defaultersColumns, defaultersChildColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
+import i18n from 'src/util/i18n'
 import { LoadingStatus } from 'src/models/StatusModel'
 
 import FilterPanel from 'src/components/FilterPanel.vue'
@@ -128,6 +131,19 @@ export default defineComponent({
         .onOk((newDebt: any) => {
           newDebt.id = row.id
           this.store.dispatch('defaulter/subtractDebt', newDebt)
+          this.onSearchClick()
+        })
+    },
+    onRemoveDefaulter (row) {
+      this.$q
+        .dialog({
+          title: i18n.global.t('msg.deleteDefaulter.title'),
+          message: i18n.global.t('msg.deleteDefaulter.message'),
+          persistent: true,
+          cancel: true
+        })
+        .onOk(() => {
+          this.store.dispatch('defaulter/removeDefaulter', row.id)
           this.onSearchClick()
         })
     }

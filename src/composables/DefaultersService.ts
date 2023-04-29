@@ -52,9 +52,21 @@ export async function subtractValueDebt (payload: any) {
     })
 }
 
+export async function deleteDefaulter (payload: any) {
+  return await apiAuth
+    .delete(`defaulters/delete/${payload}`)
+    .then((response: any) => {
+      return response.data.message
+    })
+    .catch((error: any) => {
+      throw error?.response?.data?.message || error?.message
+    })
+}
+
 export default {
   getDefaulters,
   newDefaulter,
   addValueDebt,
-  subtractValueDebt
+  subtractValueDebt,
+  deleteDefaulter
 }

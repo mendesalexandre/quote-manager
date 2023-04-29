@@ -274,6 +274,10 @@ export default {
     defaulter: {
       success: 'Sucesso ao obter os inadimplentes'
     },
+    deleteDefaulter: {
+      title: 'Dejesa realmente apagar o inadimplente?',
+      message: 'Uma vez removido, não será possível desfazer as dívidas quitadas.'
+    },
     login: {
       success: 'Sucesso ao efetuar login',
       error: '',

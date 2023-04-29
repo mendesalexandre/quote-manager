@@ -1,4 +1,10 @@
-import { getDefaulters, newDefaulter, addValueDebt, subtractValueDebt } from 'src/composables/DefaultersService'
+import {
+  getDefaulters,
+  newDefaulter,
+  addValueDebt,
+  subtractValueDebt,
+  deleteDefaulter
+} from 'src/composables/DefaultersService'
 
 // Utils
 import { showLoading } from 'src/util/Loading'
@@ -81,8 +87,19 @@ const actions = {
       showLoading(LoadingStatus.OFF)
       notifyError(error)
     }
+  },
+  async removeDefaulter ({ commit }, payload) {
+    try {
+      showLoading(LoadingStatus.ON)
+      const removeDefaulter = await deleteDefaulter(payload)
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(removeDefaulter)
+      return removeDefaulter
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
+    }
   }
-
 }
 
 export default {
