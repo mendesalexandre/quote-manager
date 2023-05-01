@@ -36,12 +36,10 @@ const actions = {
     try {
       showLoading(LoadingStatus.ON)
       const tags = await getTags()
-      if (tags) {
-        commit('setTags', tags)
-        showLoading(LoadingStatus.OFF)
-        if (payload.showMessage) notifySuccess(i18n.global.t('msg.tag.querySuccess'))
-        return tags
-      }
+      commit('setTags', tags)
+      showLoading(LoadingStatus.OFF)
+      if (payload.showMessage) notifySuccess(i18n.global.t('msg.tag.querySuccess'))
+      return tags
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)

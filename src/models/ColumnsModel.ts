@@ -112,6 +112,15 @@ export function defaultersChildColumns () {
   ]
 }
 
+/**
+ * Columns for 'Tags'
+ */
+export function tagsColumns () {
+  return [
+    { name: 'name', field: 'name', label: i18n.global.t('columns.tags.name'), sortable: false, align: 'left' }
+  ]
+}
+
 export default {
   closeToOverdueColumns,
   notPaidColumns,
@@ -119,5 +128,6 @@ export default {
   userHistoryColumns,
   preSellColumns,
   defaultersColumns,
-  defaultersChildColumns
+  defaultersChildColumns,
+  tagsColumns
 }

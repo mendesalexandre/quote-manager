@@ -199,6 +199,11 @@ export default {
         newPassword: 'Senha nova'
       }
     },
+    tags: {
+      lbl: {
+        title: 'Minhas tags'
+      }
+    },
     task: {},
     plan: {
       planOne: 'Gratuito', // Free
@@ -250,6 +255,9 @@ export default {
       name: 'Nome da conta',
       dueDate: 'Vencimento',
       value: 'Valor'
+    },
+    tags: {
+      name: 'Nome da tag'
     },
     presell: {
       productName: 'Nome do produto',
