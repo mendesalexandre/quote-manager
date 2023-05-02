@@ -92,7 +92,7 @@
       >
         <q-card>
           <q-card-section>
-            <q-chip outline color="primary" text-color="white" icon="event">
+            <q-chip outline color="primary" text-color="white" icon="label">
               {{ props.row.name }}
             </q-chip>
           </q-card-section>
