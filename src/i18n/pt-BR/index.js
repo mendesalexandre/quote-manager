@@ -282,10 +282,6 @@ export default {
     defaulter: {
       success: 'Sucesso ao obter os inadimplentes'
     },
-    deleteDefaulter: {
-      title: 'Dejesa realmente apagar o inadimplente?',
-      message: 'Uma vez removido, não será possível desfazer as dívidas quitadas.'
-    },
     login: {
       success: 'Sucesso ao efetuar login',
       error: '',
@@ -316,6 +312,10 @@ export default {
       querySuccess: 'Sucesso ao consultar as tags',
       deleteSuccess: 'Sucesso ao deletar a tag',
       tagAlreadyAdded: 'Tag já adicionada à lista'
+    },
+    delete: {
+      title: 'Dejesa realmente apagar o registro?',
+      message: 'Uma vez removido, não será possível desfazer as alterações'
     },
     task: {
       newSuccess: 'Tarefa cadastrada com sucesso',

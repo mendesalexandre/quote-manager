@@ -31,6 +31,7 @@
 - Added function to remove bill from 'finances menu'
 - Option to upload pre-sell images [#31](https://github.com/BIEMAX/quote-manager/issues/31)
 - Implement function to delete defaulter [#48](https://github.com/BIEMAX/quote-manager/issues/48)
+- Implement tags menu [#49](https://github.com/BIEMAX/quote-manager/issues/49)
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot

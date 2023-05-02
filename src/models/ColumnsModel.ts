@@ -94,7 +94,7 @@ export function defaultersColumns () {
   return [
     { name: 'status', field: 'status', label: i18n.global.t('columns.defaulter.status'), sortable: true, align: 'left' },
     { name: 'name', field: 'name', required: true, label: i18n.global.t('columns.defaulter.name'), sortable: true, align: 'left' },
-    { name: 'totalValue', field: 'totalValue', required: true, label: i18n.global.t('columns.defaulter.totalValue'), sortable: true, align: 'left' },
+    { name: 'totalValue', field: 'totalValue', required: true, label: i18n.global.t('columns.defaulter.totalValue'), sortable: true, align: 'left', format: val => `${i18n.global.t('generic.currencySymbol')} ${val}` },
     { name: 'lastUpdateOn', field: 'lastUpdateOn', required: true, label: i18n.global.t('columns.defaulter.lastUpdateOn'), sortable: true, align: 'left' },
     { name: 'actions', field: 'action', label: i18n.global.t('components.lbl.actions'), sortable: false, align: 'right' }
   ]
@@ -117,7 +117,8 @@ export function defaultersChildColumns () {
  */
 export function tagsColumns () {
   return [
-    { name: 'name', field: 'name', label: i18n.global.t('columns.tags.name'), sortable: false, align: 'left' }
+    { name: 'name', field: 'name', label: i18n.global.t('columns.tags.name'), sortable: false, align: 'left' },
+    { name: 'actions', field: 'action', label: i18n.global.t('components.lbl.actions'), sortable: false, align: 'right' }
   ]
 }
 

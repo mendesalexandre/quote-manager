@@ -49,10 +49,9 @@ const actions = {
     try {
       showLoading(LoadingStatus.ON)
       const tags = await newTag(payload)
-      if (tags) {
-        showLoading(LoadingStatus.OFF)
-        notifySuccess(i18n.global.t('msg.tag.newSuccess'))
-      }
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(i18n.global.t('msg.tag.newSuccess'))
+      return tags
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)

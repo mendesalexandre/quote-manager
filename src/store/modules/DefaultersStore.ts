@@ -42,11 +42,10 @@ const actions = {
     showLoading(LoadingStatus.ON)
     try {
       const defaulters = await getDefaulters(payload)
-      if (defaulters) {
-        commit('setDefaulters', defaulters)
-        showLoading(LoadingStatus.OFF)
-        notifySuccess(i18n.global.t('msg.defaulter.success'))
-      }
+      commit('setDefaulters', defaulters)
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(i18n.global.t('msg.defaulter.success'))
+      return defaulters
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)

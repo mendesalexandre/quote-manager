@@ -43,7 +43,9 @@
 import {
   defineComponent,
   ref,
-  computed
+  computed,
+  watch,
+  watchEffect
 } from 'vue'
 import { useStore } from 'vuex'
 
@@ -83,7 +85,17 @@ export default defineComponent({
       })
     }
 
-    const rows = ref(computed(() => store.getters['defaulter/getDefaulters']))
+    const rows = computed(() => store.getters['defaulter/getDefaulters'])
+
+    watch(rows, () => {
+      showLoading(LoadingStatus.OFF)
+    })
+
+    // watchEffect(async () => {
+    //   if (rows.value === undefined) {
+    //     showLoading(LoadingStatus.OFF)
+    //   }
+    // })
 
     return {
       rows,
@@ -137,8 +149,8 @@ export default defineComponent({
     onRemoveDefaulter (row) {
       this.$q
         .dialog({
-          title: i18n.global.t('msg.deleteDefaulter.title'),
-          message: i18n.global.t('msg.deleteDefaulter.message'),
+          title: i18n.global.t('msg.delete.title'),
+          message: i18n.global.t('msg.delete.message'),
           persistent: true,
           cancel: true
         })
