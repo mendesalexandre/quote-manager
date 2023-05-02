@@ -6,6 +6,7 @@
     title-class="text-primary"
     :rows="rows || []"
     :columns="columns || []"
+    :rowsPerPageOptions="[0]"
     row-key="name"
   >
     <!-- Header information-->
@@ -58,10 +59,11 @@
             hide-bottom
             :rows="props.row.payments"
             :columns="childColumns"
+            :rowsPerPageOptions="[0]"
+            row-key="description"
           >
             <!--Status cell with q-chip -->
             <template v-slot:body-cell-type="props">
-              <!-- class="q-pa-xs col-xs-12 col-sm-6 col-md-4 col-lg-3 grid-style-transition"-->
               <q-td>
                 <q-chip
                   text-color="white"
