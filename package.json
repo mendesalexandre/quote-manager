@@ -13,7 +13,8 @@
     "lint": "eslint --ext .js,.ts,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "app": "quasar dev -m electron",
-    "build-app": "quasar build -m electron -d"
+    "build-app-dev": "quasar build && electron-builder && electron-builder --win nsis",
+    "build-app-prd": "quasar build -m electron"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.1",
