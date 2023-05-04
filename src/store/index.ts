@@ -8,6 +8,7 @@ import tasks from './modules/TasksStore'
 import tags from './modules/TagsStore'
 import presell from './modules/PresellStore'
 import defaulter from './modules/DefaultersStore'
+import tips from './modules/TipsStore'
 
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
@@ -17,7 +18,8 @@ export default store(function (/* { ssrContext } */) {
       tags,
       tasks,
       presell,
-      defaulter
+      defaulter,
+      tips
     }
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
