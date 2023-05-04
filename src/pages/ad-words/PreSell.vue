@@ -25,11 +25,15 @@
     <br>
     <table-panel
       :title="$t('view.presell.lbl.title')"
-      :columns="sellColumns || []"
-      :rows="rows || []"
+      :columns="sellColumns"
+      :rows="rows"
+      :show-button-copy="true"
       :show-button-edit="true"
       :show-button-remove="true"
       :show-button-pay="false"
+      @on-copy-click-event="onCopyUrl"
+      @on-edit-click-event="onEditPresell"
+      @on-remove-click-event="onRemovePresell"
     ></table-panel>
   </q-page>
 </template>
@@ -44,8 +48,10 @@ import { useStore } from 'vuex'
 
 import { preSellColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
+import { notifySuccess } from 'src/util/Notification'
+
+import { LoadingStatus } from 'src/models/StatusModel'
 import { PresellStatus } from 'src/models/PresellModel'
 
 import FilterPanel from 'src/components/FilterPanel.vue'
@@ -77,11 +83,11 @@ export default defineComponent({
 
     function getStatusEnum (status) {
       switch (status.toUpperCase().trim()) {
-        case i18n.global.t('view.presell.opt.all').toUpperCase().trim(): return PresellStatus.ALL
-        case i18n.global.t('view.presell.opt.toCreate').toUpperCase().trim(): return PresellStatus.TO_BE_CREATED
-        case i18n.global.t('view.presell.opt.toUpdate').toUpperCase().trim(): return PresellStatus.TO_BE_UPDATED
-        case i18n.global.t('view.presell.opt.creating').toUpperCase().trim(): return PresellStatus.CREATING
-        case i18n.global.t('view.presell.opt.available').toUpperCase().trim(): return PresellStatus.CREATED
+        case i18n.global.t('view.presell.opt.toCreate').toUpperCase().trim(): return PresellStatus[0].toString()
+        case i18n.global.t('view.presell.opt.toUpdate').toUpperCase().trim(): return PresellStatus[1].toString()
+        case i18n.global.t('view.presell.opt.creating').toUpperCase().trim(): return PresellStatus[2].toString()
+        case i18n.global.t('view.presell.opt.available').toUpperCase().trim(): return PresellStatus[3].toString()
+        case i18n.global.t('view.presell.opt.all').toUpperCase().trim(): return PresellStatus[4].toString()
       }
     }
 
@@ -115,10 +121,17 @@ export default defineComponent({
           console.log('newPresell: ', newPresell)
           this.store.dispatch('presell/registerNewPresell', newPresell)
         })
-    }//,
-    // onDateUpdateEvent (newValue) {
-    //   this.selectDate = newValue
-    // }
+    },
+    onCopyUrl (row: any) {
+      navigator.clipboard.writeText(row.finalUrl)
+      notifySuccess(i18n.global.t('msg.presell.copySuccess'))
+    },
+    onEditPresell (row: any) {
+
+    },
+    onRemovePresell (row: any) {
+
+    }
   }
 })
 </script>

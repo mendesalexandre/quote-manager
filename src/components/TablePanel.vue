@@ -60,6 +60,9 @@
     <!--Buttons for table view-->
     <template v-slot:body-cell-actions="props">
       <q-td v-if="!changeToGrid" :props="props">
+        <q-btn v-if="showButtonCopy" dense round flat color="secondary" icon="mdi-content-copy" @click="onCopyClick(props)">
+          <q-tooltip>{{ $t("components.tip.copy") }}</q-tooltip>
+        </q-btn>
         <q-btn v-if="showButtonEdit" dense round flat color="secondary" icon="mdi-pencil-outline" @click="onEditClick(props)">
           <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
         </q-btn>
@@ -109,6 +112,9 @@
               </template>
               <q-item-section v-else>
                 <div class="row justify-center">
+                  <q-btn v-if="showButtonCopy" dense round flat color="secondary" icon="mdi-content-copy" @click="onCopyClick(props)">
+                    <q-tooltip>{{ $t("components.tip.copy") }}</q-tooltip>
+                  </q-btn>
                   <q-btn v-if="showButtonEdit" dense round flat color="secondary" icon="mdi-pencil-outline" @click="onEditClick(props)">
                     <q-tooltip>{{ $t("components.tip.edit") }}</q-tooltip>
                   </q-btn>
@@ -178,6 +184,11 @@ export default defineComponent({
     showButtonPay: {
       type: Boolean,
       required: true
+    },
+    showButtonCopy: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {
@@ -190,6 +201,9 @@ export default defineComponent({
     }
   },
   methods: {
+    onCopyClick (props: any) {
+      this.$emit('on-copy-click-event', props.row)
+    },
     onEditClick (props: any) {
       this.$emit('on-edit-click-event', props.row)
     },

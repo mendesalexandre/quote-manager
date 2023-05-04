@@ -49,7 +49,10 @@ export default {
         billAlreadyOverdue: 'Contas vencidas ou atrasadas',
         access: 'Acessar',
         tasksTodo: 'Tarefas à serem feitas',
-        tips: 'Dicas'
+        tips: 'Dicas',
+        // Sections
+        sectionOne: 'Dicas sobre economia nas contas básicas',
+        sectionTwo: 'Dicas sobre investimento'
       },
       tip: {
         access: 'Clique para acessar os dados'
@@ -151,8 +154,8 @@ export default {
     newPresell: {
       lbl: {
         firstTitle: 'Sobre o produto',
-        secondTitle: 'Estilização da página',
-        thirdTitle: 'Finalizar',
+        secondTitle: 'Textos da página',
+        thirdTitle: 'Coloração/estilização da página',
         productName: 'Nome do produto',
         pageTitleText: 'Título da página',
         headLineText: 'Headline (manchete) da página',
@@ -163,7 +166,8 @@ export default {
         colorBack1: 'Cor de fundo 1',
         colorBack2: 'Cor de fundo 2',
         buttonColor: 'Cor do botão',
-        showButtonAnimation: 'Mostrar animação no botão?'
+        showButtonAnimation: 'Mostrar animação no botão?',
+        templates: 'Páginas pré-definidas'
       },
       help: {
         productName: 'Produto a ser anunciado'
@@ -302,7 +306,8 @@ export default {
       deleteUploadSuccess: 'Sucesso ao remover a imagem',
       imgError: 'Certifique-se de que a imagem é da extensão \'*.png\' e contém menos de 850Kb',
       newSuccess: 'Sucesso ao registrar a pre-sell',
-      querySuccess: 'Sucesso ao consultar a lista de pre-sell'
+      querySuccess: 'Sucesso ao consultar a lista de pre-sell',
+      copySuccess: 'Endereço final da página pré-venda copiado com sucesso'
     },
     usr: {
       historySuccess: 'Sucesso ao consultar histórico'
@@ -362,7 +367,8 @@ export default {
       list: 'Lista',
       grid: 'Grade',
       add: 'Adicionar',
-      subtract: 'Subtrair'
+      subtract: 'Subtrair',
+      copy: 'Copiar URL'
     }
   },
   generic: {

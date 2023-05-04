@@ -5,17 +5,18 @@
         push
         :name="1"
         :title="$t('view.newPresell.lbl.firstTitle')"
-        icon="settings"
+        icon="create_new_folder"
         :done="step > 1"
       >
         <div class="q-gutter-md">
           <input-required v-model="productName" :label="$t('view.newPresell.lbl.productName')" :custom-hint="$t('view.newPresell.help.productName')"/>
-
-          <!-- Paid functions (Exclusive for professional/enterprise plans) -->
-          <input-required v-if="enablePaidFields" v-model="pageTitleText" :label="$t('view.newPresell.lbl.pageTitleText')"/>
-          <input-required v-if="enablePaidFields" v-model="headLineText" :label="$t('view.newPresell.lbl.headLineText')"/>
-
           <input-required v-model="affiliateUrl" :label="$t('view.newPresell.lbl.affiliateUrl')" />
+          <!-- Template -->
+          <q-select outlined v-model="templateSelected" :options="templateOptions" :label="$t('view.newPresell.lbl.templates')">
+          <template v-slot:prepend>
+              <q-icon name="mdi-tag" />
+            </template>
+          </q-select>
           <q-checkbox v-model="showLastChanceToBuy" :label="$t('view.newPresell.lbl.showLastChanceToBuy')" />
         </div>
 
@@ -35,6 +36,9 @@
         icon="create_new_folder"
         :done="step > 2"
       >
+        <!-- Paid functions (Exclusive for professional/enterprise plans) -->
+        <input-required v-if="enablePaidFields" v-model="pageTitleText" :label="$t('view.newPresell.lbl.pageTitleText')"/>
+        <input-required v-if="enablePaidFields" v-model="headLineText" :label="$t('view.newPresell.lbl.headLineText')"/>
         <q-uploader
           style="max-width: 300px"
           :label="$t('view.newPresell.lbl.image')"
@@ -48,12 +52,34 @@
         />
         <q-space/>
         <br>
-        <color-picker :label="$t('view.newPresell.lbl.colorBack1')" @input="onColor1UpdateEvent"/>
-        <color-picker :label="$t('view.newPresell.lbl.colorBack2')" @input="onColor2UpdateEvent"/>
-        <color-picker :label="$t('view.newPresell.lbl.buttonColor')" @input="onButtonColorUpdateEvent"/>
         <input-required v-if="enablePaidFields" v-model="buttonText" :label="$t('view.newPresell.lbl.buttonText')"/>
         <q-checkbox v-model="showButtonAnimation" :label="$t('view.newPresell.lbl.showButtonAnimation')" />
 
+        <q-stepper-navigation>
+          <q-btn
+            push
+            color="primary"
+            @click="step = 3"
+            :label="$t('components.lbl.buttonContinue')"
+          />
+          <q-btn
+            push
+            @click="step = 1"
+            class="bg-white text-primary q-ml-sm"
+            :label="$t('components.lbl.buttonReturn')"
+          />
+        </q-stepper-navigation>
+      </q-step>
+
+      <q-step
+        :name="3"
+        :title="$t('view.newPresell.lbl.thirdTitle')"
+        icon="create_new_folder"
+        :done="step > 3"
+      >
+        <color-picker :label="$t('view.newPresell.lbl.colorBack1')" @input="onColor1UpdateEvent"/>
+        <color-picker :label="$t('view.newPresell.lbl.colorBack2')" @input="onColor2UpdateEvent"/>
+        <color-picker :label="$t('view.newPresell.lbl.buttonColor')" @input="onButtonColorUpdateEvent"/>
         <q-stepper-navigation>
           <q-btn
             push
@@ -63,7 +89,7 @@
           />
           <q-btn
             push
-            @click="step = 1"
+            @click="step = 2"
             class="bg-white text-primary q-ml-sm"
             :label="$t('components.lbl.buttonReturn')"
           />
@@ -108,6 +134,13 @@ export default defineComponent({
     // Enable the fields 'pageTitleText, headLineText and buttonText'
     const enablePaidFields = user.permissions.userPlan === 'PROFESSIONAL' || user.permissions.userPlan === 'ENTERPRISE'
 
+    const availableTemplates = [
+      'Template 1'
+    ]
+
+    if (enablePaidFields) availableTemplates.push('Template 2')
+    if (enablePaidFields) availableTemplates.push('Template 3')
+
     return {
       confirm: false,
       step: ref(1),
@@ -123,6 +156,8 @@ export default defineComponent({
       backColor2: ref('#ffffff'),
       buttonColor: ref('#FAC400'),
       showButtonAnimation: ref(false),
+      templateSelected: ref(['Template 1']),
+      templateOptions: ref(availableTemplates),
       enablePaidFields,
       user,
       translate,
@@ -165,7 +200,6 @@ export default defineComponent({
       this.buttonColor = newValue
     },
     onRejected (rejectedEntries) {
-      console.log('rejectedEntries: ', rejectedEntries)
       notifyError(this.translate.t('msg.presell.imgError'))
     },
     onUploadEvent (fileToUpload) {
