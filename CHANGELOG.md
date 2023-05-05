@@ -46,6 +46,7 @@
 - Fix the query data after the dialogs close's [#39](https://github.com/BIEMAX/quote-manager/issues/39)
 - Fix a bug that prevents a new bill be registered [#45](https://github.com/BIEMAX/quote-manager/issues/45)
 - Fix bill list not updating after dialog close [#47](https://github.com/BIEMAX/quote-manager/issues/47)
+- Fix message 'detected HTML in '<Selecione>' message. Recommend not using HTML messages to avoid XSS.' [#54](https://github.com/BIEMAX/quote-manager/issues/54)
 
 # [1.0.0]
 

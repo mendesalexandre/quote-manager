@@ -148,7 +148,7 @@ export default {
       opt: {
         in: 'Entrada',
         out: 'Saída',
-        select: '<Selecione>'
+        select: 'Selecione'
       }
     },
     newPresell: {
@@ -270,18 +270,21 @@ export default {
     }
   },
   msg: {
-    deleteBill: {
-      title: 'Deseja realmente apagar a conta?',
-      message: 'Uma vez feito, o processo não poderá ser desfeito.',
-      deleteSuccess: 'Sucesso ao deletar a conta',
-      notDeleteError: 'Não foi possível de remover a conta'
-    },
     bill: {
       newSuccess: 'Conta cadastrada com sucesso',
       paidSuccess: 'Conta paga como sucesso',
       querySuccess: 'Sucesso ao consultar as contas',
       queryCloseToOverdueSuccess: 'Sucesso ao consultar contas próximas a vencer',
       queryBillNotPaidSuccess: 'Sucesso ao consultar contas não pagas'
+    },
+    deleteBill: {
+      title: 'Deseja realmente apagar a conta?',
+      message: 'Uma vez feito, o processo não poderá ser desfeito.',
+      deleteSuccess: 'Sucesso ao deletar a conta',
+      notDeleteError: 'Não foi possível de remover a conta'
+    },
+    chart: {
+      querySuccess: 'Sucesso ao consultar os dados dos gráficos'
     },
     defaulter: {
       success: 'Sucesso ao obter os inadimplentes'
