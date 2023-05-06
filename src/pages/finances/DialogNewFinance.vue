@@ -95,7 +95,8 @@
 import {
   defineComponent,
   ref,
-  onMounted
+  onMounted,
+  computed
 } from 'vue'
 import { useDialogPluginComponent } from 'quasar'
 import { useStore } from 'vuex'
@@ -126,8 +127,10 @@ export default defineComponent({
 
     const translate = i18n.global
     const store = useStore()
-    const user = store.getters['user/getUser']
-    const tagsList = store.getters['tags/getTags']
+
+    const tags = computed(() => store.getters['tags/getTags'])
+    const tagsList = tags.value.map((t) => t.name)
+
     const billTypeOptions = [translate.t('view.newFinance.opt.in'), translate.t('view.newFinance.opt.out')]
     const starterTag = translate.t('view.newFinance.lbl.starterTag')
 
@@ -145,7 +148,6 @@ export default defineComponent({
       isBillPayed: ref(false),
       isToDivideValue: ref(false),
       billPaid: ref(false),
-      user,
       tagsList,
       selectedTags: ref([starterTag]),
       newTag: ref(''),

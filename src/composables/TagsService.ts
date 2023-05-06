@@ -4,10 +4,7 @@ export async function getTags () {
   return await apiAuth
     .get('tag/list')
     .then(async (response: any) => {
-      const tagsList = response.data.data.tags.map(
-        (t) => { return { name: t.toString() } }
-      )
-      return tagsList
+      return response.data.data
     })
     .catch((error: any) => {
       throw error?.response?.data?.message || error?.message
