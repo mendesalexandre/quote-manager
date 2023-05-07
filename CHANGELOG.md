@@ -37,6 +37,7 @@
 - Implement tags menu [#49](https://github.com/BIEMAX/quote-manager/issues/49)
 - Implement new options to register new presell
 - Implement design patterns over the buttons for better UX [#56](https://github.com/BIEMAX/quote-manager/issues/56)
+- Implement cross platform builder apps through electron [#44](https://github.com/BIEMAX/quote-manager/issues/44)
 
 #### Fix
 - Fix `Filter Panel` component not showing properly the components added in template slot

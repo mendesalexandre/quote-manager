@@ -47,7 +47,7 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
-      // vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'hash', // available values: 'hash', 'history'
       // transpile: false,
       // publicPath: '/',
 
@@ -70,36 +70,22 @@ module.exports = configure(function (ctx) {
       // chainWebpack (/* chain */) {},
 
       // devtool: 'source-map',
-      // chainWebpack: chain => {
-      //   chain.module
-      //     .rule('i18n-resource')
-      //     .test(/\.(json5?|ya?ml)$/)
-      //     .include.add(path.resolve(__dirname, './src/i18n'))
-      //     .end()
-      //     .type('javascript/auto')
-      //     .use('i18n-resource')
-      //     .loader('@intlify/vue-i18n-loader')
-      //   chain.module
-      //     .rule('i18n')
-      //     .resourceQuery(/blockType=i18n/)
-      //     .type('javascript/auto')
-      //     .use('i18n')
-      //     .loader('@intlify/vue-i18n-loader')
-      // }
-      vueRouterMode: 'history', // available values: 'hash', 'history'
-      distDir: '../build',
-      builder: {
-        appId: 'com.asplus.app',
-        win: {
-          target: [
-            {
-              target: 'nsis',
-              arch: [
-                'x64'
-              ]
-            }
-          ]
-        }
+      distDir: 'dist',
+      chainWebpack: chain => {
+        chain.module
+          .rule('i18n-resource')
+          .test(/\.(json5?|ya?ml)$/)
+          .include.add(path.resolve(__dirname, './src/i18n'))
+          .end()
+          .type('javascript/auto')
+          .use('i18n-resource')
+          .loader('@intlify/vue-i18n-loader')
+        chain.module
+          .rule('i18n')
+          .resourceQuery(/blockType=i18n/)
+          .type('javascript/auto')
+          .use('i18n')
+          .loader('@intlify/vue-i18n-loader')
       }
     },
 
@@ -216,22 +202,37 @@ module.exports = configure(function (ctx) {
     electron: {
       bundler: 'packager', // 'packager' or 'builder'
 
+      // packager: {
+      //   // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
+
+      //   // OS X / Mac App Store
+      //   // appBundleId: '',
+      //   // appCategoryType: '',
+      //   // osxSign: '',
+      //   // protocol: 'myapp://path',
+
+      //   // Windows only
+      //   // win32metadata: { ... }
+      // },
       packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-
-        // Windows only
-        // win32metadata: { ... }
-      },
-
-      builder: {
-        // https://www.electron.build/configuration/configuration
-        appId: 'ads-plus-manager'
+        extends: null, // Fix error 'The main entry point to your app was not found. Make sure "index.js" exists and does not get ignored by your ignore option'
+        platform: ['win32', 'linux', 'darwin'],
+        arch: 'x64', // or 'ia32' or 'armv7l' or 'arm64'
+        icon: 'src-electron/icons/icon.ico',
+        dir: 'dist/electron',
+        out: 'build',
+        asar: true,
+        overwrite: true,
+        win32metadata: {
+          ProductName: 'AS Plus Manager',
+          CompanyName: 'SmartThinq Technologies LTDA.',
+          FileDescription: 'App to control finances ',
+          OriginalFilename: 'MyApp.exe',
+          InternalName: 'AS Plus',
+          PrivateBuild: 'Built by Quasar',
+          FileVersion: '1.0.1.0',
+          ProductVersion: '1.0.1.0'
+        }
       },
 
       chainWebpackMain (chain) {

@@ -11,12 +11,12 @@
     "build": "quasar build",
     "build:pwa": "quasar build -m pwa",
     "lint": "eslint --ext .js,.ts,.vue ./",
-    "test": "echo \"No test specified\" && exit 0",
     "app": "quasar dev -m electron",
-    "build-app-dev": "quasar build && electron-builder && electron-builder --win nsis",
-    "build-app-prd": "quasar build -m electron"
+    "pkg": "quasar build -m electron",
+    "build-pkg": "quasar build -m electron -T all"
   },
   "dependencies": {
+    "@quasar/cli": "^2.1.0",
     "@quasar/extras": "^1.16.1",
     "axios": "^1.3.3",
     "chart.js": "^4.3.0",
