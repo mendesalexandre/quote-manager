@@ -7,15 +7,13 @@
 
         <!--Application title-->
         <q-toolbar-title>{{ $t("view.home.lbl.subTitle") }}</q-toolbar-title>
-        <LanguageSwitch />
+        <!-- <LanguageSwitch /> --> <!--TODO: Insert the language switch into user settings-->
         <UserSubmenuOptions />
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <SideMenuOptions />
-      </q-list>
+      <SideMenuOptions />
     </q-drawer>
 
     <q-page-container>
@@ -26,22 +24,17 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import LanguageSwitch from '../generic/LanguageSwitch.vue'
 import SideMenuOptions from 'src/components/SideMenuOptions.vue'
 import UserSubmenuOptions from 'src/components/UserSubmenuOptions.vue'
 
 export default defineComponent({
   name: 'HomeScreen',
-
   components: {
-    LanguageSwitch,
     SideMenuOptions,
     UserSubmenuOptions
   },
-
   data () {
     const leftDrawerOpen = ref(false)
-
     return {
       leftDrawerOpen,
       toggleLeftDrawer () {

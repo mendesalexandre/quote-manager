@@ -14,8 +14,10 @@
 
 /************************ Default colors ************************/
 
-// $primary   : #1976D2;
-// $secondary : #26A69A;
+$primary   : #1a1f25;
+// $secondary : #ee2d6f;
+$secondary : #00416e; //eeeffb //4dd4ef
+$tertiary  : #0080b1;
 // $accent    : #9C27B0;
 
 // $dark      : #1D1D1D;
@@ -29,10 +31,10 @@
 /************************ Custom colors ************************/
 // src/css/quasar.variables.sass
 
-$primary   : #3f51b5;
+//$primary   : #3f51b5;
 //$secondary : #5167c9;
-$secondary : #667bd6;
-$tertiary  : #d0c7c7;
+//$secondary : #667bd6;
+// $tertiary  : #d0c7c7;
 $accent    : #9C27B0;
 
 $dark      : #1d1d1d;
@@ -53,4 +55,24 @@ $header-btn-hover-color: #212121; // $grey-10
 $header-btn-color: #4d5dbb;
 $header-btn-hover-color: #fff;
 
-$letter-spacing-brand: .7px
+$letter-spacing-brand: .7px;
+
+// // Background color of the field (input) control
+// .q-field--filled .q-field__control {
+//   background-color: $secondary;
+// }
+
+// // Input label text
+// .q-field__native, .q-field__prefix, .q-field__suffix, .q-field__input{
+//   color: white;
+// }
+
+// // Input value inserted by user
+// .q-field__label {
+//   color: white !important;
+// }
+
+// q-select
+// .q-field__inner {
+//   background-color: $secondary;
+// }

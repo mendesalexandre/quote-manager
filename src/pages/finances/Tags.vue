@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="bg-primary">
     <!--Filter panel-->
     <filter-panel>
       <template #filter-content>

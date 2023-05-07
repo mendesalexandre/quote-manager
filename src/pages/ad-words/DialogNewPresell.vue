@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="confirm" ref="dialog">
+  <q-page padding class="bg-primary">
     <q-stepper v-model="step" vertical color="primary" animated>
       <q-step
         push
@@ -96,7 +96,7 @@
         </q-stepper-navigation>
       </q-step>
     </q-stepper>
-  </q-dialog>
+  </q-page>
 </template>
 
 <script lang="ts">
@@ -123,8 +123,7 @@ export default defineComponent({
     ColorPicker
   },
   data () {
-    onMounted(() => { })
-
+    console.log('cheguei no dialog new presell')
     const translate = i18n.global
     const store = useStore()
     const user = store.getters['user/getUser']
@@ -134,12 +133,12 @@ export default defineComponent({
     // Enable the fields 'pageTitleText, headLineText and buttonText'
     const enablePaidFields = user.permissions.userPlan === 'PROFESSIONAL' || user.permissions.userPlan === 'ENTERPRISE'
 
-    const availableTemplates = [
-      'Template 1'
-    ]
+    const availableTemplates = ['Template 1']
 
-    if (enablePaidFields) availableTemplates.push('Template 2')
-    if (enablePaidFields) availableTemplates.push('Template 3')
+    if (enablePaidFields) {
+      availableTemplates.push('Template 2')
+      availableTemplates.push('Template 3')
+    }
 
     return {
       confirm: false,
@@ -164,9 +163,9 @@ export default defineComponent({
       urlUpload
     }
   },
-  emits: {
-    ...useDialogPluginComponent.emits
-  },
+  // emits: {
+  //   ...useDialogPluginComponent.emits
+  // },
   methods: {
     onOkClick () {
       const newPresell: PresellNew = {
@@ -181,15 +180,15 @@ export default defineComponent({
         showGradientBackground: true,
         showAnimationOverButton: this.showButtonAnimation
       }
-      this.$emit('ok', newPresell)
-      this.$emit('hide')
+      // this.$emit('ok', newPresell)
+      // this.$emit('hide')
     },
-    onCancelClick () {
-      (this as any).$refs.dialog.cancel()
-    },
-    show () {
-      (this as any).$refs.dialog.show()
-    },
+    // onCancelClick () {
+    //   (this as any).$refs.dialog.cancel()
+    // },
+    // show () {
+    //   (this as any).$refs.dialog.show()
+    // },
     onColor1UpdateEvent (newValue) {
       this.backColor1 = newValue
     },

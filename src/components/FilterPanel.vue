@@ -1,12 +1,13 @@
 <template>
-  <q-list bordered class="rounded-borders">
+  <q-list bordered class="rounded-borders bg-tertiary text-white">
     <q-expansion-item
       :default-opened="isMobile"
       expand-separator
       icon="mdi-filter-outline"
       :label="$t('components.lbl.filterTitle')"
       :caption="$t('components.lbl.filterCaption')"
-      header-class="text-primary"
+      caption-class="text-white"
+      class="bg-tertiary text-white"
     >
       <q-separator/>
       <div></div>
@@ -23,6 +24,12 @@
     </q-expansion-item>
   </q-list>
 </template>
+
+<style>
+.q-item__label--caption {
+  color: white !important;
+}
+</style>
 
 <script>
 import { defineComponent, ref } from 'vue'

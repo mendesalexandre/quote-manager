@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page padding class="bg-primary">
     <filter-panel>
       <template #filter-content>
         <!-- Date picker -->

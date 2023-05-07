@@ -1,6 +1,5 @@
 <template>
-  <q-page padding>
-
+  <q-page padding class="bg-primary">
     <!--Filter panel-->
     <filter-panel>
       <template #filter-content>
@@ -51,7 +50,6 @@ import moment from 'moment'
 import { myBillsColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
 import { LoadingStatus } from 'src/models/StatusModel'
-import { notifyError } from 'src/util/Notification'
 import i18n from 'src/util/i18n'
 
 import FilterPanel from 'src/components/FilterPanel.vue'

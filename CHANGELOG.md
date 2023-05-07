@@ -22,6 +22,7 @@
 - Removed duplicate translation in i18n config file [#41](https://github.com/BIEMAX/quote-manager/issues/41)
 - Enhance the user home screen to get more useless information
 - Refactor the user menu permissions based on API information provided
+- Changed the pallet colors of the UI [#55](https://github.com/BIEMAX/quote-manager/issues/55)
 
 #### Implement
 - Implement sections for 'field to query' and 'buttons' on `Filter panel`
