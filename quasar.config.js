@@ -11,6 +11,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const { configure } = require('quasar/wrappers')
+const ESLintPlugin = require('eslint-webpack-plugin')
+const path = require('path')
 
 module.exports = configure(function (ctx) {
   return {
@@ -23,40 +25,29 @@ module.exports = configure(function (ctx) {
         }
       }
     },
-
-    // https://v2.quasar.dev/quasar-cli-webpack/prefetch-feature
-    // preFetch: true,
-
-    // app boot file (/src/boot)
-    // --> boot files are part of "main.js"
-    // https://v2.quasar.dev/quasar-cli-webpack/boot-files
     boot: [
-
+      'i18n',
+      'axios'
     ],
-
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
-    css: [
-      'app.scss'
-    ],
-
+    css: ['app.scss'],
     // https://github.com/quasarframework/quasar/tree/dev/extras
     extras: [
-      // 'ionicons-v4',
-      // 'mdi-v5',
-      // 'fontawesome-v6',
-      // 'eva-icons',
-      // 'themify',
-      // 'line-awesome',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
-
-      'roboto-font', // optional, you are not bound to it
+      'ionicons-v4',
+      'mdi-v6',
+      'mdi-v7',
+      'fontawesome-v6',
+      'eva-icons',
+      'themify',
+      'line-awesome',
+      'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+      // 'roboto-font', // optional, you are not bound to it
       'material-icons' // optional, you are not bound to it
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash' // available values: 'hash', 'history'
-
+      vueRouterMode: 'hash', // available values: 'hash', 'history'
       // transpile: false,
       // publicPath: '/',
 
@@ -76,7 +67,26 @@ module.exports = configure(function (ctx) {
 
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      // chainWebpack (/* chain */) {}
+      // chainWebpack (/* chain */) {},
+
+      // devtool: 'source-map',
+      distDir: 'dist',
+      chainWebpack: chain => {
+        chain.module
+          .rule('i18n-resource')
+          .test(/\.(json5?|ya?ml)$/)
+          .include.add(path.resolve(__dirname, './src/i18n'))
+          .end()
+          .type('javascript/auto')
+          .use('i18n-resource')
+          .loader('@intlify/vue-i18n-loader')
+        chain.module
+          .rule('i18n')
+          .resourceQuery(/blockType=i18n/)
+          .type('javascript/auto')
+          .use('i18n')
+          .loader('@intlify/vue-i18n-loader')
+      }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
@@ -84,7 +94,7 @@ module.exports = configure(function (ctx) {
       server: {
         type: 'http'
       },
-      port: 8080,
+      port: 8001,
       open: true // opens browser window automatically
     },
 
@@ -93,7 +103,7 @@ module.exports = configure(function (ctx) {
       config: {},
 
       // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
+      lang: 'en-US', // Quasar language pack
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
@@ -103,7 +113,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Dialog', 'Notify', 'Loading', 'Cookies']
     },
 
     // animations: 'all', // --- includes all animations
@@ -141,8 +151,8 @@ module.exports = configure(function (ctx) {
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'Quote Manager',
-        short_name: 'Quote Manager',
+        name: 'AffiliateSmartPlus',
+        short_name: 'ASPlus',
         description: '',
         display: 'standalone',
         orientation: 'portrait',
@@ -192,35 +202,49 @@ module.exports = configure(function (ctx) {
     electron: {
       bundler: 'packager', // 'packager' or 'builder'
 
+      // packager: {
+      //   // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
+
+      //   // OS X / Mac App Store
+      //   // appBundleId: '',
+      //   // appCategoryType: '',
+      //   // osxSign: '',
+      //   // protocol: 'myapp://path',
+
+      //   // Windows only
+      //   // win32metadata: { ... }
+      // },
       packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-
-        // Windows only
-        // win32metadata: { ... }
+        extends: null, // Fix error 'The main entry point to your app was not found. Make sure "index.js" exists and does not get ignored by your ignore option'
+        platform: ['win32', 'linux', 'darwin'],
+        arch: 'x64', // or 'ia32' or 'armv7l' or 'arm64'
+        icon: 'src-electron/icons/icon.ico',
+        dir: 'dist/electron',
+        out: 'build',
+        asar: true,
+        overwrite: true,
+        win32metadata: {
+          ProductName: 'AS Plus Manager',
+          CompanyName: 'SmartThinq Technologies LTDA.',
+          FileDescription: 'App to control finances ',
+          OriginalFilename: 'MyApp.exe',
+          InternalName: 'AS Plus',
+          PrivateBuild: 'Built by Quasar',
+          FileVersion: '1.0.1.0',
+          ProductVersion: '1.0.1.0'
+        }
       },
 
-      builder: {
-        // https://www.electron.build/configuration/configuration
-
-        appId: 'quote-manager'
+      chainWebpackMain (chain) {
+        chain
+          .plugin('eslint-webpack-plugin')
+          .use(ESLintPlugin, [{ extensions: ['js'] }])
       },
 
-      // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackMain (/* chain */) {
-        // do something with the Electron main process Webpack cfg
-        // extendWebpackMain also available besides this chainWebpackMain
-      },
-
-      // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackPreload (/* chain */) {
-        // do something with the Electron main process Webpack cfg
-        // extendWebpackPreload also available besides this chainWebpackPreload
+      chainWebpackPreload (chain) {
+        chain
+          .plugin('eslint-webpack-plugin')
+          .use(ESLintPlugin, [{ extensions: ['js'] }])
       }
     }
   }

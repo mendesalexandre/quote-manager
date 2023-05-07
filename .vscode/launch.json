@@ -1,0 +1,35 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "[Debug] quote-manager",
+      "url": "http://localhost:8001",
+      "webRoot": "${workspaceFolder}/src",
+      "breakOnLoad": true,
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      }
+    },
+    {
+			"type": "pwa-msedge",
+			"request": "launch",
+			"name": "[Attach MS Edge] quote-manager",
+			"url": "http://localhost:8001/#",
+			"webRoot": "${workspaceFolder}"
+		},
+    {
+    "type": "chrome",
+    "request": "launch",
+    "name": "[Attach Opera] quote-manager",
+    //"runtimeExecutable": "C:\\Users\\Dionei\\AppData\\Local\\Programs\\Opera\\launcher.exe",
+    //"userDataDir": true,
+    "url": "http://localhost:8001/#",
+    "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

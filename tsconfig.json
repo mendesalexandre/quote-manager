@@ -1,6 +1,10 @@
 {
   "extends": "@quasar/app-webpack/tsconfig-preset",
   "compilerOptions": {
-    "baseUrl": "."
-  }
+    "baseUrl": ".",
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "plugins": [{ "name": "ts-vue-plugin" }]
+  },
+  "useDefineForClassFields": false
 }

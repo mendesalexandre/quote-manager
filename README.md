@@ -1,35 +1,23 @@
-# Quote Manager (quote-manager)
+# ASPlus - Affiliate Smart Plus
 
 Project to control personal/professional quotes, sales and opportunities.
 
 Develop with Vue and Quasar Framework.
 
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
+This application is build using [Quasar framework](https://github.com/quasarframework/quasar), based on VueJS.
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+## Documentation
 
+- [1. Starting](./docs/1.STARTING.md)
+- [2. Setup the project](./docs/2.SETUP.md)
+- [3. Running the project](./docs/3.HOW_TO_RUN.md)
+- [4. Structure of the project](./docs/4.STRUCTURE.md)
+- [5. Internationalization i18n](./docs/5.INTERNATIONALIZATION.md)
+- [6. Permissions](./docs/6.%20PERMISSIONS.md)
+- [7. Building cross-platform apps](./docs/7.BUILD_CROSS_PLATAFORM_APPS.md)
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
+## License
 
+Copyright (c) 2021 - Present by `Dionei Beilke dos Santos`
 
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
+[MIT License](http://en.wikipedia.org/wiki/MIT_License)
