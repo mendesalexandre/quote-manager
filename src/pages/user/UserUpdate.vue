@@ -3,21 +3,21 @@
     <q-card class="q-gutter-md" style="max-width: 580px;">
       <q-input
         class="text-white"
-        outlined
+        rounded
         v-model="currentUserName"
         type="text"
         :label="$t('view.userUpdate.lbl.userName')"
       />
 
       <q-input
-        outlined
+        rounded
         v-model="currentUserEmail"
         type="email"
         :label="$t('view.userUpdate.lbl.userEmail')"
       />
 
       <q-input
-        outlined
+        rounded
         v-model="oldPassword"
         :type="isPwd ? 'password' : 'text'"
         :label="$t('view.userUpdate.lbl.oldPassword')"
@@ -32,7 +32,7 @@
       </q-input>
 
       <q-input
-        outlined
+        rounded
         v-model="newPassword"
         :type="isPwd ? 'password' : 'text'"
         :label="$t('view.userUpdate.lbl.newPassword')"

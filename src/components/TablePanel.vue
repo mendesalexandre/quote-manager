@@ -26,7 +26,7 @@
     </template>
 
     <template v-slot:top-right="props">
-      <q-input outlined dense debounce="300" v-model="filter" color="primary" :placeholder="$t('components.lbl.searchInTable')">
+      <q-input rounded dense debounce="300" v-model="filter" color="primary" :placeholder="$t('components.lbl.searchInTable')">
         <template v-slot:append>
           <q-icon name="search"/>
         </template>

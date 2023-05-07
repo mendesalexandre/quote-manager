@@ -1,23 +1,23 @@
 <template>
-  <q-page padding>
+  <q-page padding class="bg-primary">
     <!--Filter panel-->
     <filter-panel>
       <template #filter-content>
         <!-- Product name -->
-        <q-input filled v-model="productName" :label="$t('view.presell.lbl.productName')">
+        <q-input rounded v-model="productName" :label="$t('view.presell.lbl.productName')">
           <template v-slot:prepend>
             <q-icon name="mdi-text-box-outline" />
           </template>
         </q-input>
         <!-- Status -->
-        <q-select outlined v-model="status" :options="statusOptions" :label="$t('view.presell.lbl.status')">
-        <template v-slot:prepend>
+        <q-select rounded v-model="status" :options="statusOptions" :label="$t('view.presell.lbl.status')">
+          <template v-slot:prepend>
             <q-icon name="mdi-tag" />
           </template>
         </q-select>
       </template>
       <template #filter-buttons>
-        <button-new @click="openDialogNewPresell()"/>
+        <button-new to="/presell/new"/>
         <button-search @click="onSearchClick()"/>
       </template>
     </filter-panel>

@@ -1,8 +1,8 @@
 <template>
   <q-btn
-    outline
+    push
     rounded
-    color="primary"
+    class="bg-secondary text-white"
     :label="$t('components.lbl.buttonSearch')"
     icon="search"
     @click="handleClick()"

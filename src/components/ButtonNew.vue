@@ -1,10 +1,11 @@
 <template>
   <q-btn
-    outline
+    push
     rounded
-    color="primary"
+    class="bg-secondary text-white"
     :label="$t('components.lbl.buttonNew')"
     icon="add"
+    style="margin-right: 10px;"
   />
 </template>
 

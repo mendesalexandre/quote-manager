@@ -11,7 +11,7 @@
       <q-card-section>
         <div class="q-gutter-md">
           <q-input
-            outlined
+            rounded
             v-model="userEmail"
             :label="$t('view.login.lbl.email')"
             class="text-white"
@@ -20,7 +20,7 @@
           />
 
           <q-input
-            outlined
+            rounded
             v-model="userPassword"
             :label="$t('view.login.lbl.password')"
             class="text-white"

@@ -6,7 +6,7 @@
         </button>
     </div>
 
-    <q-input outlined autofocus placeholder="Add a new task" @keyup.enter="addTask"/>
+    <q-input rounded autofocus placeholder="Add a new task" @keyup.enter="addTask"/>
     <div class="q-pa-md row items-start q-gutter-md">
       <div v-for="todo in filteredTasks" :key="todo.id" class="todo-item">
         <q-card class="">
