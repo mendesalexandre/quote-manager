@@ -43,8 +43,8 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: '/not-paid',
-        name: 'NotPayed',
-        component: () => import('src/pages/finances/NotPayed.vue')
+        name: 'NotPaid',
+        component: () => import('src/pages/finances/NotPaid.vue')
       },
       {
         path: '/defaulters',
@@ -71,6 +71,11 @@ const routes: RouteRecordRaw[] = [
         path: '/presell',
         name: 'Pre-sell',
         component: () => import('src/pages/ad-words/PreSell.vue')
+      },
+      {
+        path: '/presell/new',
+        name: 'New pre-sell',
+        component: () => import('src/pages/ad-words/DialogNewPresell.vue')
       },
       {
         path: '/campaigns',

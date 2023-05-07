@@ -21,6 +21,7 @@
 - Always start filter panel as opened based on device [#38](https://github.com/BIEMAX/quote-manager/issues/38)
 - Removed duplicate translation in i18n config file [#41](https://github.com/BIEMAX/quote-manager/issues/41)
 - Enhance the user home screen to get more useless information
+- Refactor the user menu permissions based on API information provided
 
 #### Implement
 - Implement sections for 'field to query' and 'buttons' on `Filter panel`

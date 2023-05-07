@@ -52,9 +52,15 @@ export default route(function ({ store /*, ssrContext */ }) {
         const hasPermission = permissions
           .filter(p => p.name.toUpperCase().trim() === destination.toUpperCase().trim())
           .map((p) => p.hasAccess)
-        // console.log('hasPermission: ', hasPermission)
-        // console.log('hasPermission is true: ', hasPermission === true)
-        if (hasPermission[0]) { next() } else return false
+        // console.log('9. hasPermission: ', hasPermission[0])
+        // console.log('10. hasPermission is true: ', hasPermission[0] === true)
+        if (hasPermission[0]) {
+          // console.log('11. next')
+          next()
+        } else {
+          // console.log('12. return false')
+          return false
+        }
       } else next({ path: '/' })
     }
   })
