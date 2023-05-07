@@ -39,14 +39,14 @@ export default defineComponent({
   data () {
     const store = useStore()
     const permissions = computed(() => store.getters['user/getPermissions'])
-    console.log('permissions: ', permissions)
+    // console.log('permissions: ', permissions)
     const menus = permissions.value.filter((p) => p.parent === '' && p.hasAccess && p.visibleOnMenu)
-    console.log('menus: ', menus)
+    // console.log('menus: ', menus)
     menus.forEach((p) => {
       const children = permissions.value.filter((c) => c.parent === p.name)
       p.children = children
     })
-    console.log('menus after children: ', menus)
+    // console.log('menus after children: ', menus)
     return {
       textSearch: ref(''),
       permissions,
