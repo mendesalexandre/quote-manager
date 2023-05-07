@@ -9,7 +9,7 @@
 
           <div class="text-subtitle1 q-mt-md q-mb-xs">{{ userCompoundName }}</div>
           <q-list>
-            <q-item clickable color="secondary">
+            <q-item clickable color="secondary" active-class="bg-teal-1 text-grey-8">
               <q-item-section>
                 <q-toggle
                   v-model="enableDarkMode"
@@ -63,7 +63,7 @@
             </q-item>
           </q-list>
           <q-btn
-            color="primary"
+            color="secondary"
             icon="logout"
             :label="$t('view.userSubMenu.lbl.logout')"
             push
@@ -76,6 +76,12 @@
     </q-btn-dropdown>
   </div>
 </template>
+
+<style>
+  :root {
+    --q-list-inactive-bg-color: $primary;
+  }
+</style>
 
 <script lang="ts">
 import {
