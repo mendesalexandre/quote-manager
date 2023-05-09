@@ -2,6 +2,7 @@
 
 #### Changed
 - Pump project version from `1.0.1` to `1.0.2`
+- Enhance the user dashboard (homepage) to get more useless information [#51](https://github.com/BIEMAX/quote-manager/issues/51)
 
 #### Fix
 - Fix tips not loading properly at home screen [#59](https://github.com/BIEMAX/quote-manager/issues/59)
@@ -10,6 +11,7 @@
 #### Implement
 - Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)
 - Defaulters screen, add and subtract debt and user tracking changes on the values [#35](https://github.com/BIEMAX/quote-manager/issues/35)
+- Added vertical scrolls for mobile devices [#42](https://github.com/BIEMAX/quote-manager/issues/42)
 
 # [1.0.1]
 
