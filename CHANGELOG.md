@@ -5,6 +5,7 @@
 - Enhance the user dashboard (homepage) to get more useless information [#51](https://github.com/BIEMAX/quote-manager/issues/51)
 - Change the process of registration 'new presell' from dialog to page
 - Always open the menus as opened
+- Reduced the notification badge time from '1,5' seconds to '0,7' seconds
 
 #### Fix
 - Fix tips not loading properly at home screen [#59](https://github.com/BIEMAX/quote-manager/issues/59)

@@ -14,7 +14,7 @@ export function notifySuccess (successMessage: string) {
         handler: () => { }
       }
     ],
-    timeout: 1500
+    timeout: 750
   })
 }
 
@@ -32,7 +32,7 @@ export function notifyError (message: string) {
         handler: () => { }
       }
     ],
-    timeout: 1500
+    timeout: 750
   })
 }
 

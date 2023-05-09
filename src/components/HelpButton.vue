@@ -1,5 +1,5 @@
 <template>
-  <q-btn flat round color="primary" icon="help" >
+  <q-btn flat round color="secondary" icon="help" >
     <q-tooltip>{{ $t('components.lbl.helpButton') }}</q-tooltip>
   </q-btn>
 </template>
