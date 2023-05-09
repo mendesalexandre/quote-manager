@@ -58,7 +58,6 @@ import FilterPanel from 'src/components/FilterPanel.vue'
 import TablePanel from 'src/components/TablePanel.vue'
 import ButtonNew from 'src/components/ButtonNew.vue'
 import ButtonSearch from 'src/components/ButtonSearch.vue'
-import DialogNewPresell from './DialogNewPresell.vue'
 
 export default defineComponent({
   name: 'PreSell',
@@ -110,18 +109,18 @@ export default defineComponent({
     }
   },
   methods: {
-    openDialogNewPresell () {
-      this.$q
-        .dialog({
-          component: DialogNewPresell,
-          persistent: true,
-          cancel: true
-        })
-        .onOk((newPresell: any) => {
-          console.log('newPresell: ', newPresell)
-          this.store.dispatch('presell/registerNewPresell', newPresell)
-        })
-    },
+    // openDialogNewPresell () {
+    //   this.$q
+    //     .dialog({
+    //       // component: DialogNewPresell,
+    //       persistent: true,
+    //       cancel: true
+    //     })
+    //     .onOk((newPresell: any) => {
+    //       console.log('newPresell: ', newPresell)
+    //       this.store.dispatch('presell/registerNewPresell', newPresell)
+    //     })
+    // },
     onCopyUrl (row: any) {
       navigator.clipboard.writeText(row.finalUrl)
       notifySuccess(i18n.global.t('msg.presell.copySuccess'))

@@ -1,5 +1,7 @@
 <template>
   <q-page padding class="bg-primary">
+    <button-back to="/presell" />
+    <br/><br/>
     <q-stepper v-model="step" vertical color="primary" animated>
       <q-step
         push
@@ -8,17 +10,13 @@
         icon="create_new_folder"
         :done="step > 1"
       >
-        <div class="q-gutter-md">
-          <input-required v-model="productName" :label="$t('view.newPresell.lbl.productName')" :custom-hint="$t('view.newPresell.help.productName')"/>
-          <input-required v-model="affiliateUrl" :label="$t('view.newPresell.lbl.affiliateUrl')" />
-          <!-- Template -->
-          <q-select outlined v-model="templateSelected" :options="templateOptions" :label="$t('view.newPresell.lbl.templates')">
-          <template v-slot:prepend>
-              <q-icon name="mdi-tag" />
-            </template>
-          </q-select>
-          <q-checkbox v-model="showLastChanceToBuy" :label="$t('view.newPresell.lbl.showLastChanceToBuy')" />
-        </div>
+        <!-- Template -->
+        <q-select outlined v-model="templateSelected" :options="templateOptions" :label="$t('view.newPresell.lbl.templates')">
+        <template v-slot:prepend>
+            <q-icon name="mdi-tag" />
+          </template>
+        </q-select>
+        <help-button @click="openHelpDialog()"></help-button>
 
         <q-stepper-navigation>
           <q-btn
@@ -36,6 +34,12 @@
         icon="create_new_folder"
         :done="step > 2"
       >
+        <div class="q-gutter-md">
+          <input-required v-model="productName" :label="$t('view.newPresell.lbl.productName')" :custom-hint="$t('view.newPresell.help.productName')"/>
+          <input-required v-model="affiliateUrl" :label="$t('view.newPresell.lbl.affiliateUrl')" />
+          <q-checkbox v-model="showLastChanceToBuy" :label="$t('view.newPresell.lbl.showLastChanceToBuy')" />
+        </div>
+
         <!-- Paid functions (Exclusive for professional/enterprise plans) -->
         <input-required v-if="enablePaidFields" v-model="pageTitleText" :label="$t('view.newPresell.lbl.pageTitleText')"/>
         <input-required v-if="enablePaidFields" v-model="headLineText" :label="$t('view.newPresell.lbl.headLineText')"/>
@@ -83,7 +87,30 @@
         <q-stepper-navigation>
           <q-btn
             push
-            color="primary"
+            class="bg-secondary text-white"
+            @click="step = 4"
+            :label="$t('components.lbl.buttonContinue')"
+          />
+          <q-btn
+            push
+            @click="step = 2"
+            class="bg-white text-primary q-ml-sm"
+            :label="$t('components.lbl.buttonReturn')"
+          />
+        </q-stepper-navigation>
+      </q-step>
+
+      <q-step
+        push
+        :name="1"
+        :title="$t('view.newPresell.lbl.fourthTitle')"
+        icon="create_new_folder"
+        :done="step > 3"
+      >
+        <q-stepper-navigation>
+          <q-btn
+            push
+            class="bg-secondary text-white"
             @click="onOkClick()"
             :label="$t('components.lbl.buttonFinish')"
           />
@@ -102,39 +129,39 @@
 <script lang="ts">
 import {
   defineComponent,
-  ref,
-  onMounted
+  ref
 } from 'vue'
-import { useDialogPluginComponent } from 'quasar'
 import { useStore } from 'vuex'
 
 import { environment } from 'src/environments/environment'
 import { notifySuccess, notifyError } from 'src/util/Notification'
 import i18n from 'src/util/i18n'
 import { PresellNew } from 'src/models/PresellModel'
+import { preSaleTemplates } from 'src/models/HelpModel'
 
 import InputRequired from 'src/components/InputRequired.vue'
 import ColorPicker from 'src/components/ColorPicker.vue'
+import ButtonBack from 'src/components/ButtonBack.vue'
+import HelpButton from 'src/components/HelpButton.vue'
 
 export default defineComponent({
   name: 'DialogNewPresell',
   components: {
     InputRequired,
-    ColorPicker
+    ColorPicker,
+    ButtonBack,
+    HelpButton
   },
   data () {
-    console.log('cheguei no dialog new presell')
     const translate = i18n.global
     const store = useStore()
     const user = store.getters['user/getUser']
-    console.log('user in dialog new presell: ', user)
     const urlUpload = `${environment.api.url}/${environment.api.version}/${environment.api.pathToUpload}`
 
     // Enable the fields 'pageTitleText, headLineText and buttonText'
     const enablePaidFields = user.permissions.userPlan === 'PROFESSIONAL' || user.permissions.userPlan === 'ENTERPRISE'
 
     const availableTemplates = ['Template 1']
-
     if (enablePaidFields) {
       availableTemplates.push('Template 2')
       availableTemplates.push('Template 3')
@@ -180,15 +207,7 @@ export default defineComponent({
         showGradientBackground: true,
         showAnimationOverButton: this.showButtonAnimation
       }
-      // this.$emit('ok', newPresell)
-      // this.$emit('hide')
     },
-    // onCancelClick () {
-    //   (this as any).$refs.dialog.cancel()
-    // },
-    // show () {
-    //   (this as any).$refs.dialog.show()
-    // },
     onColor1UpdateEvent (newValue) {
       this.backColor1 = newValue
     },
@@ -262,6 +281,19 @@ export default defineComponent({
         .catch(error => {
           // Handle errors
           console.error(error)
+        })
+    },
+    enableFieldByTemplateSelect () {
+      return this.templateSelected[0] === 'Template 1'
+    },
+    openHelpDialog () {
+      this.$q
+        .dialog({
+          title: 'Help',
+          message: preSaleTemplates(),
+          html: true,
+          persistent: true,
+          cancel: true
         })
     }
   }
