@@ -77,11 +77,12 @@ export default defineComponent({
     const defColumns = defaultersColumns()
     const defChildColumns = defaultersChildColumns()
 
-    const onSearchClick = () => {
+    const onSearchClick = (showMessage = true) => {
       showLoading(LoadingStatus.ON)
       store.dispatch('defaulter/getDefaultersList', {
         name: this.defaulterName,
-        desc: this.description
+        desc: this.description,
+        showMessage
       })
     }
 
@@ -117,7 +118,7 @@ export default defineComponent({
         })
         .onOk((newDefaulter: any) => {
           this.store.dispatch('defaulter/registerNewDefaulter', newDefaulter)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
     },
     onAddDebt (row) {
@@ -130,7 +131,7 @@ export default defineComponent({
         .onOk((newDebt: any) => {
           newDebt.defaulterId = row.id
           this.store.dispatch('defaulter/addDebt', newDebt)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
     },
     onSubDebt (row) {
@@ -143,7 +144,7 @@ export default defineComponent({
         .onOk((newDebt: any) => {
           newDebt.id = row.id
           this.store.dispatch('defaulter/subtractDebt', newDebt)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
     },
     onRemoveDefaulter (row) {
@@ -156,7 +157,7 @@ export default defineComponent({
         })
         .onOk(() => {
           this.store.dispatch('defaulter/removeDefaulter', row.id)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
     }
   }

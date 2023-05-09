@@ -54,9 +54,9 @@ export default defineComponent({
     const store = useStore()
     const billsColumns = notPaidColumns()
 
-    const onSearchClick = () => {
+    const onSearchClick = (showMessage = true) => {
       showLoading(LoadingStatus.ON)
-      store.dispatch('bills/getBillsOverdueList', { showMessage: true })
+      store.dispatch('bills/getBillsOverdueList', { showMessage })
     }
 
     const rows = ref(computed(() => store.getters['bills/getBillsNotPayed']))
@@ -80,7 +80,7 @@ export default defineComponent({
         })
         .onOk(() => {
           this.store.dispatch('bills/payBillOverdue', row.id)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
         .onCancel(() => {
           notifyError(i18n.global.t('msg.payBill.notPaidError'))

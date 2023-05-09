@@ -5,6 +5,7 @@
 
 #### Fix
 - Fix tips not loading properly at home screen [#59](https://github.com/BIEMAX/quote-manager/issues/59)
+- Fix duplicate success messages after close dialogs [#33](https://github.com/BIEMAX/quote-manager/issues/33)
 
 #### Implement
 - Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)

@@ -50,9 +50,9 @@ export default defineComponent({
     const store = useStore()
     const billsColumns = closeToOverdueColumns()
 
-    const onSearchClick = () => {
+    const onSearchClick = (showMessage = true) => {
       showLoading(LoadingStatus.ON)
-      store.dispatch('bills/getBillsCloseToOverdueList', { showMessage: true })
+      store.dispatch('bills/getBillsCloseToOverdueList', { showMessage })
     }
 
     const rows = ref(computed(() => store.getters['bills/getBillsCloseToOverdue']))

@@ -72,7 +72,7 @@ const actions = {
       const bills = await getBills(payload)
       commit('setBills', bills)
       showLoading(LoadingStatus.OFF)
-      notifySuccess(i18n.global.t('msg.bill.querySuccess'))
+      if (payload.showMessage) notifySuccess(i18n.global.t('msg.bill.querySuccess'))
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)
@@ -135,7 +135,7 @@ const actions = {
       showLoading(LoadingStatus.ON)
       const response = await deleteBill(payload)
       showLoading(LoadingStatus.OFF)
-      notifySuccess(i18n.global.t('msg.payBill.deleteSuccess'))
+      notifySuccess(i18n.global.t('msg.payBill.successToDeleteBill'))
       return response
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)

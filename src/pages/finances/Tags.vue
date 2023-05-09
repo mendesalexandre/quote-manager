@@ -58,9 +58,9 @@ export default defineComponent({
     const store = useStore()
     const myTagsColumns = tagsColumns()
 
-    const onSearchClick = () => {
+    const onSearchClick = (showMessage = false) => {
       showLoading(LoadingStatus.ON)
-      store.dispatch('tags/getTagsList', { tag: this.tagName })
+      store.dispatch('tags/getTagsList', { tag: this.tagName, showMessage })
     }
 
     const rows = computed(() => store.getters['tags/getTags'])
@@ -83,7 +83,7 @@ export default defineComponent({
         })
         .onOk((newBill: any) => {
           this.store.dispatch('tags/newTag', newBill)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
     },
     onRemoveTag (row) {
@@ -96,7 +96,7 @@ export default defineComponent({
         })
         .onOk(() => {
           this.store.dispatch('tags/deleteTag', row.name)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
     }
   }

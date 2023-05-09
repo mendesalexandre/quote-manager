@@ -75,13 +75,14 @@ export default defineComponent({
     const billsColumns = myBillsColumns()
     const currentMonth = moment().format('MM/YYYY').toString()
 
-    const onSearchClick = () => {
+    const onSearchClick = (showMessage = true) => {
       showLoading(LoadingStatus.ON)
       store.dispatch('bills/getBillsList', {
         month: this.selectDate.toString().split('/')[0],
         year: this.selectDate.toString().split('/')[1],
         description: this.billName,
-        tag: this.tagName
+        tag: this.tagName,
+        showMessage
       })
     }
 
@@ -107,7 +108,7 @@ export default defineComponent({
         })
         .onOk((newBill: any) => {
           this.store.dispatch('bills/registerNewBill', newBill)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
     },
     onDateUpdateEvent (newValue) {
@@ -123,7 +124,7 @@ export default defineComponent({
         })
         .onOk(() => {
           this.store.dispatch('bills/removeBill', row.id)
-          this.onSearchClick()
+          this.onSearchClick(false)
         })
         .onCancel(() => { })
     }
