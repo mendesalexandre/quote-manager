@@ -49,7 +49,7 @@ import { useStore } from 'vuex'
 import { preSellColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
 import i18n from 'src/util/i18n'
-import { notifySuccess } from 'src/util/Notification'
+import { notifySuccess, notifyError } from 'src/util/Notification'
 
 import { LoadingStatus } from 'src/models/StatusModel'
 import { PresellStatus } from 'src/models/PresellModel'
@@ -122,8 +122,10 @@ export default defineComponent({
     //     })
     // },
     onCopyUrl (row: any) {
-      navigator.clipboard.writeText(row.finalUrl)
-      notifySuccess(i18n.global.t('msg.presell.copySuccess'))
+      if (row.finalUrl) {
+        navigator.clipboard.writeText(row.finalUrl)
+        notifySuccess(i18n.global.t('msg.presell.copySuccess'))
+      } else notifyError(i18n.global.t('msg.presell.copyError'))
     },
     onEditPresell (row: any) {
 

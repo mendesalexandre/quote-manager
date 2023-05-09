@@ -6,6 +6,7 @@
 - Change the process of registration 'new presell' from dialog to page
 - Always open the menus as opened
 - Reduced the notification badge time from '1,5' seconds to '0,7' seconds
+- Not allow copy pre-sale page final url if is not present
 
 #### Fix
 - Fix tips not loading properly at home screen [#59](https://github.com/BIEMAX/quote-manager/issues/59)
