@@ -198,14 +198,7 @@ export default defineComponent({
 
     const billsCloseToOverdue = ref(computed(() => store.getters['bills/getBillsCloseToOverdueLength']))
     const billsNotPayed = ref(computed(() => store.getters['bills/getBillsNotPayedLength']))
-
-    const allTips = ref(computed(() => store.getters['tips/getTips']))
-    const tipsFinances = allTips.value.filter((t) => t.type === 'FINANCE')
-    const tipsInvestments = allTips.value.filter((t) => t.type === 'INVESTMENT')
-
     const tasksTodo = 0
-
-    const myListRef = ref(null)
 
     return {
       slide: ref(1),
@@ -218,9 +211,19 @@ export default defineComponent({
       billsNotPayed,
       billsCloseToOverdue,
       tasksTodo,
-      myListRef,
-      tipsFinances,
-      tipsInvestments
+      tipsFinances: null,
+      tipsInvestments: null
+    }
+  },
+  computed: {
+    computedTips () {
+      return (this as any).$store.getters['tips/getTips']
+    }
+  },
+  watch: {
+    computedTips (newValue) {
+      this.tipsFinances = newValue.filter((t) => t.type === 'FINANCE')
+      this.tipsInvestments = newValue.filter((t) => t.type === 'INVESTMENT')
     }
   }
 })

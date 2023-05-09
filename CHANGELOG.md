@@ -1,10 +1,10 @@
 # [1.0.2]
 
 #### Changed
--
+- Pump project version from `1.0.1` to `1.0.2`
 
 #### Fix
--
+- Fix tips not loading properly at home screen [#59](https://github.com/BIEMAX/quote-manager/issues/59)
 
 #### Implement
 - Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)
