@@ -10,9 +10,7 @@ import { ref, defineComponent } from 'vue'
 export default defineComponent({
   name: 'HelpButton',
   setup () {
-    return {
-      date: ref('')
-    }
+    return { }
   }
 })
 </script>
