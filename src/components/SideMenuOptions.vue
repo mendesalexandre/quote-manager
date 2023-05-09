@@ -14,6 +14,7 @@
         :label="$t(m.label)"
         class="text-secondary bd-primary"
         :icon="m.icon"
+        default-opened
       >
         <div v-for="(subMenu, subIndex) in m.children" :key="subIndex" >
           <q-item v-if="subMenu.hasAccess && subMenu.visibleOnMenu" class="bg-primary text-white" active-class="bg-secondary text-white" :inset-level="0.5" clickable v-ripple :to="subMenu.routePath">

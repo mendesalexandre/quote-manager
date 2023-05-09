@@ -3,6 +3,8 @@
 #### Changed
 - Pump project version from `1.0.1` to `1.0.2`
 - Enhance the user dashboard (homepage) to get more useless information [#51](https://github.com/BIEMAX/quote-manager/issues/51)
+- Change the process of registration 'new presell' from dialog to page
+- Always open the menus as opened
 
 #### Fix
 - Fix tips not loading properly at home screen [#59](https://github.com/BIEMAX/quote-manager/issues/59)
