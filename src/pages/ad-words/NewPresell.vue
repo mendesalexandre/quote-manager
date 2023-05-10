@@ -41,8 +41,10 @@
       <q-step :name="3" :title="$t('view.newPresell.lbl.thirdTitle')" icon="create_new_folder" :done="step > 3" >
         <input-required v-if="shouldEnableField()" v-model="pageTitleText" :label="$t('view.newPresell.lbl.pageTitleText')"/>
         <input-required v-if="shouldEnableField()" v-model="headLineText" :label="$t('view.newPresell.lbl.headLineText')"/>
-        <!-- <input-required v-if="shouldEnableField()" v-model="buttonText" :label="$t('view.newPresell.lbl.buttonText')"/> -->
         <input-required v-if="shouldEnableField()" v-model="buttonText" :label="$t('view.newPresell.lbl.buttonText')"/>
+
+        <!-- <q-checkbox v-model="true" label=""/> -->
+        <!-- <input-required v-if="shouldEnableField()" v-model="buttonText" :label="$t('view.newPresell.lbl.buttonText')"/> -->
 
         <!--Auxiliary text-->
         <q-card v-if="shouldEnableField()">
@@ -255,9 +257,6 @@ export default defineComponent({
         return this.templateSelected.includes('Template 1') || this.templateSelected.includes('Template 2')
       } else if (userPlan === 'ENTERPRISE') return true // This plan allow's all templates
       else return false
-    },
-    shouldEnable_Temp2 () {
-
     },
     openHelpDialog () {
       this.$q

@@ -22,6 +22,7 @@
 - In pre-sale creation, added button 'privacy' [#63](https://github.com/BIEMAX/quote-manager/issues/63)
 - In pre-sale creation, added button 'terms' [#64](https://github.com/BIEMAX/quote-manager/issues/64)
 - In pre-sale creation, added button 'contact' [#65](https://github.com/BIEMAX/quote-manager/issues/65)
+- Enable fields based on template selection in pre-sale registration [#70](https://github.com/BIEMAX/quote-manager/issues/70)
 -
 
 # [1.0.1]
