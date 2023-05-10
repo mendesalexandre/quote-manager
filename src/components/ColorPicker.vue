@@ -10,7 +10,7 @@
       <template v-slot:append>
         <q-icon name="colorize" class="cursor-pointer">
           <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-            <q-color @update:model-value="onColorPick" v-value="colorSelected" />
+            <q-color @update:model-value="onColorPick" v-model="colorSelected" />
           </q-popup-proxy>
         </q-icon>
       </template>
@@ -29,11 +29,18 @@ export default defineComponent({
     label: {
       required: true,
       type: String
+    },
+    /**
+     * Property to overwrite the default color '#027be3'
+     */
+    startColor: {
+      require: false,
+      type: String
     }
   },
-  setup () {
+  setup (props) {
     return {
-      colorSelected: ref('#027be3')
+      colorSelected: ref(props.startColor || '#027be3')
     }
   },
   methods: {

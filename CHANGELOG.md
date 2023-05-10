@@ -11,11 +11,18 @@
 #### Fix
 - Fix tips not loading properly at home screen [#59](https://github.com/BIEMAX/quote-manager/issues/59)
 - Fix duplicate success messages after close dialogs [#33](https://github.com/BIEMAX/quote-manager/issues/33)
+- Fix warning when select the color for pre-sale pages 'Failed to resolve directive: value at <ColorPicker>'
 
 #### Implement
 - Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)
 - Defaulters screen, add and subtract debt and user tracking changes on the values [#35](https://github.com/BIEMAX/quote-manager/issues/35)
 - Added vertical scrolls for mobile devices [#42](https://github.com/BIEMAX/quote-manager/issues/42)
+- Re-branded the menus and icons [#98](https://github.com/BIEMAX/financial-manager-app/issues/98)
+- In pre-sale registration, allow user define the headline [#61](https://github.com/BIEMAX/quote-manager/issues/61)
+- In pre-sale creation, added button 'privacy' [#63](https://github.com/BIEMAX/quote-manager/issues/63)
+- In pre-sale creation, added button 'terms' [#64](https://github.com/BIEMAX/quote-manager/issues/64)
+- In pre-sale creation, added button 'contact' [#65](https://github.com/BIEMAX/quote-manager/issues/65)
+-
 
 # [1.0.1]
 

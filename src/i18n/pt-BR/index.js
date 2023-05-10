@@ -153,21 +153,28 @@ export default {
     },
     newPresell: {
       lbl: {
-        firstTitle: 'Sobre o produto',
-        secondTitle: 'Textos da página',
-        thirdTitle: 'Coloração/estilização da página',
+        firstTitle: 'Definição do template da página',
+        secondTitle: 'Sobre o produto',
+        thirdTitle: 'Textos da página',
+        fourthTitle: 'Color, estilo e animação da página',
         productName: 'Nome do produto',
         pageTitleText: 'Título da página',
         headLineText: 'Headline (manchete) da página',
         buttonText: 'Texto do botão',
         affiliateUrl: 'Link de afiliado',
-        showLastChanceToBuy: 'Mostrar \'última chance para comprar\'?',
+        showLastChanceToBuy: 'Apresentar \'últimas unidades a venda\'?',
         image: 'Imagem do produto',
         colorBack1: 'Cor de fundo 1',
         colorBack2: 'Cor de fundo 2',
         buttonColor: 'Cor do botão',
         showButtonAnimation: 'Mostrar animação no botão?',
-        templates: 'Páginas pré-definidas'
+        templates: 'Páginas pré-definidas',
+        aboutProduct: 'O que é o produto?',
+        howDoesProductWork: 'Como o produto funciona',
+        productIngredients: 'Ingredientes do produto',
+        promotionValueBefore: 'Valor antes da promoção',
+        promotionValueNow: 'Valor da promoção',
+        discountValue: 'Valor de desconto'
       },
       help: {
         productName: 'Produto a ser anunciado'
@@ -299,6 +306,7 @@ export default {
       title: 'Deseja realmente pagar a conta?',
       message: 'Uma vez feito, o processo não poderá ser desfeito.',
       successToPay: 'Sucesso ao pagar a conta',
+      successToDeleteBill: 'Sucesso ao remover a conta',
       notPaidError: 'Erro ao pagar conta'
     },
     plan: {
@@ -310,7 +318,8 @@ export default {
       imgError: 'Certifique-se de que a imagem é da extensão \'*.png\' e contém menos de 850Kb',
       newSuccess: 'Sucesso ao registrar a pre-sell',
       querySuccess: 'Sucesso ao consultar a lista de pre-sell',
-      copySuccess: 'Endereço final da página pré-venda copiado com sucesso'
+      copySuccess: 'Endereço final da página pré-venda copiado com sucesso',
+      copyError: 'Endereço final da página não está disponível'
     },
     usr: {
       historySuccess: 'Sucesso ao consultar histórico'
