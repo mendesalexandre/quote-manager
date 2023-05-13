@@ -1,4 +1,4 @@
-import { newPresell, getPresell } from 'src/composables/PresellService'
+import { newPresell, getPresell, deletePresell } from 'src/composables/PresellService'
 
 // Utils
 import { showLoading } from 'src/util/Loading'
@@ -38,12 +38,13 @@ const actions = {
    * @returns List of the pre-sells
    */
   async registerNewPresell ({ commit }, payload) {
-    // const $router = (this as any).$router
+    const router = (this as any).$router
     showLoading(LoadingStatus.ON)
     try {
       const presell = await newPresell(payload)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.presell.newSuccess'))
+      router.push('/presell')
       return presell
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
@@ -55,6 +56,18 @@ const actions = {
     try {
       const presells = await getPresell(payload)
       commit('setPresells', presells)
+      showLoading(LoadingStatus.OFF)
+      if (payload.showMessage) notifySuccess(i18n.global.t('msg.presell.querySuccess'))
+      return presells
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
+    }
+  },
+  async removePresell ({ commit }, payload) {
+    showLoading(LoadingStatus.ON)
+    try {
+      const presells = await deletePresell(payload)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.presell.querySuccess'))
       return presells

@@ -31,7 +31,7 @@
       :show-button-edit="true"
       :show-button-remove="true"
       :show-button-pay="false"
-      @on-copy-click-event="onCopyUrl"
+      @on-copy-click-event="onCopyPresell"
       @on-edit-click-event="onEditPresell"
       @on-remove-click-event="onRemovePresell"
     ></table-panel>
@@ -71,12 +71,13 @@ export default defineComponent({
     const store = useStore()
     const sellColumns = preSellColumns()
 
-    const onSearchClick = () => {
+    const onSearchClick = (showMessage = true) => {
       showLoading(LoadingStatus.ON)
       const status = getStatusEnum(this.status)
       store.dispatch('presell/getPresellList', {
         productName: this.productName,
-        status: status?.toString()
+        status: status?.toString(),
+        showMessage
       })
     }
 
@@ -109,19 +110,7 @@ export default defineComponent({
     }
   },
   methods: {
-    // openDialogNewPresell () {
-    //   this.$q
-    //     .dialog({
-    //       // component: DialogNewPresell,
-    //       persistent: true,
-    //       cancel: true
-    //     })
-    //     .onOk((newPresell: any) => {
-    //       console.log('newPresell: ', newPresell)
-    //       this.store.dispatch('presell/registerNewPresell', newPresell)
-    //     })
-    // },
-    onCopyUrl (row: any) {
+    onCopyPresell (row: any) {
       if (row.finalUrl) {
         navigator.clipboard.writeText(row.finalUrl)
         notifySuccess(i18n.global.t('msg.presell.copySuccess'))
@@ -131,7 +120,18 @@ export default defineComponent({
 
     },
     onRemovePresell (row: any) {
-
+      this.$q
+        .dialog({
+          title: i18n.global.t('msg.deletePresell.title'),
+          message: i18n.global.t('msg.deletePresell.message'),
+          persistent: true,
+          cancel: true
+        })
+        .onOk(() => {
+          this.store.dispatch('presell/removePresell', row.id)
+          this.onSearchClick(false)
+        })
+        .onCancel(() => { })
     }
   }
 })

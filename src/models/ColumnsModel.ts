@@ -82,6 +82,7 @@ export function preSellColumns () {
   return [
     { name: 'status', field: 'status', label: i18n.global.t('columns.presell.status'), sortable: true, align: 'left' },
     { name: 'productName', field: 'productName', required: true, label: i18n.global.t('columns.presell.productName'), sortable: true, align: 'left' },
+    { name: 'template', field: 'template', required: true, label: i18n.global.t('columns.presell.template'), sortable: true, align: 'left' },
     { name: 'finalUrl', field: 'finalUrl', required: true, label: i18n.global.t('columns.presell.finalUrl'), sortable: true, align: 'left' },
     { name: 'actions', field: 'action', label: i18n.global.t('components.lbl.actions'), sortable: false, align: 'right' }
   ]

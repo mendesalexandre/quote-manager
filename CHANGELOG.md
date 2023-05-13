@@ -24,6 +24,9 @@
 - In pre-sale creation, added button 'contact' [#65](https://github.com/BIEMAX/quote-manager/issues/65)
 - Enable fields based on template selection in pre-sale registration [#70](https://github.com/BIEMAX/quote-manager/issues/70)
 - Implemented github actions for automatized deploys for Google Firebase
+- In pre-sale page registration, validate if the affiliate url contains malicious content [#67](https://github.com/BIEMAX/quote-manager/issues/67)
+- In pre-sale page registration, possibility to change button text [#66](https://github.com/BIEMAX/quote-manager/issues/66)
+- In pre-sale page registration, not allow use the product link [#69](https://github.com/BIEMAX/quote-manager/issues/69)
 
 # [1.0.1]
 

@@ -155,26 +155,31 @@ export default {
       lbl: {
         firstTitle: 'Definição do template da página',
         secondTitle: 'Sobre o produto',
-        thirdTitle: 'Textos da página',
-        fourthTitle: 'Color, estilo e animação da página',
+        thirdTitle: 'Textos de destaque',
+        fourthTitle: 'Sobre o produto',
+        fifthTitle: 'Color, estilo e animação da página',
         productName: 'Nome do produto',
         pageTitleText: 'Título da página',
         headLineText: 'Headline (manchete) da página',
+        showButtonAsText: 'Mostrar botão de compra como texto',
+        showButtonAsImage: 'Mostrar botão de compra como imagem',
         buttonText: 'Texto do botão',
         affiliateUrl: 'Link de afiliado',
         showLastChanceToBuy: 'Apresentar \'últimas unidades a venda\'?',
         image: 'Imagem do produto',
-        colorBack1: 'Cor de fundo 1',
-        colorBack2: 'Cor de fundo 2',
+        backColor1: 'Cor de fundo 1',
+        backColor2: 'Cor de fundo 2',
         buttonColor: 'Cor do botão',
         showButtonAnimation: 'Mostrar animação no botão?',
         templates: 'Páginas pré-definidas',
+        showDetailedInfo: 'Mostrar informações detalhadas do produto?',
         aboutProduct: 'O que é o produto?',
         howDoesProductWork: 'Como o produto funciona',
         productIngredients: 'Ingredientes do produto',
-        promotionValueBefore: 'Valor antes da promoção',
-        promotionValueNow: 'Valor da promoção',
-        discountValue: 'Valor de desconto'
+        showPromotionValues: 'Mostrar valores de desconto (para chamar atenção)?',
+        promotionValueBefore: 'Valor por unidade antes da promoção',
+        promotionValueNow: 'Valor por unidade agora na promoção',
+        discountValue: 'Valor de economia se comprar agora'
       },
       help: {
         productName: 'Produto a ser anunciado'
@@ -273,7 +278,8 @@ export default {
     presell: {
       productName: 'Nome do produto',
       status: 'Situação',
-      finalUrl: 'Link da pré-sell'
+      finalUrl: 'Link da pré-sell',
+      template: 'Template'
     }
   },
   msg: {
@@ -319,7 +325,15 @@ export default {
       newSuccess: 'Sucesso ao registrar a pre-sell',
       querySuccess: 'Sucesso ao consultar a lista de pre-sell',
       copySuccess: 'Endereço final da página pré-venda copiado com sucesso',
-      copyError: 'Endereço final da página não está disponível'
+      copyError: 'Endereço final da página não está disponível',
+      errorUrlVal: 'Não foi possível validar o link de afiliado. Ele pode estar desativado ou inacessível',
+      errorUrlMalware: 'O link de afiliado pode conter malware/vírus e pode gerar fraude em sistemas no Google Ads',
+      successUrlVal: 'Link de afiliado validado e está seguro',
+      invalidUrl: 'Link de afiliado inválido. Ele precisa conter um certificado HTTPS para ser válido'
+    },
+    deletePresell: {
+      title: 'Deseja realmente apagar a página de pré-venda?',
+      message: 'Uma vez feito, o processo não poderá ser desfeito.'
     },
     usr: {
       historySuccess: 'Sucesso ao consultar histórico'
@@ -341,7 +355,8 @@ export default {
     notMapped: 'Erro não mapeado',
     success: 'Sucesso ao executar a ação',
     error: 'Erro não mapeado',
-    wait: 'Aguarde uns instantes...'
+    wait: 'Aguarde uns instantes...',
+    unfilledFields: 'Campos obrigatórios não preenchidos'
   },
   logs: {},
   components: {
