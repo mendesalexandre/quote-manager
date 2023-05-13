@@ -42,12 +42,8 @@
 <script lang="ts">
 import {
   defineComponent,
-  ref,
-  computed,
-  watch,
-  watchEffect
+  ref
 } from 'vue'
-import { useStore } from 'vuex'
 
 import { defaultersColumns, defaultersChildColumns } from 'src/models/ColumnsModel'
 import { showLoading } from 'src/util/Loading'
@@ -73,42 +69,27 @@ export default defineComponent({
     ButtonSearch
   },
   data () {
-    const store = useStore()
     const defColumns = defaultersColumns()
     const defChildColumns = defaultersChildColumns()
 
-    const onSearchClick = (showMessage = true) => {
+    return {
+      rows: null,
+      defColumns,
+      defChildColumns,
+      defaulterName: ref(''),
+      description: ref('')
+    }
+  },
+  methods: {
+    onSearchClick (showMessage = true) {
+      console.log('1. searchclick')
       showLoading(LoadingStatus.ON)
-      store.dispatch('defaulter/getDefaultersList', {
+      return (this as any).$store.dispatch('defaulter/getDefaultersList', {
         name: this.defaulterName,
         desc: this.description,
         showMessage
       })
-    }
-
-    const rows = computed(() => store.getters['defaulter/getDefaulters'])
-
-    watch(rows, () => {
-      showLoading(LoadingStatus.OFF)
-    })
-
-    // watchEffect(async () => {
-    //   if (rows.value === undefined) {
-    //     showLoading(LoadingStatus.OFF)
-    //   }
-    // })
-
-    return {
-      rows,
-      defColumns,
-      defChildColumns,
-      defaulterName: ref(''),
-      description: ref(''),
-      onSearchClick,
-      store
-    }
-  },
-  methods: {
+    },
     openDialogNewDefaulter () {
       this.$q
         .dialog({
@@ -117,7 +98,7 @@ export default defineComponent({
           cancel: true
         })
         .onOk((newDefaulter: any) => {
-          this.store.dispatch('defaulter/registerNewDefaulter', newDefaulter)
+          (this as any).$store.dispatch('defaulter/registerNewDefaulter', newDefaulter)
           this.onSearchClick(false)
         })
     },
@@ -129,8 +110,8 @@ export default defineComponent({
           cancel: true
         })
         .onOk((newDebt: any) => {
-          newDebt.defaulterId = row.id
-          this.store.dispatch('defaulter/addDebt', newDebt)
+          newDebt.defaulterId = row.id;
+          (this as any).$store.dispatch('defaulter/addDebt', newDebt)
           this.onSearchClick(false)
         })
     },
@@ -142,8 +123,8 @@ export default defineComponent({
           cancel: true
         })
         .onOk((newDebt: any) => {
-          newDebt.id = row.id
-          this.store.dispatch('defaulter/subtractDebt', newDebt)
+          newDebt.id = row.id;
+          (this as any).$store.dispatch('defaulter/subtractDebt', newDebt)
           this.onSearchClick(false)
         })
     },
@@ -156,9 +137,23 @@ export default defineComponent({
           cancel: true
         })
         .onOk(() => {
-          this.store.dispatch('defaulter/removeDefaulter', row.id)
+          (this as any).$store.dispatch('defaulter/removeDefaulter', row.id)
           this.onSearchClick(false)
         })
+    }
+  },
+  computed: {
+    computedDefaulters () {
+      console.log('2. computed')
+      return (this as any).$store.getters['defaulter/getDefaulters']
+    }
+  },
+  watch: {
+    computedDefaulters (newValue) {
+      console.log('3. watch')
+      console.log('\t3.1 newValue: ', newValue)
+      console.log('\t3.2 oldValue: ', this.rows)
+      this.rows = ref(newValue)
     }
   }
 })
