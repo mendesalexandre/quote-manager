@@ -175,8 +175,7 @@ import {
   onMounted
 } from 'vue'
 import { useStore } from 'vuex'
-import { showLoading } from 'src/util/Loading'
-import { LoadingStatus } from 'src/models/StatusModel'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 
 import DocCardTitle from 'src/components/DocCardTitle.vue'
 

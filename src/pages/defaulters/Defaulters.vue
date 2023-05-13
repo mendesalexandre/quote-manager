@@ -42,13 +42,13 @@
 <script lang="ts">
 import {
   defineComponent,
-  ref
+  ref,
+  computed
 } from 'vue'
 
 import { defaultersColumns, defaultersChildColumns } from 'src/models/ColumnsModel'
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import i18n from 'src/util/i18n'
-import { LoadingStatus } from 'src/models/StatusModel'
 
 import FilterPanel from 'src/components/FilterPanel.vue'
 import ExpandTablePanel from 'src/components/ExpandTablePanel.vue'
@@ -82,7 +82,6 @@ export default defineComponent({
   },
   methods: {
     onSearchClick (showMessage = true) {
-      console.log('1. searchclick')
       showLoading(LoadingStatus.ON)
       return (this as any).$store.dispatch('defaulter/getDefaultersList', {
         name: this.defaulterName,
@@ -99,7 +98,6 @@ export default defineComponent({
         })
         .onOk((newDefaulter: any) => {
           (this as any).$store.dispatch('defaulter/registerNewDefaulter', newDefaulter)
-          this.onSearchClick(false)
         })
     },
     onAddDebt (row) {
@@ -125,7 +123,6 @@ export default defineComponent({
         .onOk((newDebt: any) => {
           newDebt.id = row.id;
           (this as any).$store.dispatch('defaulter/subtractDebt', newDebt)
-          this.onSearchClick(false)
         })
     },
     onRemoveDefaulter (row) {
@@ -138,22 +135,18 @@ export default defineComponent({
         })
         .onOk(() => {
           (this as any).$store.dispatch('defaulter/removeDefaulter', row.id)
-          this.onSearchClick(false)
         })
     }
   },
   computed: {
     computedDefaulters () {
-      console.log('2. computed')
       return (this as any).$store.getters['defaulter/getDefaulters']
     }
   },
   watch: {
     computedDefaulters (newValue) {
-      console.log('3. watch')
-      console.log('\t3.1 newValue: ', newValue)
-      console.log('\t3.2 oldValue: ', this.rows)
-      this.rows = ref(newValue)
+      this.rows = null
+      this.rows = newValue
     }
   }
 })

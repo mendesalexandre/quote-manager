@@ -13,6 +13,7 @@
 - Fix duplicate success messages after close dialogs [#33](https://github.com/BIEMAX/quote-manager/issues/33)
 - Fix warning when select the color for pre-sale pages 'Failed to resolve directive: value at <ColorPicker>'
 - Fix shortcut to homepage not working properly [#57](https://github.com/BIEMAX/quote-manager/issues/57)
+- Fix data not re-loading properly in tables after do some action [#60](https://github.com/BIEMAX/quote-manager/issues/60)
 
 #### Implement
 - Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)

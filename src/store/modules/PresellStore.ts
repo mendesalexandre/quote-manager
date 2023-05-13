@@ -1,9 +1,8 @@
 import { newPresell, getPresell, deletePresell } from 'src/composables/PresellService'
 
 // Utils
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
 
 /**
@@ -41,11 +40,13 @@ const actions = {
     const router = (this as any).$router
     showLoading(LoadingStatus.ON)
     try {
-      const presell = await newPresell(payload)
+      const registerPresell = await newPresell(payload)
+      const presells = await getPresell(null)
+      commit('setPresells', presells)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.presell.newSuccess'))
       router.push('/presell')
-      return presell
+      return registerPresell
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)
@@ -67,10 +68,12 @@ const actions = {
   async removePresell ({ commit }, payload) {
     showLoading(LoadingStatus.ON)
     try {
-      const presells = await deletePresell(payload)
+      const delPresell = await deletePresell(payload)
+      const presells = await getPresell(null)
+      commit('setPresells', presells)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.presell.querySuccess'))
-      return presells
+      return delPresell
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)

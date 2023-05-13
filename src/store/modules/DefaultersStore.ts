@@ -7,9 +7,8 @@ import {
 } from 'src/composables/DefaultersService'
 
 // Utils
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
 
 /**
@@ -55,6 +54,8 @@ const actions = {
     try {
       showLoading(LoadingStatus.ON)
       const newDefaulterResp = await newDefaulter(payload)
+      const defaulters = await getDefaulters(null)
+      commit('setDefaulters', defaulters)
       showLoading(LoadingStatus.OFF)
       notifySuccess(newDefaulterResp)
       return newDefaulterResp
@@ -91,6 +92,8 @@ const actions = {
     try {
       showLoading(LoadingStatus.ON)
       const removeDefaulter = await deleteDefaulter(payload)
+      const defaulters = await getDefaulters(null)
+      commit('setDefaulters', defaulters)
       showLoading(LoadingStatus.OFF)
       notifySuccess(removeDefaulter)
       return removeDefaulter

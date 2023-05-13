@@ -32,8 +32,7 @@ import {
 import { useStore } from 'vuex'
 
 import { notPaidColumns } from 'src/models/ColumnsModel'
-import { showLoading } from 'src/util/Loading'
-import { LoadingStatus } from 'src/models/StatusModel'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import i18n from 'src/util/i18n'
 
 import FilterPanel from 'src/components/FilterPanel.vue'

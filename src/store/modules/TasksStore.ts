@@ -1,8 +1,7 @@
 import { registerNewTask } from 'src/composables/TasksService'
 import { TaskNew } from 'src/models/TaskModel'
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
 
 /**
