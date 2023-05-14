@@ -24,12 +24,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  computed,
-  ref
-} from 'vue'
-import { useStore } from 'vuex'
+import { defineComponent } from 'vue'
 
 import { notPaidColumns } from 'src/models/ColumnsModel'
 import { showLoading, LoadingStatus } from 'src/util/Loading'
@@ -37,7 +32,6 @@ import i18n from 'src/util/i18n'
 
 import FilterPanel from 'src/components/FilterPanel.vue'
 import TablePanel from 'src/components/TablePanel.vue'
-import MonthPicker from 'src/components/MonthPicker.vue'
 import ButtonSearch from 'src/components/ButtonSearch.vue'
 import { notifyError } from 'src/util/Notification'
 
@@ -46,29 +40,19 @@ export default defineComponent({
   components: {
     FilterPanel,
     TablePanel,
-    // MonthPicker,
     ButtonSearch
   },
   data () {
-    const store = useStore()
-    const billsColumns = notPaidColumns()
-
-    const onSearchClick = (showMessage = true) => {
-      showLoading(LoadingStatus.ON)
-      store.dispatch('bills/getBillsOverdueList', { showMessage })
-    }
-
-    const rows = ref(computed(() => store.getters['bills/getBillsNotPayed']))
-
     return {
-      rows,
-      billsColumns,
-      store,
-      // translate,
-      onSearchClick
+      rows: null,
+      billsColumns: notPaidColumns()
     }
   },
   methods: {
+    onSearchClick (showMessage = true) {
+      showLoading(LoadingStatus.ON);
+      (this as any).$store.dispatch('bills/getBillsOverdueList', { showMessage })
+    },
     confirmPayBill (row) {
       this.$q
         .dialog({
@@ -78,12 +62,21 @@ export default defineComponent({
           cancel: true
         })
         .onOk(() => {
-          this.store.dispatch('bills/payBillOverdue', row.id)
-          this.onSearchClick(false)
+          (this as any).$store.dispatch('bills/payBillOverdue', row.id)
         })
         .onCancel(() => {
           notifyError(i18n.global.t('msg.payBill.notPaidError'))
         })
+    }
+  },
+  computed: {
+    computedBills () {
+      return (this as any).$store.getters['bills/getBillsNotPayed']
+    }
+  },
+  watch: {
+    computedBills (newValue) {
+      this.rows = newValue
     }
   }
 })

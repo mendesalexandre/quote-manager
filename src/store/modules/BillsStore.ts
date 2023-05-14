@@ -123,6 +123,9 @@ const actions = {
     try {
       showLoading(LoadingStatus.ON)
       const response = await payBill(payload)
+      const bills = await getBillsNotPayed()
+      commit('setBillsOverdue', bills)
+      commit('setBillsNotPayedLength', bills?.length || 0)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.payBill.successToPay'))
       return response

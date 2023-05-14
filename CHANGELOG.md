@@ -14,6 +14,7 @@
 - Fix warning when select the color for pre-sale pages 'Failed to resolve directive: value at <ColorPicker>'
 - Fix shortcut to homepage not working properly [#57](https://github.com/BIEMAX/quote-manager/issues/57)
 - Fix data not re-loading properly in tables after do some action [#60](https://github.com/BIEMAX/quote-manager/issues/60)
+- Fix not re-loading the grid after pay an overdue bill
 
 #### Implement
 - Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)
@@ -29,6 +30,7 @@
 - In pre-sale page registration, validate if the affiliate url contains malicious content [#67](https://github.com/BIEMAX/quote-manager/issues/67)
 - In pre-sale page registration, possibility to change button text [#66](https://github.com/BIEMAX/quote-manager/issues/66)
 - In pre-sale page registration, not allow use the product link [#69](https://github.com/BIEMAX/quote-manager/issues/69)
+- Added column 'bill type' at the bills grid
 
 # [1.0.1]
 
