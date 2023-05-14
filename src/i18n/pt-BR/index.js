@@ -239,7 +239,9 @@ export default {
       tags: 'Tags',
       isCashEntry: 'Tipo de conta',
       isBillPayed: 'Conta paga',
-      isToDivideValue: 'Valor parcelado'
+      isToDivideValue: 'Valor parcelado',
+      entryTrue: 'Recebimento',
+      entryFalse: 'Pagamento'
     },
     closeToOverdue: {
       id: 'Identificador',

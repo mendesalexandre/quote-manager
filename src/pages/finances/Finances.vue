@@ -121,7 +121,6 @@ export default defineComponent({
   },
   watch: {
     computedBills (newValue) {
-      this.rows = null
       this.rows = newValue
     }
   }
