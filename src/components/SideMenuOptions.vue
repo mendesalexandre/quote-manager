@@ -12,7 +12,7 @@
         :v-if="m.hasAccess && m.visibleOnMenu"
         expand-separator
         :label="$t(m.label)"
-        class="text-secondary bd-primary"
+        class="bg-primary text-white"
         :icon="m.icon"
         default-opened
         :to="m.routePath"
@@ -71,5 +71,5 @@ export default defineComponent({
 <style lang="sass">
 .selected-item-menu
   color: white
-  background: $secondary
+  background: $primary
 </style>

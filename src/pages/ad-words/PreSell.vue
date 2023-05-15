@@ -105,7 +105,8 @@ export default defineComponent({
       } else notifyError(i18n.global.t('msg.presell.copyError'))
     },
     onEditPresell (row: any) {
-
+      (this as any).$store.dispatch('presell/editPresell', row);
+      (this as any).$router.push({ name: 'New pre-sell', query: { edit: true } })
     },
     onRemovePresell (row: any) {
       this.$q

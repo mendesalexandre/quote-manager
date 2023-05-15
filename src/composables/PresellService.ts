@@ -39,4 +39,15 @@ export async function deletePresell (payload: any) {
     })
 }
 
-export default { newPresell, getPresell }
+export async function updatePresell (payload: any) {
+  return await apiAuth
+    .post(`affiliate/pre-sell/update/${payload.id}`, payload)
+    .then((response: any) => {
+      return response.data.message
+    })
+    .catch((error: any) => {
+      throw error?.response?.data?.message || error?.message
+    })
+}
+
+export default { newPresell, getPresell, deletePresell, updatePresell }

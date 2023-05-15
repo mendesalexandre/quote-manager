@@ -31,6 +31,7 @@
 - In pre-sale page registration, possibility to change button text [#66](https://github.com/BIEMAX/quote-manager/issues/66)
 - In pre-sale page registration, not allow use the product link [#69](https://github.com/BIEMAX/quote-manager/issues/69)
 - Added column 'bill type' at the bills grid
+- Finish the menu 'pre-sales' implementing edition [#34](https://github.com/BIEMAX/quote-manager/issues/34)
 
 # [1.0.1]
 

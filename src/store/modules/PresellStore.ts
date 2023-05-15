@@ -1,4 +1,4 @@
-import { newPresell, getPresell, deletePresell } from 'src/composables/PresellService'
+import { newPresell, getPresell, deletePresell, updatePresell } from 'src/composables/PresellService'
 
 // Utils
 import { showLoading, LoadingStatus } from 'src/util/Loading'
@@ -18,6 +18,9 @@ const state = {
 const mutations = {
   setPresells (state, value) {
     state.presells = value
+  },
+  setPresellToEdit (state, value) {
+    state.presellToEdit = value
   }
 }
 
@@ -27,6 +30,9 @@ const mutations = {
 const getters = {
   getPresells (state) {
     return state.presells
+  },
+  getPresellToEdit (state) {
+    return state.presellToEdit
   }
 }
 
@@ -74,6 +80,32 @@ const actions = {
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.presell.querySuccess'))
       return delPresell
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
+    }
+  },
+  async updatePresell ({ commit }, payload) {
+    const $router = (this as any).$router
+    showLoading(LoadingStatus.ON)
+    try {
+      const response = await updatePresell(payload)
+      const presells = await getPresell(null)
+      commit('setPresells', presells)
+      showLoading(LoadingStatus.OFF)
+      $router.push('/presell')
+      return response
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
+    }
+  },
+  async editPresell ({ commit }, payload) {
+    showLoading(LoadingStatus.ON)
+    try {
+      commit('setPresellToEdit', payload)
+      showLoading(LoadingStatus.OFF)
+      return true
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)

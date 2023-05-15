@@ -28,6 +28,7 @@ export interface PresellNew {
   discountValue: number
   // Other definitions
   template: string[]
+  id: string
 }
 
 export enum PresellStatus {

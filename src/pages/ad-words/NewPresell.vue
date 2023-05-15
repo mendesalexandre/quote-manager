@@ -211,6 +211,8 @@ export default defineComponent({
     const translate = i18n.global
     const store = useStore()
     const user = store.getters['user/getUser']
+    const isExistingPresell = this.$route.query?.edit || false
+    const presellToEdit = store.getters['presell/getPresellToEdit']
     const urlUpload = `${environment.api.url}/${environment.api.version}/${environment.api.pathToUpload}`
 
     const availableTemplates = ['Template 1']
@@ -225,43 +227,45 @@ export default defineComponent({
       confirm: false,
       step: ref(1),
       // Template 1 - available fields
-      productName: ref(''),
-      imageId: ref(''),
-      affiliateUrl: ref(''),
-      backColor1: ref('#136e73'),
-      backColor2: ref('#ffffff'),
-      buttonColor: ref('#FAC400'),
+      productName: isExistingPresell ? presellToEdit.productName : ref(''),
+      imageId: isExistingPresell ? presellToEdit.imageId : ref(''),
+      affiliateUrl: isExistingPresell ? presellToEdit.affiliateUrl : ref(''),
+      backColor1: isExistingPresell ? presellToEdit.component.backGradientColor1 : ref('#136e73'),
+      backColor2: isExistingPresell ? presellToEdit.component.backGradientColor2 : ref('#ffffff'),
+      buttonColor: isExistingPresell ? presellToEdit.component.buttonColor : ref('#FAC400'),
       // Template 2 - available fields
-      headLineText: ref('Discover The Secret of <YOUR_PRODUCT_NAME_HERE>'),
-      buttonText: ref('Click Here and Access the Official Website > NOW!'),
-      buttonChoice: ref('text'),
-      showButtonAnimation: ref(false),
+      headLineText: isExistingPresell ? presellToEdit.component.headLineText : ref('Discover The Secret of <YOUR_PRODUCT_NAME_HERE>'),
+      buttonText: isExistingPresell ? presellToEdit.component.buttonText : ref('Click Here and Access the Official Website > NOW!'),
+      buttonChoice: isExistingPresell ? presellToEdit.component.buttonChoice : ref('text'),
+      showButtonAnimation: isExistingPresell ? presellToEdit.component.showButtonAnimation : ref(false),
       // Template 3 - available fields
-      pageTitleText: ref(''),
-      serverToHostPresell: ref('get-best-offer'),
-      showDetailedInfo: ref(false),
-      aboutProduct: ref(''),
-      howDoesProductWork: ref(''),
-      productIngredients: ref(''),
-      showLastChanceToBuy: ref(false),
+      pageTitleText: isExistingPresell ? presellToEdit.component.pageTitleText : ref(''),
+      serverToHostPresell: isExistingPresell ? presellToEdit.domain : ref('get-best-offer'),
+      showDetailedInfo: isExistingPresell ? presellToEdit.component.showDetailedInfo : ref(false),
+      aboutProduct: isExistingPresell ? presellToEdit.component.aboutProduct : ref(''),
+      howDoesProductWork: isExistingPresell ? presellToEdit.component.howDoesProductWork : ref(''),
+      productIngredients: isExistingPresell ? presellToEdit.component.productIngredients : ref(''),
+      showLastChanceToBuy: isExistingPresell ? presellToEdit.component.showLastChanceToBuy : ref(false),
       // Promotion values
-      showPromotionValues: ref(false),
-      promotionValueBefore: ref(0.0),
-      promotionValueWithDiscount: ref(0.0),
-      discountValue: ref(0.0),
-      // Other definitions
-      templateSelected: ref(['Template 1']),
+      showPromotionValues: isExistingPresell ? presellToEdit.component.showPromotionValues || false : ref(false),
+      promotionValueBefore: isExistingPresell ? presellToEdit.component.promotionValueBefore : ref(0.0),
+      promotionValueWithDiscount: isExistingPresell ? presellToEdit.component.promotionValueWithDiscount : ref(0.0),
+      discountValue: isExistingPresell ? presellToEdit.component.discountValue : ref(0.0),
+      // Other definition
+      templateSelected: isExistingPresell ? presellToEdit.component.template : ref(['Template 1']),
       templateOptions: ref(availableTemplates),
       user,
       translate,
       urlUpload,
       shouldViewField,
-      store
+      store,
+      isExistingPresell,
+      id: isExistingPresell ? presellToEdit.id : ''
     }
   },
   methods: {
     onOkClick () {
-      if (!this.validateFieldBeforeSave()) notifyError(i18n.global.t('msg.unfilledFields'))
+      if (!this.validateFieldBeforeSave()) return false
       else {
         const newPresell: PresellNew = {
           productName: this.productName,
@@ -286,59 +290,132 @@ export default defineComponent({
           promotionValueWithDiscount: this.promotionValueWithDiscount,
           discountValue: this.discountValue,
           // Other definitions
-          template: this.templateSelected
+          template: this.templateSelected,
+          id: this.id
         }
-        this.store.dispatch('presell/registerNewPresell', newPresell)
+        if (this.isExistingPresell) this.store.dispatch('presell/updatePresell', newPresell)
+        else this.store.dispatch('presell/registerNewPresell', newPresell)
       }
     },
     validateFieldBeforeSave () {
       if (this.templateSelected.includes('Template 1')) {
-        if (!this.productName) return false
-        else if (!this.imageId) return false
-        else if (!this.affiliateUrl) return false
-        else if (!this.backColor1) return false
-        else if (!this.backColor2) return false
-        else if (!this.buttonColor) return false
+        if (!this.productName) {
+          this.showMessageFieldNotFilled('productName')
+          return false
+        } else if (!this.imageId) {
+          this.showMessageFieldNotFilled('image')
+          return false
+        } else if (!this.affiliateUrl) {
+          this.showMessageFieldNotFilled('affiliateUrl')
+          return false
+        } else if (!this.backColor1) {
+          this.showMessageFieldNotFilled('backColor1')
+          return false
+        } else if (!this.backColor2) {
+          this.showMessageFieldNotFilled('backColor2')
+          return false
+        } else if (!this.buttonColor) {
+          this.showMessageFieldNotFilled('buttonColor')
+          return false
+        }
 
         return true
       } else if (this.templateSelected.includes('Template 2')) {
-        if (!this.productName) return false
-        else if (!this.imageId) return false
-        else if (!this.affiliateUrl) return false
-        else if (!this.backColor1) return false
-        else if (!this.backColor2) return false
-        else if (!this.buttonColor) return false
-        else if (!this.headLineText) return false
-        else if (this.buttonChoice === 'text' && !this.buttonText) return false
-        else if (this.buttonChoice === 'text' && !this.showButtonAnimation) return false
+        if (!this.productName) {
+          this.showMessageFieldNotFilled('productName')
+          return false
+        } else if (!this.imageId) {
+          this.showMessageFieldNotFilled('image')
+          return false
+        } else if (!this.affiliateUrl) {
+          this.showMessageFieldNotFilled('affiliateUrl')
+          return false
+        } else if (!this.backColor1) {
+          this.showMessageFieldNotFilled('backColor1')
+          return false
+        } else if (!this.backColor2) {
+          this.showMessageFieldNotFilled('backColor2')
+          return false
+        } else if (!this.buttonColor) {
+          this.showMessageFieldNotFilled('buttonColor')
+          return false
+        } else if (!this.headLineText) {
+          this.showMessageFieldNotFilled('headLineText')
+          return false
+        } else if (this.buttonChoice === 'text' && !this.buttonText) {
+          this.showMessageFieldNotFilled('buttonText')
+          return false
+        } else if (this.buttonChoice === 'text' && !this.showButtonAnimation) {
+          this.showMessageFieldNotFilled('showButtonAnimation')
+          return false
+        }
 
         return true
       } else if (this.templateSelected.includes('Template 3')) {
-        if (!this.productName) return false
-        else if (!this.imageId) return false
-        else if (!this.affiliateUrl) return false
-        else if (!this.backColor1) return false
-        else if (!this.backColor2) return false
-        else if (!this.buttonColor) return false
-        else if (!this.headLineText) return false
-        else if (this.buttonChoice === 'text' && !this.buttonText) return false
-        else if (this.buttonChoice === 'text' && !this.showButtonAnimation) return false
-        else if (!this.pageTitleText) return false
-        else if (!this.serverToHostPresell) return false
-        else if (this.showDetailedInfo) {
-          if (!this.aboutProduct) return false
-          else if (!this.howDoesProductWork) return false
-          else if (!this.productIngredients) return false
+        if (!this.productName) {
+          this.showMessageFieldNotFilled('productName')
+          return false
+        } else if (!this.imageId) {
+          this.showMessageFieldNotFilled('image')
+          return false
+        } else if (!this.affiliateUrl) {
+          this.showMessageFieldNotFilled('affiliateUrl')
+          return false
+        } else if (!this.backColor1) {
+          this.showMessageFieldNotFilled('backColor1')
+          return false
+        } else if (!this.backColor2) {
+          this.showMessageFieldNotFilled('backColor2')
+          return false
+        } else if (!this.buttonColor) {
+          this.showMessageFieldNotFilled('buttonColor')
+          return false
+        } else if (!this.headLineText) {
+          this.showMessageFieldNotFilled('headLineText')
+          return false
+        } else if (this.buttonChoice === 'text' && !this.buttonText) {
+          this.showMessageFieldNotFilled('buttonText')
+          return false
+        } else if (this.buttonChoice === 'text' && !this.showButtonAnimation) {
+          this.showMessageFieldNotFilled('showButtonAnimation')
+          return false
+        } else if (!this.pageTitleText) {
+          this.showMessageFieldNotFilled('pageTitleText')
+          return false
+        } else if (!this.serverToHostPresell) {
+          this.showMessageFieldNotFilled('serverToHostPresell')
+          return false
+        } else if (this.showDetailedInfo) {
+          if (!this.aboutProduct) {
+            this.showMessageFieldNotFilled('showDetailedInfo')
+            return false
+          } else if (!this.howDoesProductWork) {
+            this.showMessageFieldNotFilled('howDoesProductWork')
+            return false
+          } else if (!this.productIngredients) {
+            this.showMessageFieldNotFilled('productIngredients')
+            return false
+          }
         // eslint-disable-next-line brace-style
         }
         // else if (!this.showLastChanceToBuy) return false
         else if (this.showPromotionValues) {
-          if (!this.promotionValueBefore) return false
-          else if (!this.promotionValueWithDiscount) return false
-          else if (!this.discountValue) return false
+          if (!this.promotionValueBefore) {
+            this.showMessageFieldNotFilled('promotionValueBefore')
+            return false
+          } else if (!this.promotionValueWithDiscount) {
+            this.showMessageFieldNotFilled('promotionValueNow')
+            return false
+          } else if (!this.discountValue) {
+            this.showMessageFieldNotFilled('discountValue')
+            return false
+          }
         }
         return true
       }
+    },
+    showMessageFieldNotFilled (fieldName) {
+      return notifyError(i18n.global.t('msg.fieldNotFilled').replace('%s', i18n.global.t(`view.newPresell.lbl.${fieldName}`)))
     },
     onColor1UpdateEvent (newValue) {
       this.backColor1 = newValue

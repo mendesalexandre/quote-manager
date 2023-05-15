@@ -358,7 +358,8 @@ export default {
     success: 'Sucesso ao executar a ação',
     error: 'Erro não mapeado',
     wait: 'Aguarde uns instantes...',
-    unfilledFields: 'Campos obrigatórios não preenchidos'
+    unfilledFields: 'Campos obrigatórios não preenchidos',
+    fieldNotFilled: 'Campo \'%s\' não preenchido'
   },
   logs: {},
   components: {

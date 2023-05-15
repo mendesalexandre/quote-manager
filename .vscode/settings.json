@@ -23,6 +23,7 @@
   "vetur.experimental.templateInterpolationService": true,
   "editor.accessibilitySupport": "off",
   "cSpell.words": [
+    "axios",
     "composables",
     "vuex"
   ]
