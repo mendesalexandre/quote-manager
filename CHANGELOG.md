@@ -15,6 +15,7 @@
 - Fix shortcut to homepage not working properly [#57](https://github.com/BIEMAX/quote-manager/issues/57)
 - Fix data not re-loading properly in tables after do some action [#60](https://github.com/BIEMAX/quote-manager/issues/60)
 - Fix not re-loading the grid after pay an overdue bill
+- Fix login card not centered at the screen size [#72](https://github.com/BIEMAX/quote-manager/issues/72)
 
 #### Implement
 - Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)
