@@ -1,6 +1,6 @@
 <!-- eslint-disable @typescript-eslint/no-empty-function -->
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <!-- <q-layout> -->
     <q-card class="cls-mat-card">
       <q-card-section class="bg-primary text-white">
         <div class="text-h6">{{ $t("view.login.lbl.title") }}</div>
@@ -63,7 +63,7 @@
     </q-card>
 
     <user-registration v-model="openUserDialog"></user-registration>
-  </q-layout>
+  <!-- </q-layout> -->
 </template>
 
 <style lang="scss" scoped>

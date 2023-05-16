@@ -13,7 +13,7 @@ export async function getSumMoneyPerYear (year: any) {
 
 export async function getCalcExpenseByTagPerYear (year: any) {
   return await apiAuth
-    .get(`charts/sum-money-per-year/${year}`)
+    .get(`charts/expenses-year/${year}`)
     .then(async (response: any) => {
       return response.data.data
     })
@@ -24,7 +24,7 @@ export async function getCalcExpenseByTagPerYear (year: any) {
 
 export async function getCalcEarningByTagPerYear (year: any) {
   return await apiAuth
-    .get(`charts/sum-money-per-year/${year}`)
+    .get(`charts/earnings-year/${year}`)
     .then(async (response: any) => {
       return response.data.data
     })

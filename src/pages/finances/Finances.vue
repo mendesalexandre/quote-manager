@@ -41,16 +41,13 @@
 <script lang="ts">
 import {
   ref,
-  computed,
   defineComponent
 } from 'vue'
-import { useStore } from 'vuex'
 import moment from 'moment'
 
 import { myBillsColumns } from 'src/models/ColumnsModel'
-import { showLoading } from 'src/util/Loading'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 
 import FilterPanel from 'src/components/FilterPanel.vue'
 import TablePanel from 'src/components/TablePanel.vue'
@@ -71,33 +68,25 @@ export default defineComponent({
     ButtonSearch
   },
   data () {
-    const store = useStore()
-    const billsColumns = myBillsColumns()
-    const currentMonth = moment().format('MM/YYYY').toString()
-
-    const onSearchClick = () => {
-      showLoading(LoadingStatus.ON)
-      store.dispatch('bills/getBillsList', {
-        month: this.selectDate.toString().split('/')[0],
-        year: this.selectDate.toString().split('/')[1],
-        description: this.billName,
-        tag: this.tagName
-      })
-    }
-
-    const rows = ref(computed(() => store.getters['bills/getBills']))
-
     return {
-      rows,
-      billsColumns,
+      rows: null,
+      billsColumns: myBillsColumns(),
       billName: ref(''),
       tagName: ref(''),
-      selectDate: ref(currentMonth),
-      onSearchClick,
-      store
+      selectDate: ref(moment().format('MM/YYYY').toString())
     }
   },
   methods: {
+    onSearchClick (showMessage = true) {
+      showLoading(LoadingStatus.ON);
+      (this as any).$store.dispatch('bills/getBillsList', {
+        month: this.selectDate.toString().split('/')[0],
+        year: this.selectDate.toString().split('/')[1],
+        description: this.billName,
+        tag: this.tagName,
+        showMessage
+      })
+    },
     openDialogNewBill () {
       this.$q
         .dialog({
@@ -106,8 +95,7 @@ export default defineComponent({
           cancel: true
         })
         .onOk((newBill: any) => {
-          this.store.dispatch('bills/registerNewBill', newBill)
-          this.onSearchClick()
+          (this as any).$store.dispatch('bills/registerNewBill', newBill)
         })
     },
     onDateUpdateEvent (newValue) {
@@ -122,10 +110,18 @@ export default defineComponent({
           cancel: true
         })
         .onOk(() => {
-          this.store.dispatch('bills/removeBill', row.id)
-          this.onSearchClick()
+          (this as any).$store.dispatch('bills/removeBill', row.id)
         })
-        .onCancel(() => { })
+    }
+  },
+  computed: {
+    computedBills () {
+      return (this as any).$store.getters['bills/getBills']
+    }
+  },
+  watch: {
+    computedBills (newValue) {
+      this.rows = newValue
     }
   }
 })

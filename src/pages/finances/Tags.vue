@@ -39,9 +39,8 @@ import ButtonSearch from 'src/components/ButtonSearch.vue'
 import TablePanel from 'src/components/TablePanel.vue'
 
 import { tagsColumns } from 'src/models/ColumnsModel'
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import i18n from 'src/util/i18n'
-import { LoadingStatus } from 'src/models/StatusModel'
 
 import DialogNewTag from './DialogNewTag.vue'
 
@@ -55,25 +54,17 @@ export default defineComponent({
     TablePanel
   },
   data () {
-    const store = useStore()
-    const myTagsColumns = tagsColumns()
-
-    const onSearchClick = () => {
-      showLoading(LoadingStatus.ON)
-      store.dispatch('tags/getTagsList', { tag: this.tagName })
-    }
-
-    const rows = computed(() => store.getters['tags/getTags'])
-
     return {
       tagName: ref(''),
-      myTagsColumns,
-      rows,
-      onSearchClick,
-      store
+      myTagsColumns: tagsColumns(),
+      rows: null
     }
   },
   methods: {
+    onSearchClick (showMessage = false) {
+      showLoading(LoadingStatus.ON);
+      (this as any).$store.dispatch('tags/getTagsList', { tag: this.tagName, showMessage })
+    },
     openDialogNewTag () {
       this.$q
         .dialog({
@@ -82,8 +73,7 @@ export default defineComponent({
           cancel: true
         })
         .onOk((newBill: any) => {
-          this.store.dispatch('tags/newTag', newBill)
-          this.onSearchClick()
+          (this as any).$store.dispatch('tags/newTag', newBill)
         })
     },
     onRemoveTag (row) {
@@ -95,9 +85,19 @@ export default defineComponent({
           cancel: true
         })
         .onOk(() => {
-          this.store.dispatch('tags/deleteTag', row.name)
-          this.onSearchClick()
+          (this as any).$store.dispatch('tags/deleteTag', row.name)
         })
+    }
+  },
+  computed: {
+    computedTags () {
+      return (this as any).$store.getters['tags/getTags']
+    }
+  },
+  watch: {
+    computedTags (newValue) {
+      this.rows = null
+      this.rows = newValue
     }
   }
 })

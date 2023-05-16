@@ -1,6 +1,10 @@
 import { Loading } from 'quasar'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
+
+export enum LoadingStatus {
+  OFF,
+  ON
+}
 
 /**
  * Function that show a loading at the center of the screen from quasar library
@@ -14,4 +18,4 @@ export function showLoading (status: LoadingStatus) {
   } else Loading.hide()
 }
 
-export default { showLoading }
+export default { showLoading, LoadingStatus }

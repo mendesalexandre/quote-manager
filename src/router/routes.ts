@@ -75,7 +75,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/presell/new',
         name: 'New pre-sell',
-        component: () => import('src/pages/ad-words/DialogNewPresell.vue')
+        component: () => import('src/pages/ad-words/NewPresell.vue')
       },
       {
         path: '/campaigns',

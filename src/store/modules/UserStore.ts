@@ -1,9 +1,8 @@
 import { getUser, newUser, updateUser, getUserHistory } from 'src/composables/UserService'
 
 // Utils
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
 import { mapError } from 'src/util/MapError'
 

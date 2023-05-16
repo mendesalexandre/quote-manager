@@ -8,9 +8,8 @@ import {
 } from 'src/composables/BillsService'
 
 // Utils
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
 import { mapError } from 'src/util/MapError'
 
@@ -72,7 +71,7 @@ const actions = {
       const bills = await getBills(payload)
       commit('setBills', bills)
       showLoading(LoadingStatus.OFF)
-      notifySuccess(i18n.global.t('msg.bill.querySuccess'))
+      if (payload.showMessage) notifySuccess(i18n.global.t('msg.bill.querySuccess'))
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)
@@ -110,6 +109,8 @@ const actions = {
     try {
       showLoading(LoadingStatus.ON)
       const newBillResp = await newBill(payload)
+      const bills = await getBills(null)
+      commit('setBills', bills)
       showLoading(LoadingStatus.OFF)
       notifySuccess(newBillResp)
       return newBillResp
@@ -122,6 +123,9 @@ const actions = {
     try {
       showLoading(LoadingStatus.ON)
       const response = await payBill(payload)
+      const bills = await getBillsNotPayed()
+      commit('setBillsOverdue', bills)
+      commit('setBillsNotPayedLength', bills?.length || 0)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.payBill.successToPay'))
       return response
@@ -134,8 +138,10 @@ const actions = {
     try {
       showLoading(LoadingStatus.ON)
       const response = await deleteBill(payload)
+      const bills = await getBills(null)
+      commit('setBills', bills)
       showLoading(LoadingStatus.OFF)
-      notifySuccess(i18n.global.t('msg.payBill.deleteSuccess'))
+      notifySuccess(i18n.global.t('msg.payBill.successToDeleteBill'))
       return response
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)

@@ -30,8 +30,7 @@ import {
 import { useStore } from 'vuex'
 
 import { closeToOverdueColumns } from 'src/models/ColumnsModel'
-import { showLoading } from 'src/util/Loading'
-import { LoadingStatus } from 'src/models/StatusModel'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 
 import FilterPanel from 'src/components/FilterPanel.vue'
 import TablePanel from 'src/components/TablePanel.vue'
@@ -50,9 +49,9 @@ export default defineComponent({
     const store = useStore()
     const billsColumns = closeToOverdueColumns()
 
-    const onSearchClick = () => {
+    const onSearchClick = (showMessage = true) => {
       showLoading(LoadingStatus.ON)
-      store.dispatch('bills/getBillsCloseToOverdueList', { showMessage: true })
+      store.dispatch('bills/getBillsCloseToOverdueList', { showMessage })
     }
 
     const rows = ref(computed(() => store.getters['bills/getBillsCloseToOverdue']))

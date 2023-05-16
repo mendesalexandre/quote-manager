@@ -1,14 +1,38 @@
 # [1.0.2]
 
 #### Changed
--
+- Pump project version from `1.0.1` to `1.0.2`
+- Enhance the user dashboard (homepage) to get more useless information [#51](https://github.com/BIEMAX/quote-manager/issues/51)
+- Change the process of registration 'new presell' from dialog to page
+- Always open the menus as opened
+- Reduced the notification badge time from '1,5' seconds to '0,7' seconds
+- Not allow copy pre-sale page final url if is not present
 
 #### Fix
--
+- Fix tips not loading properly at home screen [#59](https://github.com/BIEMAX/quote-manager/issues/59)
+- Fix duplicate success messages after close dialogs [#33](https://github.com/BIEMAX/quote-manager/issues/33)
+- Fix warning when select the color for pre-sale pages 'Failed to resolve directive: value at <ColorPicker>'
+- Fix shortcut to homepage not working properly [#57](https://github.com/BIEMAX/quote-manager/issues/57)
+- Fix data not re-loading properly in tables after do some action [#60](https://github.com/BIEMAX/quote-manager/issues/60)
+- Fix not re-loading the grid after pay an overdue bill
+- Fix login card not centered at the screen size [#72](https://github.com/BIEMAX/quote-manager/issues/72)
 
 #### Implement
 - Get device information on user registration/login [#25](https://github.com/BIEMAX/quote-manager/issues/25)
 - Defaulters screen, add and subtract debt and user tracking changes on the values [#35](https://github.com/BIEMAX/quote-manager/issues/35)
+- Added vertical scrolls for mobile devices [#42](https://github.com/BIEMAX/quote-manager/issues/42)
+- Re-branded the menus and icons [#98](https://github.com/BIEMAX/financial-manager-app/issues/98)
+- In pre-sale registration, allow user define the headline [#61](https://github.com/BIEMAX/quote-manager/issues/61)
+- In pre-sale creation, added button 'privacy' [#63](https://github.com/BIEMAX/quote-manager/issues/63)
+- In pre-sale creation, added button 'terms' [#64](https://github.com/BIEMAX/quote-manager/issues/64)
+- In pre-sale creation, added button 'contact' [#65](https://github.com/BIEMAX/quote-manager/issues/65)
+- Enable fields based on template selection in pre-sale registration [#70](https://github.com/BIEMAX/quote-manager/issues/70)
+- Implemented github actions for automatized deploys for Google Firebase
+- In pre-sale page registration, validate if the affiliate url contains malicious content [#67](https://github.com/BIEMAX/quote-manager/issues/67)
+- In pre-sale page registration, possibility to change button text [#66](https://github.com/BIEMAX/quote-manager/issues/66)
+- In pre-sale page registration, not allow use the product link [#69](https://github.com/BIEMAX/quote-manager/issues/69)
+- Added column 'bill type' at the bills grid
+- Finish the menu 'pre-sales' implementing edition [#34](https://github.com/BIEMAX/quote-manager/issues/34)
 
 # [1.0.1]
 

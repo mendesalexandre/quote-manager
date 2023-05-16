@@ -1,9 +1,8 @@
 import { getTags, newTag, deleteTag } from 'src/composables/TagsService'
 
 // Utils
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
 
 /**
@@ -48,10 +47,12 @@ const actions = {
   async newTag ({ commit }, payload: any) {
     try {
       showLoading(LoadingStatus.ON)
-      const tags = await newTag(payload)
+      const tagRegistration = await newTag(payload)
+      const tags = await getTags()
+      commit('setTags', tags)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.tag.newSuccess'))
-      return tags
+      return tagRegistration
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)
@@ -60,11 +61,12 @@ const actions = {
   async deleteTag ({ commit }, tagName: string) {
     try {
       showLoading(LoadingStatus.ON)
-      const tags = await deleteTag(tagName)
-      if (tags) {
-        showLoading(LoadingStatus.OFF)
-        notifySuccess(i18n.global.t('msg.tag.deleteSuccess'))
-      }
+      const tagRemoval = await deleteTag(tagName)
+      const tags = await getTags()
+      commit('setTags', tags)
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(i18n.global.t('msg.tag.deleteSuccess'))
+      return tagRemoval
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)

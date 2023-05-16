@@ -1,9 +1,8 @@
-import { newPresell, getPresell } from 'src/composables/PresellService'
+import { newPresell, getPresell, deletePresell, updatePresell } from 'src/composables/PresellService'
 
 // Utils
-import { showLoading } from 'src/util/Loading'
+import { showLoading, LoadingStatus } from 'src/util/Loading'
 import { notifySuccess, notifyError } from 'src/util/Notification'
-import { LoadingStatus } from 'src/models/StatusModel'
 import i18n from 'src/util/i18n'
 
 /**
@@ -19,6 +18,9 @@ const state = {
 const mutations = {
   setPresells (state, value) {
     state.presells = value
+  },
+  setPresellToEdit (state, value) {
+    state.presellToEdit = value
   }
 }
 
@@ -28,6 +30,9 @@ const mutations = {
 const getters = {
   getPresells (state) {
     return state.presells
+  },
+  getPresellToEdit (state) {
+    return state.presellToEdit
   }
 }
 
@@ -38,13 +43,16 @@ const actions = {
    * @returns List of the pre-sells
    */
   async registerNewPresell ({ commit }, payload) {
-    // const $router = (this as any).$router
+    const router = (this as any).$router
     showLoading(LoadingStatus.ON)
     try {
-      const presell = await newPresell(payload)
+      const registerPresell = await newPresell(payload)
+      const presells = await getPresell(null)
+      commit('setPresells', presells)
       showLoading(LoadingStatus.OFF)
       notifySuccess(i18n.global.t('msg.presell.newSuccess'))
-      return presell
+      router.push('/presell')
+      return registerPresell
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)
@@ -56,8 +64,48 @@ const actions = {
       const presells = await getPresell(payload)
       commit('setPresells', presells)
       showLoading(LoadingStatus.OFF)
-      notifySuccess(i18n.global.t('msg.presell.querySuccess'))
+      if (payload.showMessage) notifySuccess(i18n.global.t('msg.presell.querySuccess'))
       return presells
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
+    }
+  },
+  async removePresell ({ commit }, payload) {
+    showLoading(LoadingStatus.ON)
+    try {
+      const delPresell = await deletePresell(payload)
+      const presells = await getPresell(null)
+      commit('setPresells', presells)
+      showLoading(LoadingStatus.OFF)
+      notifySuccess(i18n.global.t('msg.presell.querySuccess'))
+      return delPresell
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
+    }
+  },
+  async updatePresell ({ commit }, payload) {
+    const $router = (this as any).$router
+    showLoading(LoadingStatus.ON)
+    try {
+      const response = await updatePresell(payload)
+      const presells = await getPresell(null)
+      commit('setPresells', presells)
+      showLoading(LoadingStatus.OFF)
+      $router.push('/presell')
+      return response
+    } catch (error: any) {
+      showLoading(LoadingStatus.OFF)
+      notifyError(error)
+    }
+  },
+  async editPresell ({ commit }, payload) {
+    showLoading(LoadingStatus.ON)
+    try {
+      commit('setPresellToEdit', payload)
+      showLoading(LoadingStatus.OFF)
+      return true
     } catch (error: any) {
       showLoading(LoadingStatus.OFF)
       notifyError(error)

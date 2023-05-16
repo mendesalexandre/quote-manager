@@ -60,6 +60,7 @@ export function myBillsColumns () {
     },
     { name: 'dueDate', field: 'dueDate', label: i18n.global.t('columns.bills.dueDate'), sortable: true, align: 'left' },
     { name: 'value', field: 'value', label: i18n.global.t('columns.bills.value'), sortable: true, format: val => `${i18n.global.t('generic.currencySymbol')} ${val}`, align: 'left' },
+    { name: 'isCashEntry', field: 'isCashEntry', label: i18n.global.t('columns.bills.isCashEntry'), sortable: false, align: 'left', format: val => `${val === true ? i18n.global.t('columns.bills.entryTrue') : i18n.global.t('columns.bills.entryFalse')}` },
     { name: 'actions', field: 'action', label: i18n.global.t('components.lbl.actions'), sortable: false, align: 'right' }
   ]
 }
@@ -82,6 +83,7 @@ export function preSellColumns () {
   return [
     { name: 'status', field: 'status', label: i18n.global.t('columns.presell.status'), sortable: true, align: 'left' },
     { name: 'productName', field: 'productName', required: true, label: i18n.global.t('columns.presell.productName'), sortable: true, align: 'left' },
+    { name: 'template', field: 'template', required: true, label: i18n.global.t('columns.presell.template'), sortable: true, align: 'left' },
     { name: 'finalUrl', field: 'finalUrl', required: true, label: i18n.global.t('columns.presell.finalUrl'), sortable: true, align: 'left' },
     { name: 'actions', field: 'action', label: i18n.global.t('components.lbl.actions'), sortable: false, align: 'right' }
   ]
